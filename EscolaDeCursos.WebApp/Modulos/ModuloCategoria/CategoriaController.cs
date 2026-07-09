@@ -23,4 +23,8 @@ public class CategoriaController : Controller
 
         return View(vms);
     }
+    public ActionResult Cadastrar()
+    {
+        return View();
+    }
 }

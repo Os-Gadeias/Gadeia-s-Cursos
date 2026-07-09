@@ -6,3 +6,8 @@ public record ListarCategoriaViewModel(
     string Cor,
     string Icon
 );
+public record CadastrarCategoriaViewModel(
+    string Titulo,
+    string Cor,
+    string Icon
+);
