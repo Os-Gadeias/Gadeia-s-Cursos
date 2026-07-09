@@ -27,6 +27,11 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Cor")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("Icon")
                         .IsRequired()
                         .HasMaxLength(100)

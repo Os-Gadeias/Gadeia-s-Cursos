@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
 {
     [DbContext(typeof(EscolaDeCursosDbContext))]
-    [Migration("20260709194504_ConfigExemplo")]
+    [Migration("20260709204229_ConfigExemplo")]
     partial class ConfigExemplo
     {
         /// <inheritdoc />
@@ -29,6 +29,11 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Cor")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Icon")
                         .IsRequired()

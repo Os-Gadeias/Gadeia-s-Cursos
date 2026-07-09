@@ -8,22 +8,24 @@ namespace EscolaDeCursos.Dominio.Modulos.ModuloCategoria
     {
         public string Icon { get; set; } = string.Empty;
         public string Titulo { get; set; } = string.Empty;
+        public string Cor { get; set; } = string.Empty;
 
         public Categoria()
         {
-
         }
 
-        public Categoria(string icon, string titulo)
+        public Categoria(string icon, string titulo, string cor)
         {
             Icon = icon;
             Titulo = titulo;
+            Cor = cor;
         }
 
         public override void Atualizar(Categoria entidadeAtualizada)
         {
             Icon = entidadeAtualizada.Icon;
             Titulo = entidadeAtualizada.Titulo;
+            Cor = entidadeAtualizada.Cor;
         }
 
         public override List<string> Validar()

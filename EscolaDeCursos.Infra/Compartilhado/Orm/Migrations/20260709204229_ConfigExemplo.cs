@@ -17,7 +17,8 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Icon = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Titulo = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    Titulo = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Cor = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {

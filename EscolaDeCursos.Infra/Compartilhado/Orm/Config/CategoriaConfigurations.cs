@@ -26,6 +26,10 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Config
             HasMaxLength(100)
             .IsRequired();
 
+            builder.Property(c => c.Cor).
+            HasMaxLength(100)
+            .IsRequired();
+
             builder.HasIndex(c => c.Titulo)
             .IsUnique()
             .HasDatabaseName("UQ_TBCategoria_Titulo");
