@@ -1,6 +1,5 @@
 @{
     Layout = "_Layout";
-    ViewBag.Titulo = "Página Inicial";
 }
 <style>
     /* Estilos customizados para chegar o mais perto possível da imagem */
@@ -126,13 +125,13 @@
                     <div class="card custom-card h-100 p-3">
                         <div class="card-body d-flex flex-column">
                             <div class="icon-wrapper bg-icon-alunos mb-3">
-                                <span class="bi bi-person-fill">🧑‍🎓</span>
+                                <span class="bi bi-person-fill"></span>
                             </div>
                             <h5 class="icone">Alunos</h5>
                             <p class="card-text mb-4">Visualize e gerencie os alunos cadastrados.</p>
 
                             <a asp-controller="Aluno" asp-action="Listar" class="btn-arrow mt-auto align-self-end">
-                                <span class="bi bi-arrow-right-short">⚙️</span>
+                                <span class="bi bi-arrow-right-short"></span>
                             </a>
                         </div>
                     </div>
@@ -142,13 +141,13 @@
                     <div class="card custom-card h-100 p-3">
                         <div class="card-body d-flex flex-column">
                             <div class="icon-wrapper bg-icon-professores mb-3">
-                                <span class="bi bi-person-workspace">👨‍🏫</span>
+                                <span class="bi bi-person-workspace"></span>
                             </div>
                             <h5 class="icone">Professores</h5>
                             <p class="card-text mb-4">Visualize e gerencie os professores.</p>
 
                             <a asp-controller="Professor" asp-action="Listar" class="btn-arrow mt-auto align-self-end">
-                                <span class="bi bi-arrow-right-short">⚙️</span>
+                                <span class="bi bi-arrow-right-short"></span>
                             </a>
                         </div>
                     </div>
@@ -158,13 +157,13 @@
                     <div class="card custom-card h-100 p-3">
                         <div class="card-body d-flex flex-column">
                             <div class="icon-wrapper bg-icon-cursos mb-3">
-                                <span class="bi bi-journal-bookmark-fill">📚</span>
+                                <span class="bi bi-journal-bookmark-fill"></span>
                             </div>
                             <h5 class="icone">Cursos</h5>
                             <p class="card-text mb-4">Gerencie os cursos disponíveis na escola.</p>
 
                             <a asp-controller="Curso" asp-action="Listar" class="btn-arrow mt-auto align-self-end">
-                                <span class="bi bi-arrow-right-short">⚙️</span>
+                                <span class="bi bi-arrow-right-short"></span>
                             </a>
                         </div>
                     </div>
@@ -180,7 +179,7 @@
                             <p class="card-text mb-4">Organize e gerencie as turmas e horários.</p>
 
                             <a asp-controller="Turma" asp-action="Listar" class="btn-arrow mt-auto align-self-end">
-                                <span class="bi bi-arrow-right-short">⚙️</span>
+                                <span class="bi bi-arrow-right-short"></span>
                             </a>
                         </div>
                     </div>
@@ -196,7 +195,7 @@
                             <p class="card-text mb-4">Gerencie as categorias de cursos e conteúdos.</p>
 
                             <a asp-controller="Categoria" asp-action="Listar" class="btn-arrow mt-auto align-self-end">
-                                <span class="bi bi-arrow-right-short">⚙️</span>
+                                <span class="bi bi-arrow-right-short"></span>
                             </a>
                         </div>
                     </div>
@@ -204,10 +203,10 @@
             </div>
         </div>
 
-        <div class="col-lg-4 d-none d-lg-flex justify-content-center mt-5 mt-lg-0">
+        @* <div class="col-lg-4 d-none d-lg-flex justify-content-center mt-5 mt-lg-0">
             <img src="~/images/professor-illustration.png" alt="Ilustração de um Professor" class="img-fluid"
-                 style="max-height: 450px;" />
-        </div>
-
+                 style="max-height: 450px;" /> *@
     </div>
+
+</div>
 </div>
