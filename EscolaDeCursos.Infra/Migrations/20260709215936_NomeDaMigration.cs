@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
+namespace EscolaDeCursos.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class ConfigExemplo : Migration
+    public partial class NomeDaMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

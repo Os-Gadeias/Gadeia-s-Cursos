@@ -4,19 +4,16 @@ using EscolaDeCursos.Infra.Compartilhado.Orm;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
+namespace EscolaDeCursos.Infra.Migrations
 {
     [DbContext(typeof(EscolaDeCursosDbContext))]
-    [Migration("20260709204229_ConfigExemplo")]
-    partial class ConfigExemplo
+    partial class EscolaDeCursosDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
