@@ -7,5 +7,6 @@ public class TutorProfile : Profile
     public TutorProfile()
     {
         CreateMap<ListarTutorDto, ListarTutorViewModel>();
+        CreateMap<CadastrarTutorDto, CadastrarTutorViewMosel>();
     }
 }
