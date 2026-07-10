@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using EscolaDeCursos.Dominio.Modulos.ModuloCategoria;
 
 namespace EscolaDeCursos.WebApp.Modulos.ModuloCategoria;
 
@@ -14,6 +15,7 @@ public record CadastrarCategoriaViewModel(
     [Required(ErrorMessage = "O campo \"Cor\" é Obrigatório!")]
     string Cor,
     [Required(ErrorMessage = "O campo \"Emoji\" é Obrigatório!")]
+    [ApenasUmEmoji(ErrorMessage = "Você deve escolher apenas 1 emoji.")]
     string Icon
 );
 public record ExcluirCategoriaViewModel(
@@ -29,5 +31,6 @@ public record EditarCategoriaViewModel(
     [Required(ErrorMessage = "O campo \"Cor\" é Obrigatório!")]
     string Cor,
     [Required(ErrorMessage = "O campo \"Emoji\" é Obrigatório!")]
+    [ApenasUmEmoji(ErrorMessage = "Você deve escolher apenas 1 emoji.")]
     string Icon
 );
