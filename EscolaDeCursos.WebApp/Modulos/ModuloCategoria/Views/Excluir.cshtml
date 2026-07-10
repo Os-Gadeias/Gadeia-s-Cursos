@@ -1,0 +1,79 @@
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Exclusão de Categoria";
+}
+
+@model ExcluirCategoriaViewModel;
+
+<form class="card border-0 shadow-sm mx-auto rounded-4 overflow-hidden mt-5" style="max-width: 620px;"
+      asp-action="Excluir" asp-route-id="@Model.Id" method="post">
+
+    <input asp-for="Id" type="hidden">
+
+    <div class="d-flex justify-content-between align-items-center p-3 px-4"
+         style="background-color: #fce8e8; color: #d32f2f;">
+        <div class="d-flex align-items-center gap-2 fw-semibold">
+            <i class="bi bi-exclamation-triangle"></i>
+            <span>Confirmar Exclusão</span>
+        </div>
+        <a asp-action="Listar" class="text-decoration-none" style="color: #d32f2f; font-size: 1.2rem;">
+            <i class="bi bi-x-lg"></i>
+        </a>
+    </div>
+
+    <div class="p-4">
+
+        <h5 class="fw-bold text-dark mb-2" style="font-size: 1.1rem;">Tem certeza que deseja excluir esta categoria?
+        </h5>
+        <p class="text-muted mb-4" style="font-size: 0.9rem; line-height: 1.5;">
+            Esta ação não pode ser desfeita. Todos os dados relacionados a esta
+            categoria serão permanentemente removidos do sistema.
+        </p>
+
+        <div class="bg-light p-4 rounded-3 mb-4">
+
+            <div class="row mb-3 border-bottom pb-3">
+                <div class="col-sm-4 text-muted" style="font-size: 0.85rem;">Nome da Categoria</div>
+                <div class="col-sm-8 fw-semibold text-dark text-break" style="font-size: 0.9rem;">
+                    @Model.Titulo
+                </div>
+            </div>
+
+            <div class="row mb-3 border-bottom pb-3">
+                <div class="col-sm-4 text-muted" style="font-size: 0.85rem;">ID da Categoria</div>
+                <div class="col-sm-8 fw-semibold text-dark" style="font-size: 0.9rem;">
+                    @Model.Id
+                </div>
+            </div>
+
+            <div class="row pt-1">
+                <div class="col-6 d-flex align-items-center">
+                    <div class="text-muted w-50" style="font-size: 0.85rem;">Emoji</div>
+                    <div class="fw-semibold text-dark w-50 fs-5">
+                        @Model.Icon
+                    </div>
+                </div>
+
+                <div class="col-6 d-flex align-items-center">
+                    <div class="text-muted w-25" style="font-size: 0.85rem;">Cor</div>
+                    <div class="fw-semibold text-dark w-75 d-flex align-items-center gap-2" style="font-size: 0.9rem;">
+                        <span class="border border-secondary-subtle shadow-sm"
+                              style="display:inline-block; width:16px; height:16px; border-radius:50%; background-color:@Model.Cor;"></span>
+                        @Model.Cor
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="d-flex justify-content-end gap-3 mt-2 pt-3 border-top">
+            <a class="btn bg-white border px-4 fw-semibold text-dark" style="font-size: 0.9rem;" asp-action="Listar">
+                Cancelar
+            </a>
+            <button class="btn px-4 fw-semibold text-white d-flex align-items-center gap-2"
+                    style="background-color: #dc3545; font-size: 0.9rem;" type="submit">
+                <i class="bi bi-trash"></i> Excluir Categoria
+            </button>
+        </div>
+    </div>
+</form>
