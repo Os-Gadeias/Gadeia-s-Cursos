@@ -7,6 +7,10 @@ public class TutorProfile : Profile
     public TutorProfile()
     {
         CreateMap<ListarTutorDto, ListarTutorViewModel>();
-        CreateMap<CadastrarTutorDto, CadastrarTutorViewMosel>();
+        CreateMap<ListarTutorDto, EditarTutorViewMosel>();
+        CreateMap<CadastrarTutorViewMosel, CadastrarTutorDto>();
+        CreateMap<ListarTutorDto, ExcluirTutorViewModel>();
+        CreateMap<ExcluirTutorViewModel, ExcluirTutorDto>();
+        CreateMap<EditarTutorViewMosel, EditarTutorDto>();
     }
 }
