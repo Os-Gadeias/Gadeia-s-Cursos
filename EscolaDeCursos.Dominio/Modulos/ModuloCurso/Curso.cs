@@ -1,4 +1,5 @@
 using EscolaDeCursos.Dominio.Compartilhado;
+using EscolaDeCursos.Dominio.Modulos.ModuloAula;
 using EscolaDeCursos.Dominio.Modulos.ModuloCategoria;
 
 namespace EscolaDeCursos.Dominio.Modulos.ModuloCurso;
@@ -9,7 +10,7 @@ public class Curso : EntidadeBase<Curso>
     public int CargaHoraria { get; set; }
     public NivelDeDificildade Dificildade { get; set; }
     public Categoria Categoria { get; set; }
-    //public List<Aula> Aulas = new();
+    public List<Aula> Aulas = new();
     public Curso(string nome, int cargaHoraria, NivelDeDificildade dificildade, Categoria categoria)
     {
         Nome = nome;
@@ -24,7 +25,7 @@ public class Curso : EntidadeBase<Curso>
         CargaHoraria = entidadeAtualizada.CargaHoraria;
         Dificildade = entidadeAtualizada.Dificildade;
         Categoria = entidadeAtualizada.Categoria;
-        // Aulas = entidadeAtualizada.Aulas;
+        Aulas = entidadeAtualizada.Aulas;
     }
 
     public override List<string> Validar()
