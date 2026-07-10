@@ -1,4 +1,5 @@
 using EscolaDeCursos.Aplicacao.Compartilhado;
+using EscolaDeCursos.Aplicacao.Modulos.ModuloCategoria;
 using EscolaDeCursos.Dominio.Compartilhado;
 using EscolaDeCursos.Dominio.Modulos.ModuloTutor;
 using FluentResults;
@@ -67,6 +68,16 @@ public class ServicoTutor : ServicoBase<Tutor>
             throw new Exception("Tutor não encontrado!");
 
         repositorioTutor.Excluir(dto.Id);
+    }
+
+    public ListarTutorDto SelecionarPorId(Guid id)
+    {
+        Tutor? t = repositorioTutor.SelecionarPorId(id);
+
+        if (t == null)
+            throw new Exception("Tutor não encontrado!");
+
+        return new ListarTutorDto(t.Id, t.Nome, t.Telefone, t.Cpf);
     }
 
     public bool ExisteTutorComMesmoNome(string Nome, Guid? idIgnorado = null)
