@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using EscolaDeCursos.Dominio.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 
@@ -51,8 +52,7 @@ public abstract class RepositorioBaseEmOrm<T>(EscolaDeCursosDbContext dbContext)
     {
         return registros.ToList();
     }
-
-    public virtual List<T> Filtrar(Func<T, bool> filtro)
+    public virtual List<T> Filtrar(Expression<Func<T, bool>> filtro)
     {
         return registros.Where(filtro).ToList();
     }
