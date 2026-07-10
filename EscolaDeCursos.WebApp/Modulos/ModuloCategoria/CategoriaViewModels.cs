@@ -16,3 +16,9 @@ public record CadastrarCategoriaViewModel(
     [Required(ErrorMessage = "O campo \"Emoji\" é Obrigatório!")]
     string Icon
 );
+public record ExcluirCategoriaViewModel(
+    string Id,
+    string Titulo,
+    string Cor,
+    string Icon
+);

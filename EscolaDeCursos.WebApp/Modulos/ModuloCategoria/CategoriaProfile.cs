@@ -9,5 +9,7 @@ public class CategoriaProfile : Profile
     {
         CreateMap<DetalhesCategoriaDto, ListarCategoriaViewModel>();
         CreateMap<CadastrarCategoriaViewModel, CadastrarCategoriaDto>();
+        CreateMap<DetalhesCategoriaDto, ExcluirCategoriaViewModel>();
+        CreateMap<ExcluirCategoriaViewModel, ExcluirCategoriaDto>();
     }
 }

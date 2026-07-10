@@ -47,4 +47,21 @@ public class CategoriaController : Controller
 
         return RedirectToAction(nameof(Listar));
     }
+    public ActionResult Excluir(string id)
+    {
+        DetalhesCategoriaDto dto = servicoCategoria.SelecionarPorId(id);
+
+        ExcluirCategoriaViewModel vm = mapper.Map<ExcluirCategoriaViewModel>(dto);
+
+        return View(vm);
+    }
+    [HttpPost]
+    public ActionResult Excluir(ExcluirCategoriaViewModel vm)
+    {
+        ExcluirCategoriaDto dto = mapper.Map<ExcluirCategoriaDto>(vm);
+
+        servicoCategoria.Excluir(dto);
+
+        return RedirectToAction(nameof(Listar));
+    }
 }

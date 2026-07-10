@@ -29,6 +29,26 @@ public sealed class ServicoCategoria : ServicoBase<Categoria>
         return Result.Ok();
     }
 
+    public void Excluir(ExcluirCategoriaDto dto)
+    {
+        Categoria? c = repositorioCategoria.SelecionarPorId(new Guid(dto.Id));
+
+        if (c == null)
+            throw new Exception("Categoria não encontrada!");
+
+        repositorioCategoria.Excluir(new Guid(dto.Id));
+    }
+
+    public DetalhesCategoriaDto SelecionarPorId(string id)
+    {
+        Categoria? c = repositorioCategoria.SelecionarPorId(new Guid(id));
+
+        if (c == null)
+            throw new Exception("Categoria não encontrada!");
+
+        return new DetalhesCategoriaDto(c.Id.ToString(), c.Titulo, c.Cor, c.Icon);
+    }
+
     public List<DetalhesCategoriaDto> SelecionarTodos()
     {
         return repositorioCategoria.SelecionarTodos().Select(e => new DetalhesCategoriaDto(

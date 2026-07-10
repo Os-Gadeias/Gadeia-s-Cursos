@@ -11,3 +11,9 @@ public record CadastrarCategoriaDto(
     string Cor,
     string Icon
 );
+public record ExcluirCategoriaDto(
+    string Id,
+    string Titulo,
+    string Cor,
+    string Icon
+);
