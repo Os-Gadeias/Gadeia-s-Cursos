@@ -1,6 +1,6 @@
 @{
     Layout = "_Layout";
-    ViewBag.Titulo = "Listagem de Categorias";
+    ViewBag.Titulo = "Listagem de Tutores";
 }
 
 @model List<ListarTutorViewModel>;
@@ -8,10 +8,10 @@
 <div class="container mt-4">
 
     <div class="d-flex justify-content-between align-items-center mb-4 pb-2">
-        <h2 class="fw-bold text-dark mb-0">Categorias</h2>
+        <h2 class="fw-bold text-dark mb-0">Tutores</h2>
         <a class="btn fw-semibold text-white d-flex align-items-center gap-2 shadow-sm"
            style="background-color: #5a38f5; padding: 10px 20px; border-radius: 8px;" asp-action="Cadastrar">
-            <i class="bi bi-plus-lg"></i> Nova Categoria
+            <i class="bi bi-plus-lg"></i> Nova Tutor
         </a>
     </div>
 
@@ -26,8 +26,8 @@
     {
         <div class="alert bg-white border-0 shadow-sm rounded-4 p-5 text-center text-muted" role="alert">
             <i class="bi bi-inbox fs-1 d-block mb-3"></i>
-            <h5 class="fw-semibold">Nenhuma categoria encontrada</h5>
-            <p class="mb-0 small">Cadastre uma nova categoria para visualizá-la aqui.</p>
+            <h5 class="fw-semibold">Nenhuma Tutor encontrada</h5>
+            <p class="mb-0 small">Cadastre uma nova Tutor para visualizá-la aqui.</p>
         </div>
     }
     else

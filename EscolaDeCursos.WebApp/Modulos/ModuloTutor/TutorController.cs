@@ -1,17 +1,25 @@
+using AutoMapper;
+using EscolaDeCursos.Aplicacao.Modulos.ModuloTutor;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EscolaDeCursos.WebApp.Modulos.ModuloTutor;
 
 public class TutorController : Controller
 {
+    private readonly ServicoTutor servicoTutor;
+    private readonly IMapper mapper;
+    public TutorController(ServicoTutor servicoTutor, IMapper mapper)
+    {
+        this.servicoTutor = servicoTutor;
+        this.mapper = mapper;
+    }
+
     public ActionResult Listar()
     {
-        ListarTutorViewModel vm = new ListarTutorViewModel(Guid.CreateVersion7(), "vitu", "(49) 989091739", "12345678901234");
+        List<ListarTutorDto> Dtos = servicoTutor.SelecionarTodos();
 
-        List<ListarTutorViewModel> listatutor = new List<ListarTutorViewModel>();
+        List<ListarTutorViewModel> vms = mapper.Map<List<ListarTutorViewModel>>(Dtos);
 
-        listatutor.Add(vm);
-
-        return View(listatutor);
+        return View(vms);
     }
 }
