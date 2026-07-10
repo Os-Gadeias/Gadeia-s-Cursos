@@ -1,8 +1,6 @@
-using Azure;
 using EscolaDeCursos.Aplicacao.Compartilhado;
 using EscolaDeCursos.Dominio.Modulos.ModuloCategoria;
 using FluentResults;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace EscolaDeCursos.Aplicacao.Modulos.ModuloCategoria;
 
