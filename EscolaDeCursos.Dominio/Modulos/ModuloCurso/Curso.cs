@@ -8,14 +8,16 @@ public class Curso : EntidadeBase<Curso>
 {
     public string Nome { get; set; } = string.Empty;
     public int CargaHoraria { get; set; }
-    public NivelDeDificildade Dificildade { get; set; }
+    public NivelDeDificildade Dificuldade { get; set; }
     public Categoria Categoria { get; set; }
-    public List<Aula> Aulas = new();
-    public Curso(string nome, int cargaHoraria, NivelDeDificildade dificildade, Categoria categoria)
+    public Curso()
+    {
+    }
+    public Curso(string nome, int cargaHoraria, NivelDeDificildade dificuldade, Categoria categoria)
     {
         Nome = nome;
         CargaHoraria = cargaHoraria;
-        Dificildade = dificildade;
+        Dificuldade = dificuldade;
         Categoria = categoria;
     }
 
@@ -23,9 +25,8 @@ public class Curso : EntidadeBase<Curso>
     {
         Nome = entidadeAtualizada.Nome;
         CargaHoraria = entidadeAtualizada.CargaHoraria;
-        Dificildade = entidadeAtualizada.Dificildade;
+        Dificuldade = entidadeAtualizada.Dificuldade;
         Categoria = entidadeAtualizada.Categoria;
-        Aulas = entidadeAtualizada.Aulas;
     }
 
     public override List<string> Validar()

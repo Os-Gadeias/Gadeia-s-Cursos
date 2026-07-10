@@ -52,6 +52,33 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                     b.ToTable("TBCategoria", (string)null);
                 });
 
+            modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloCurso.Curso", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("CargaHoraria")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("CategoriaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Dificuldade")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id")
+                        .HasName("PK_TBCurso");
+
+                    b.HasIndex("CategoriaId");
+
+                    b.ToTable("TBCurso", (string)null);
+                });
+
             modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloTutor.Tutor", b =>
                 {
                     b.Property<Guid>("Id")
@@ -84,6 +111,18 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                         .HasDatabaseName("UQ_TBTutor_Telefone");
 
                     b.ToTable("TBTutor", (string)null);
+                });
+
+            modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloCurso.Curso", b =>
+                {
+                    b.HasOne("EscolaDeCursos.Dominio.Modulos.ModuloCategoria.Categoria", "Categoria")
+                        .WithMany()
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_TBCurso_TBCategoria");
+
+                    b.Navigation("Categoria");
                 });
 #pragma warning restore 612, 618
         }

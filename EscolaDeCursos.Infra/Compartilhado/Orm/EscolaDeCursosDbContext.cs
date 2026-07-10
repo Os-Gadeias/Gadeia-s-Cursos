@@ -1,5 +1,6 @@
 using System.Reflection;
 using EscolaDeCursos.Dominio.Modulos.ModuloCategoria;
+using EscolaDeCursos.Dominio.Modulos.ModuloCurso;
 using EscolaDeCursos.Dominio.Modulos.ModuloTutor;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +11,8 @@ public sealed class EscolaDeCursosDbContext(
 {
     public DbSet<Categoria> Categorias => Set<Categoria>();
     public DbSet<Tutor> Tutores => Set<Tutor>();
-    
+    public DbSet<Curso> Cursos => Set<Curso>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         Assembly assembly = typeof(EscolaDeCursosDbContext).Assembly;

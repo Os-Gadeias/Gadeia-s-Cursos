@@ -39,11 +39,36 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                     table.PrimaryKey("PK_TBTutor", x => x.Id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TBCurso",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CargaHoraria = table.Column<int>(type: "int", nullable: false),
+                    Dificuldade = table.Column<int>(type: "int", nullable: false),
+                    CategoriaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TBCurso", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TBCurso_TBCategoria",
+                        column: x => x.CategoriaId,
+                        principalTable: "TBCategoria",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "UQ_TBCategoria_Titulo",
                 table: "TBCategoria",
                 column: "Titulo",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TBCurso_CategoriaId",
+                table: "TBCurso",
+                column: "CategoriaId");
 
             migrationBuilder.CreateIndex(
                 name: "UQ_TBTutor_Cpf",
@@ -62,10 +87,13 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "TBCategoria");
+                name: "TBCurso");
 
             migrationBuilder.DropTable(
                 name: "TBTutor");
+
+            migrationBuilder.DropTable(
+                name: "TBCategoria");
         }
     }
 }
