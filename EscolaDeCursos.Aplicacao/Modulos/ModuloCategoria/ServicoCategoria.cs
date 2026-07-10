@@ -24,6 +24,9 @@ public sealed class ServicoCategoria : ServicoBase<Categoria>
         if (resultadoValidacao.IsFailed)
             return resultadoValidacao;
 
+        if (ExisteCategoriaComMesmoNome(dto.Titulo))
+            return Falha(nameof(dto.Titulo), "Já existe uma categoria com esse Titulo!");
+
         repositorioCategoria.Cadastrar(novaCategoria);
 
         return Result.Ok();
@@ -37,6 +40,9 @@ public sealed class ServicoCategoria : ServicoBase<Categoria>
 
         if (resultadoValidacao.IsFailed)
             return resultadoValidacao;
+
+        if (ExisteCategoriaComMesmoNome(dto.Titulo, new Guid(dto.Id)))
+            return Falha(nameof(dto.Titulo), "Já existe uma categoria com esse Titulo!");
 
         repositorioCategoria.Editar(new Guid(dto.Id), catedogoriaEditada);
 
@@ -71,5 +77,10 @@ public sealed class ServicoCategoria : ServicoBase<Categoria>
             e.Cor,
             e.Icon
         )).ToList();
+    }
+    public bool ExisteCategoriaComMesmoNome(string titulo, Guid? idIgnorado = null)
+    {
+        return repositorioCategoria.SelecionarTodos().Any(e => e.Id != idIgnorado &&
+            string.Equals(e.Titulo, titulo, StringComparison.OrdinalIgnoreCase));
     }
 }
