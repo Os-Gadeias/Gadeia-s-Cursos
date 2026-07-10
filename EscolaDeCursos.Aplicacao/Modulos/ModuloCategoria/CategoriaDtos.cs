@@ -6,3 +6,8 @@ public record DetalhesCategoriaDto(
     string Cor,
     string Icon
 );
+public record CadastrarCategoriaDto(
+    string Titulo,
+    string Cor,
+    string Icon
+);

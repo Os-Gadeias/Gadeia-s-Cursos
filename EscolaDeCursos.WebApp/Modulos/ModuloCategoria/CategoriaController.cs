@@ -1,5 +1,7 @@
 using AutoMapper;
 using EscolaDeCursos.Aplicacao.Modulos.ModuloCategoria;
+using EscolaDeCursos.WebApp.Compartilhado.Extensions;
+using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EscolaDeCursos.WebApp.Modulos.ModuloCategoria;
@@ -26,5 +28,23 @@ public class CategoriaController : Controller
     public ActionResult Cadastrar()
     {
         return View();
+    }
+    [HttpPost]
+    public ActionResult Cadastrar(CadastrarCategoriaViewModel vm)
+    {
+        if (!ModelState.IsValid)
+            return View(vm);
+
+        CadastrarCategoriaDto dto = mapper.Map<CadastrarCategoriaDto>(vm);
+
+        Result resultado = servicoCategoria.Cadastrar(dto);
+
+        if (resultado.IsFailed)
+        {
+            ModelState.AddModelError(resultado);
+            return View(vm);
+        }
+
+        return RedirectToAction(nameof(Listar));
     }
 }
