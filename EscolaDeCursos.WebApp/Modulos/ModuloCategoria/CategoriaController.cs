@@ -64,4 +64,30 @@ public class CategoriaController : Controller
 
         return RedirectToAction(nameof(Listar));
     }
+    public ActionResult Editar(string id)
+    {
+        DetalhesCategoriaDto dto = servicoCategoria.SelecionarPorId(id);
+
+        EditarCategoriaViewModel vm = mapper.Map<EditarCategoriaViewModel>(dto);
+
+        return View(vm);
+    }
+    [HttpPost]
+    public ActionResult Editar(EditarCategoriaViewModel vm)
+    {
+        if (!ModelState.IsValid)
+            return View(vm);
+
+        EditarCategoriaDto dto = mapper.Map<EditarCategoriaDto>(vm);
+
+        Result resultado = servicoCategoria.Editar(dto);
+
+        if (resultado.IsFailed)
+        {
+            ModelState.AddModelError(resultado);
+            return View(vm);
+        }
+
+        return RedirectToAction(nameof(Listar));
+    }
 }

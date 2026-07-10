@@ -22,3 +22,12 @@ public record ExcluirCategoriaViewModel(
     string Cor,
     string Icon
 );
+public record EditarCategoriaViewModel(
+    string Id,
+    [Required(ErrorMessage = "O campo \"Titulo\" é Obrigatório!")]
+    string Titulo,
+    [Required(ErrorMessage = "O campo \"Cor\" é Obrigatório!")]
+    string Cor,
+    [Required(ErrorMessage = "O campo \"Emoji\" é Obrigatório!")]
+    string Icon
+);

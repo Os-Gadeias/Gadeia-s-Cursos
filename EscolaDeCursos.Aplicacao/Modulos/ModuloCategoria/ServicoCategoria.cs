@@ -29,6 +29,20 @@ public sealed class ServicoCategoria : ServicoBase<Categoria>
         return Result.Ok();
     }
 
+    public Result Editar(EditarCategoriaDto dto)
+    {
+        Categoria catedogoriaEditada = new(dto.Icon, dto.Titulo, dto.Cor);
+
+        Result resultadoValidacao = ValidarEntidade(catedogoriaEditada);
+
+        if (resultadoValidacao.IsFailed)
+            return resultadoValidacao;
+
+        repositorioCategoria.Editar(new Guid(dto.Id), catedogoriaEditada);
+
+        return Result.Ok();
+    }
+
     public void Excluir(ExcluirCategoriaDto dto)
     {
         Categoria? c = repositorioCategoria.SelecionarPorId(new Guid(dto.Id));

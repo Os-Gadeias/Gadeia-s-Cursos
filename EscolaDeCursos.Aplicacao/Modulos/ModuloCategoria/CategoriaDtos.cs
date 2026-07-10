@@ -17,3 +17,9 @@ public record ExcluirCategoriaDto(
     string Cor,
     string Icon
 );
+public record EditarCategoriaDto(
+    string Id,
+    string Titulo,
+    string Cor,
+    string Icon
+);
