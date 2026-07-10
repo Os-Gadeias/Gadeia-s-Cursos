@@ -13,7 +13,7 @@
         </div>
         <div>
             <h4 class="fw-bold mb-1 text-dark" style="font-size: 1.25rem;">Nova Tutor</h4>
-            <p class="text-muted mb-0" style="font-size: 0.9rem;">Preencha os dados abaixo para cadastrar uma nova
+            <p class="text-muted mb-0" style="font-size: 0.9rem;">Preencha os dados abaixo para cadastrar um novo
                 Tutor.</p>
             </div>
         </div>
@@ -25,7 +25,7 @@
                 Tutor</label>
                 <div class="input-group">
                     <input asp-for="Nome" type="text" class="form-control border-start-0 ps-1 shadow-none py-2"
-                           placeholder="Digite o nome da Tutor">
+                           placeholder="Digite o nome do Tutor">
                 </div>
                 <span asp-validation-for="Nome" class="text-danger small fw-semibold"></span>
             </div>
@@ -35,14 +35,14 @@
                     <label asp-for="Telefone" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Telefone</label>
                     <div class="input-group">
                         <input asp-for="Telefone" type="text" class="form-control border-start-0 w-100 shadow-none py-1"
-                               title="Escolha sua Telefone">
+                               placeholder="(49) 9999-9999">
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label asp-for="Cpf" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">CPF</label>
                     <div class="input-group">
-                        <input asp-for="Cpf" type="text" class="form-control border-start-0 ps-1 shadow-none py-2">
+                        <input asp-for="Cpf" type="text" class="form-control border-start-0 ps-1 shadow-none py-2" placeholder="10010010001">
                     </div>
                     <span asp-validation-for="Cpf" class="text-danger small fw-semibold mt-1 d-block"></span>
                 </div>
