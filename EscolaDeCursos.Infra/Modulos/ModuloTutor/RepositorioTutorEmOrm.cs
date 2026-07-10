@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using EscolaDeCursos.Dominio.Compartilhado;
 using EscolaDeCursos.Dominio.Modulos.ModuloTutor;
 using EscolaDeCursos.Infra.Compartilhado.Orm;
@@ -52,7 +53,7 @@ public sealed class RepositorioTutorEmOrm(EscolaDeCursosDbContext dbContext)
         return dbContext.Tutores.OrderBy(t => t.Nome).ToList();
     }
 
-    public List<Tutor> Filtrar(Func<Tutor, bool> filtro)
+    public List<Tutor> Filtrar(Expression<Func<Tutor, bool>> filtro)
     {
         return dbContext.Tutores.Where(filtro).ToList();
     }

@@ -1,3 +1,5 @@
+using System.Linq.Expressions;
+
 namespace EscolaDeCursos.Dominio.Compartilhado;
 
 public interface IRepositorio<T> where T : EntidadeBase<T>
@@ -7,5 +9,5 @@ public interface IRepositorio<T> where T : EntidadeBase<T>
     bool Excluir(Guid idSelecionado);
     T? SelecionarPorId(Guid idSelecionado);
     List<T> SelecionarTodos();
-    List<T> Filtrar(Func<T, bool> filtro);
+    List<T> Filtrar(Expression<Func<T, bool>> filtro);
 }
