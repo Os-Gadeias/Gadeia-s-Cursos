@@ -1,4 +1,5 @@
 
+using System.Linq.Expressions;
 using EscolaDeCursos.Dominio.Modulos.ModuloCategoria;
 using EscolaDeCursos.Infra.Compartilhado.Orm;
 using Microsoft.EntityFrameworkCore;
@@ -42,9 +43,9 @@ public class RepositorioCategoriaEmOrm(EscolaDeCursosDbContext dbContext) : IRep
         return true;
     }
 
-    public List<Categoria> Filtrar(Func<Categoria, bool> filtro)
+    public List<Categoria> Filtrar(Expression<Func<Categoria, bool>> filtro)
     {
-        return contexto.Categorias.Where(filtro).ToList();
+        return dbContext.Categorias.Where(filtro).ToList();
     }
 
     public Categoria? SelecionarPorId(Guid idSelecionado)
