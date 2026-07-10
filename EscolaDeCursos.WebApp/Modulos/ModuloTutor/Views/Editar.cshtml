@@ -1,6 +1,6 @@
 @{
     Layout = "_Layout";
-    ViewBag.Nome = "Edição de Categoria";
+    ViewBag.Nome = "Edição de Tutor";
 }
 
 @model EditarTutorViewMosel;
@@ -14,19 +14,19 @@
             <i class="bi bi-tags"></i>
         </div>
         <div>
-            <h4 class="fw-bold mb-1 text-dark" style="font-size: 1.25rem;">Nova Categoria</h4>
-            <p class="text-muted mb-0" style="font-size: 0.9rem;">Preencha os dados abaixo para cadastrar uma nova
-                categoria.</p>
+            <h4 class="fw-bold mb-1 text-dark" style="font-size: 1.25rem;">Editar Tutor</h4>
+            <p class="text-muted mb-0" style="font-size: 0.9rem;">Preencha os dados abaixo para Editar um
+                Tutor.</p>
             </div>
         </div>
         <hr class="text-secondary-subtle mb-4">
 
         <div class="mb-4">
-            <label asp-for="Nome" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Nome da
-                Categoria</label>
+            <label asp-for="Nome" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Nome do
+                Tutor</label>
                 <div class="input-group">
                     <input asp-for="Nome" type="text" class="form-control border-start-0 ps-1 shadow-none py-2"
-                           placeholder="Digite o nome da categoria">
+                           placeholder="Digite o nome do Tutor">
                 </div>
                 <span asp-validation-for="Nome" class="text-danger small fw-semibold"></span>
             </div>
@@ -35,17 +35,15 @@
                 <div class="col-md-6 mb-3">
                     <label asp-for="Telefone" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Telefone</label>
                     <div class="input-group">
-                        <input asp-for="Telefone" type="color"
-                               class="form-control form-control-color border-start-0 w-100 shadow-none py-1"
+                        <input asp-for="Telefone" type="text" class="form-control border-start-0 w-100 shadow-none py-1"
                                title="Escolha sua Telefone">
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label asp-for="Cpf" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Emoji</label>
+                    <label asp-for="Cpf" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">CPF</label>
                     <div class="input-group">
-                        <input asp-for="Cpf" type="text" id="emojiInput"
-                               class="form-control border-start-0 ps-1 shadow-none py-2" placeholder="Ex: 👋">
+                        <input asp-for="Cpf" type="text" class="form-control border-start-0 ps-1 shadow-none py-2">
                     </div>
                     <span asp-validation-for="Cpf" class="text-danger small fw-semibold mt-1 d-block"></span>
                 </div>
@@ -60,7 +58,7 @@
                 </a>
                 <button class="btn px-4 fw-semibold text-white d-flex align-items-center gap-2 py-2"
                         style="background-color: #5a38f5; font-size: 0.9rem;" type="submit">
-                    <i class="bi bi-plus-lg"></i> Editar Categoria
+                    <i class="bi bi-plus-lg"></i> Editar Tutor
                 </button>
             </div>
         </form>

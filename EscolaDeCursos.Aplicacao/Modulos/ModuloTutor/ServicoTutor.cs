@@ -52,7 +52,7 @@ public class ServicoTutor : ServicoBase<Tutor>
         if (resultadoValidacao.IsFailed)
             return resultadoValidacao;
 
-        if (ExisteTutorComMesmoNome(dto.Nome))
+        if (ExisteTutorComMesmoNome(dto.Nome, dto.Id))
             return Falha(nameof(dto.Nome), "Já existe um tutor com esse Nome");
 
         repositorioTutor.Editar(dto.Id, tutorEditado);
