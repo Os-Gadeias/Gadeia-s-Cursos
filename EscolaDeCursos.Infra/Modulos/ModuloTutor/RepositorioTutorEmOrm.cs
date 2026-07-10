@@ -6,38 +6,54 @@ using Microsoft.EntityFrameworkCore;
 public sealed class RepositorioTutorEmOrm(EscolaDeCursosDbContext dbContext)
     : IRepositorioTutor
 {
-    private readonly EscolaDeCursosDbContext dbContext = dbContext;
-    private readonly DbSet<Tutor> registros = dbContext.Tutores;
 
     public void Cadastrar(Tutor entidade)
     {
-        registros.Add(entidade);
+        dbContext.Add(entidade);
 
-        this.dbContext.SaveChanges();
+        dbContext.SaveChanges();
     }
 
     public bool Editar(Guid idSelecionado, Tutor entidadeAtualizada)
     {
-        throw new NotImplementedException();
+        Tutor? tutorSelecionado = SelecionarPorId(idSelecionado);
+
+        if (tutorSelecionado == null)
+            return false;
+
+        tutorSelecionado.Atualizar(entidadeAtualizada);
+
+        dbContext.SaveChanges(); // isso e igual a um comit!!!
+
+        return true;
     }
 
     public bool Excluir(Guid idSelecionado)
     {
-        throw new NotImplementedException();
-    }
+        Tutor? tutorSelecionado = SelecionarPorId(idSelecionado);
 
-    public List<Tutor> Filtrar(Func<Tutor, bool> filtro)
-    {
-        throw new NotImplementedException();
+        if (tutorSelecionado == null)
+            return false;
+
+        dbContext.Tutores.Remove(tutorSelecionado);
+
+        dbContext.SaveChanges();
+
+        return true;
     }
 
     public Tutor? SelecionarPorId(Guid idSelecionado)
     {
-        throw new NotImplementedException();
+        return dbContext.Tutores.SingleOrDefault(t => t.Id == idSelecionado);
     }
 
     public List<Tutor> SelecionarTodos()
     {
-        return registros.OrderBy(t => t.Nome).ToList();
+        return dbContext.Tutores.OrderBy(t => t.Nome).ToList();
+    }
+
+    public List<Tutor> Filtrar(Func<Tutor, bool> filtro)
+    {
+        return dbContext.Tutores.Where(filtro).ToList();
     }
 }
