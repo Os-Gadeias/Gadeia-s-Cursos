@@ -35,7 +35,7 @@ namespace EscolaDeCursos.Dominio.Modulos.ModuloCategoria
             if (!Icon.IsEmoji())
                 erros.Add("O campo \"Icone\" deve ser um Emoji!");
 
-            if (Titulo.Length < 2 && Titulo.Length > 100)
+            if (Titulo.Length < 2 || Titulo.Length > 100)
                 erros.Add("O campo \"Título\" deve conter entre 2 à 100 caracteres");
 
             return erros;
