@@ -14,5 +14,4 @@ public sealed class EscolaDeCursosDbContext(
 
         modelBuilder.ApplyConfigurationsFromAssembly(assembly);
     }
-
 }
