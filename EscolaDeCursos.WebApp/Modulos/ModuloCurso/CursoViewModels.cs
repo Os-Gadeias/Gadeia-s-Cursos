@@ -38,3 +38,16 @@ public record EditarCursoViewModel(
     [Required(ErrorMessage = "O campo \"Categoria\" é obrigatório!")]
     string CategoriaId
 );
+public record VisualizarTurmaEAulasViewModel(
+    string Id,
+    string Nome,
+    string CargaHoraria,
+    NivelDeDificildade Dificuldade,
+    string CategoriaNome,
+    List<ListarAulasViewModel> Aulas
+);
+public record ListarAulasViewModel(
+    string Id,
+    string Nome,
+    string Duracao
+);

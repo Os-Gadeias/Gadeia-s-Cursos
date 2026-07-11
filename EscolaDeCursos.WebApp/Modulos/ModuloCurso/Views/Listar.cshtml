@@ -79,8 +79,11 @@
                                     </span>
                                 </div>
                             </div>
-
                             <div class="mt-auto d-flex justify-content-end gap-3 pt-3 border-top">
+                                <a asp-action="Visualizar" asp-route-id="@c.Id" class="text-decoration-none text-primary"
+                                   title="Visualizar" style="font-size: 1.1rem;">
+                                    <i class="bi bi-eye"></i>
+                                </a>
                                 <a asp-action="Editar" asp-route-id="@c.Id" class="text-decoration-none text-secondary"
                                    title="Editar" style="font-size: 1.1rem;">
                                     <i class="bi bi-pencil"></i>

@@ -136,4 +136,10 @@ public class CursoController : Controller
 
         return RedirectToAction(nameof(Listar));
     }
+    public ActionResult Visualizar(string id)
+    {
+
+
+        return View();
+    }
 }
