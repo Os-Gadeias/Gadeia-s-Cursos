@@ -1,0 +1,59 @@
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Exclusão de Aula";
+}
+
+@model ExcluirAulaViewModel;
+
+<form class="card border-0 shadow-sm mx-auto rounded-4 overflow-hidden mt-5" style="max-width: 620px;"
+      asp-action="ExcluirAula" asp-route-id="@Model.Id" method="post">
+
+    <input asp-for="Id" type="hidden">
+    <input asp-for="IdCurso" type="hidden">
+
+    <div class="d-flex justify-content-between align-items-center p-3 px-4"
+         style="background-color: #fce8e8; color: #d32f2f;">
+        <div class="d-flex align-items-center gap-2 fw-semibold">
+            <i class="bi bi-exclamation-triangle"></i>
+            <span>Confirmar Exclusão</span>
+        </div>
+        <a asp-action="Listar" class="text-deTelefoneation-none" style="color: #d32f2f; font-size: 1.2rem;">
+            <i class="bi bi-x-lg"></i>
+        </a>
+    </div>
+
+    <div class="p-4">
+
+        <h5 class="fw-bold text-dark mb-2" style="font-size: 1.1rem;">Tem certeza que deseja excluir esta Aula?
+        </h5>
+        <p class="text-muted mb-4" style="font-size: 0.9rem; line-height: 1.5;">
+            Esta ação não pode ser desfeita. Todos os dados relacionados a esta
+            Aula serão permanentemente removidos do sistema.
+        </p>
+
+        <div class="row mb-2">
+            <div class="row mb-3 border-bottom pb-3">
+                <div class="col-sm-4 text-muted" style="font-size: 0.85rem;">Aula</div>
+                <div class="col-sm-8 fw-semibold text-dark text-break" style="font-size: 0.9rem;">
+                    @Model.Nome
+                </div>
+            </div>
+            <div class="row mb-3 border-bottom pb-3">
+                <div class="col-sm-4 text-muted" style="font-size: 0.85rem;">Duração</div>
+                <div class="col-sm-8 fw-semibold text-dark" style="font-size: 0.9rem;">
+                    @Model.Duracao Horas
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-3 mt-2 pt-3 border-top">
+                <a class="btn bg-white border px-4 fw-semibold text-dark py-2"
+                   style="font-size: 0.9rem; border-color: #dee2e6;" asp-controller="Curso" asp-route-id=@Model.IdCurso
+                   asp-action="Visualizar"> Cancelar
+                </a>
+                <button class="btn px-4 fw-semibold text-white d-flex align-items-center gap-2"
+                        style="background-color: #dc3545; font-size: 0.9rem;" type="submit">
+                    <i class="bi bi-trash"></i> Excluir Aula
+                </button>
+            </div>
+        </div>
+    </form>

@@ -13,5 +13,6 @@ public class CursoProfile : Profile
         CreateMap<ExcluirCursoViewModel, ExcluirCursoDto>();
         CreateMap<DetalhesCursoECategoriaDto, EditarCursoViewModel>();
         CreateMap<EditarCursoViewModel, EditarCursoDto>();
+        CreateMap<VisualizarTurmaEAulasDto, VisualizarTurmaEAulasViewModel>();
     }
 }

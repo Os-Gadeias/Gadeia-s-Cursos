@@ -9,12 +9,11 @@ RepositorioBaseEmOrm<Curso>(dbContext), IRepositorioCurso
 {
     public override List<Curso> SelecionarTodos()
     {
-        //obriga a fazer um join no banco de categoria
         return registros.Include(c => c.Categoria).ToList();
     }
     public override Curso? SelecionarPorId(Guid idSelecionado)
     {
-        return registros.Include(c => c.Categoria)
+        return registros.Include(c => c.Categoria).Include(c => c.Aulas)
         .SingleOrDefault(c => c.Id == idSelecionado);
     }
 }

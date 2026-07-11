@@ -1,3 +1,4 @@
+using EscolaDeCursos.Aplicacao.Modulos.ModuloAula;
 using EscolaDeCursos.Aplicacao.Modulos.ModuloAluno;
 using EscolaDeCursos.Aplicacao.Modulos.ModuloCategoria;
 using EscolaDeCursos.Aplicacao.Modulos.ModuloCurso;
@@ -17,6 +18,7 @@ public static class InjecaoDependencia
         services.AddScoped<ServicoCategoria>();
         services.AddScoped<ServicoTutor>();
         services.AddScoped<ServicoCurso>();
+        services.AddScoped<ServicoAula>();
         services.AddScoped<ServicoAluno>();
     }
 }

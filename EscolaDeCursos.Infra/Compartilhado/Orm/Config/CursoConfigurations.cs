@@ -31,5 +31,10 @@ public class CursoConfigurations : IEntityTypeConfiguration<Curso>
         .HasConstraintName("FK_TBCurso_TBCategoria")
         .OnDelete(DeleteBehavior.NoAction);
 
+        builder.HasMany(c => c.Aulas)      
+           .WithOne(a => a.Curso)     
+           .HasForeignKey("CursoId")   
+           .HasConstraintName("FK_TBAula_TBCurso")
+           .OnDelete(DeleteBehavior.NoAction);
     }
 }

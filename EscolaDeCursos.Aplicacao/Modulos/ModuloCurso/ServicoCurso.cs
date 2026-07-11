@@ -62,6 +62,15 @@ public class ServicoCurso : ServicoBase<Curso>
             c.Categoria.Titulo
         )).ToList();
     }
+    public VisualizarTurmaEAulasDto SelecionarTurmaEAulasPorId(string id)
+    {
+        Curso? c = repositorioCurso.SelecionarPorId(new Guid(id));
+
+        return new VisualizarTurmaEAulasDto(c.Id.ToString(), c.Nome, 
+        c.CargaHoraria, c.Dificuldade, c.Categoria.Titulo,
+        c.Aulas.Select(a => new ListarAulasDto(a.Id.ToString(), a.Nome, a.Duracao)).ToList()
+        );
+    }
     public DetalhesCursoDto SelecionarPorId(string id)
     {
         Curso? curso = repositorioCurso.SelecionarPorId(new Guid(id));
