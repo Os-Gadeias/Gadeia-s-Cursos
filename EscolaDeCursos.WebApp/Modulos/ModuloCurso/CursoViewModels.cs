@@ -41,13 +41,13 @@ public record EditarCursoViewModel(
 public record VisualizarTurmaEAulasViewModel(
     string Id,
     string Nome,
-    string CargaHoraria,
+    int CargaHoraria,
     NivelDeDificildade Dificuldade,
     string CategoriaNome,
-    List<ListarAulasViewModel> Aulas
+    List<ListarAulasViewModel>? Aulas
 );
 public record ListarAulasViewModel(
     string Id,
     string Nome,
-    string Duracao
+    int Duracao
 );

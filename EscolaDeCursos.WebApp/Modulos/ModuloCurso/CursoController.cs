@@ -138,8 +138,10 @@ public class CursoController : Controller
     }
     public ActionResult Visualizar(string id)
     {
+        VisualizarTurmaEAulasDto dto = servicoCurso.SelecionarTurmaEAulasPorId(id);
 
+        VisualizarTurmaEAulasViewModel vm = mapper.Map<VisualizarTurmaEAulasViewModel>(dto);
 
-        return View();
+        return View(vm);
     }
 }

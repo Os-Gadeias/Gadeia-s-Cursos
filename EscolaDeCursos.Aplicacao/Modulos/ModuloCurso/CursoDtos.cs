@@ -36,3 +36,16 @@ public record DetalhesCursoECategoriaDto(
     NivelDeDificildade Dificuldade,
     string CategoriaId
 );
+public record VisualizarTurmaEAulasDto(
+    string Id,
+    string Nome,
+    int CargaHoraria,
+    NivelDeDificildade Dificuldade,
+    string CategoriaNome,
+    List<ListarAulasDto>? Aulas
+);
+public record ListarAulasDto(
+    string Id,
+    string Nome,
+    int Duracao
+);

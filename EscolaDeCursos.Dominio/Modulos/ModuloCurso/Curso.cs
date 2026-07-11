@@ -10,6 +10,7 @@ public class Curso : EntidadeBase<Curso>
     public int CargaHoraria { get; set; }
     public NivelDeDificildade Dificuldade { get; set; }
     public Categoria Categoria { get; set; }
+    public List<Aula> Aulas { get; set; } = new();
     public Curso()
     {
     }

@@ -1,4 +1,5 @@
 using EscolaDeCursos.Dominio.Compartilhado;
+using EscolaDeCursos.Dominio.Modulos.ModuloCurso;
 
 namespace EscolaDeCursos.Dominio.Modulos.ModuloAula;
 
@@ -6,12 +7,14 @@ public class Aula : EntidadeBase<Aula>
 {
     public string Nome { get; set; } = string.Empty;
     public int Duracao { get; set; }
-    public Guid CursoId { get; set; }
-
-    public Aula(string nome, Guid cursoId, int duracao)
+    public Curso Curso { get; set; }
+    public Aula()
+    {
+    }
+    public Aula(string nome, Curso cursoId, int duracao)
     {
         Nome = nome;
-        CursoId = cursoId;
+        Curso = cursoId;
         Duracao = duracao;
     }
     public override void Atualizar(Aula entidadeAtualizada)
