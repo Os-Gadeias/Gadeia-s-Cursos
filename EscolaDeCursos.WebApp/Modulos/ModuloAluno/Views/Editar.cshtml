@@ -1,0 +1,64 @@
+@{
+    Layout = "_Layout";
+    ViewBag.Nome = "Edição de Aluno";
+}
+
+@model EditarAlunoViewModel;
+
+<form class="card border-0 shadow-sm mx-auto rounded-4 p-4 mt-5" style="max-width: 650px;" asp-action="Editar"
+      method="post">
+
+    <div class="d-flex align-items-center mb-4 gap-3">
+        <div class="d-flex justify-content-center align-items-center rounded-circle"
+             style="width: 56px; height: 56px; background-color: #eeeaff; color: #5a38f5; font-size: 1.5rem;">
+            <i class="bi bi-tags"></i>
+        </div>
+        <div>
+            <h4 class="fw-bold mb-1 text-dark" style="font-size: 1.25rem;">Editar Aluno</h4>
+            <p class="text-muted mb-0" style="font-size: 0.9rem;">Preencha os dados abaixo para Editar um
+                Aluno.</p>
+            </div>
+        </div>
+        <hr class="text-secondary-subtle mb-4">
+
+        <div class="mb-4">
+            <label asp-for="Nome" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Nome do
+                Aluno</label>
+                <div class="input-group">
+                    <input asp-for="Nome" type="text" class="form-control border-start-0 ps-1 shadow-none py-2"
+                           placeholder="Digite o nome do Aluno">
+                </div>
+                <span asp-validation-for="Nome" class="text-danger small fw-semibold"></span>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Telefone" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Telefone</label>
+                    <div class="input-group">
+                        <input asp-for="Telefone" type="text" class="form-control border-start-0 w-100 shadow-none py-1"
+                               title="Escolha sua Telefone">
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Cpf" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">CPF</label>
+                    <div class="input-group">
+                        <input asp-for="Cpf" type="text" class="form-control border-start-0 ps-1 shadow-none py-2">
+                    </div>
+                    <span asp-validation-for="Cpf" class="text-danger small fw-semibold mt-1 d-block"></span>
+                </div>
+            </div>
+
+            <hr class="text-secondary-subtle mt-2 mb-4">
+
+            <div class="d-flex justify-content-end gap-3">
+                <a class="btn bg-white border px-4 fw-semibold text-dark py-2" style="font-size: 0.9rem; border-color: #dee2e6;"
+                   asp-action="Listar">
+                    Cancelar
+                </a>
+                <button class="btn px-4 fw-semibold text-white d-flex align-items-center gap-2 py-2"
+                        style="background-color: #5a38f5; font-size: 0.9rem;" type="submit">
+                    <i class="bi bi-plus-lg"></i> Editar Aluno
+                </button>
+            </div>
+        </form>
