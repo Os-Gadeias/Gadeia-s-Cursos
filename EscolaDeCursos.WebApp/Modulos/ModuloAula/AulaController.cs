@@ -46,7 +46,7 @@ public class AulaController : Controller
 
         return RedirectToAction(nameof(CursoController.Visualizar), "Curso", new { id = vm.Id });
     }
-    public ActionResult ExcluirMatricula(string id)
+    public ActionResult ExcluirAula(string id)
     {
         Result<DetalhesAulaDto> dto = servicoAula.SelecionarPorId(id);
 
@@ -61,7 +61,7 @@ public class AulaController : Controller
         return View(vm);
     }
     [HttpPost]
-    public ActionResult ExcluirMatricula(ExcluirAulaViewModel vm)
+    public ActionResult ExcluirAula(ExcluirAulaViewModel vm)
     {
         ExcluirAulaDto dto = mapper.Map<ExcluirAulaDto>(vm);
 
