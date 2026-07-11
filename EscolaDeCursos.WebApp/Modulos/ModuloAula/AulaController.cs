@@ -20,7 +20,6 @@ public class AulaController : Controller
         this.mapper = mapper;
     }
 
-
     public ActionResult CadastrarAula(string id)
     {
         CadastrarAulaViewModel vm = new(id, "", 0);
@@ -40,14 +39,22 @@ public class AulaController : Controller
         if (resultado.IsFailed)
         {
             TempData.AddErrorMessage(resultado);
-            return View(vm);
+            return RedirectToAction(nameof(CursoController.Visualizar), "Curso", new { id = vm.Id });
         }
+        else
+            TempData.AddSucessMessage("Aula Cadastrada com sucesso!");
 
         return RedirectToAction(nameof(CursoController.Visualizar), "Curso", new { id = vm.Id });
     }
     public ActionResult ExcluirMatricula(string id)
     {
         Result<DetalhesAulaDto> dto = servicoAula.SelecionarPorId(id);
+
+        if (dto.IsFailed)
+        {
+            TempData.AddErrorMessage(dto);
+            return RedirectToAction(nameof(CursoController.Visualizar), "Curso", new { id });
+        }
 
         ExcluirAulaViewModel vm = mapper.Map<ExcluirAulaViewModel>(dto.Value);
 
