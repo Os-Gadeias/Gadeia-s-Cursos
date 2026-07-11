@@ -11,7 +11,7 @@ public class Aula : EntidadeBase<Aula>
     public Aula()
     {
     }
-    public Aula(string nome, Curso cursoId, int duracao)
+    public Aula(string nome, int duracao, Curso cursoId)
     {
         Nome = nome;
         Curso = cursoId;

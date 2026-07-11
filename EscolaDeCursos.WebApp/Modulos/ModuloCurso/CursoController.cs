@@ -136,17 +136,11 @@ public class CursoController : Controller
 
         return RedirectToAction(nameof(Listar));
     }
-    public ActionResult Visualizar(string id) 
+    public ActionResult Visualizar(string id)
     {
         VisualizarTurmaEAulasDto dto = servicoCurso.SelecionarTurmaEAulasPorId(id);
 
         VisualizarTurmaEAulasViewModel vm = mapper.Map<VisualizarTurmaEAulasViewModel>(dto);
-
-        return View(vm);
-    }
-    public ActionResult CadastrarAula(string id)
-    {
-        CadastrarAulaViewModel vm = new(id, "", 0);
 
         return View(vm);
     }

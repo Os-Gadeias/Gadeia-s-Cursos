@@ -20,24 +20,14 @@
     </div>
 
     <hr class="text-secondary-subtle mb-4">
-
-    @* <div class="mb-4">
-            <label asp-for="Nome" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Nome da
-                Tutor</label>
-                <div class="input-group">
-                    <input asp-for="Nome" type="text" class="form-control border-start-0 ps-1 shadow-none py-2"
-                           placeholder="Digite o nome do Tutor">
-                </div>
-                <span asp-validation-for="Nome" class="text-danger small fw-semibold"></span>
-            </div> *@
-
     <div class="row mb-2">
         <div class="col-md-6 mb-3">
             <label asp-for="Nome" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Nome da Aula</label>
             <div class="input-group">
-                <input asp-for="Nome" type="text" class="form-control border-start-0 w-100 shadow-none py-1"
+                <input asp-for="Nome" type="text" class="form-control border-start-0 ps-1 shadow-none py-2"
                        placeholder="Introdução a Programação">
             </div>
+            <span asp-validation-for="Nome" class="text-danger small fw-semibold mt-1 d-block"></span>
         </div>
 
         <div class="col-md-6 mb-3">
@@ -54,7 +44,7 @@
     <hr class="text-secondary-subtle mt-2 mb-4">
     <div class="d-flex justify-content-end gap-3">
         <a class="btn bg-white border px-4 fw-semibold text-dark py-2" style="font-size: 0.9rem; border-color: #dee2e6;"
-           asp-route-id=@Model.Id asp-action="Visualizar"> Cancelar
+           asp-controller="Curso" asp-route-id=@Model.Id asp-action="Visualizar"> Cancelar
         </a>
         <button class=" btn px-4 fw-semibold text-white d-flex align-items-center gap-2 py-2"
                 style="background-color: #5a38f5; font-size: 0.9rem;" type="submit">

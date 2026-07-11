@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using EscolaDeCursos.Dominio.Modulos.ModuloCurso;
 
 namespace EscolaDeCursos.Aplicacao.Modulos.ModuloCurso;
