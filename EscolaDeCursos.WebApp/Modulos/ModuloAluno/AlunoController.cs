@@ -60,7 +60,7 @@ public class AlunoController : Controller
     [HttpPost]
     public ActionResult Editar(EditarAlunoViewModel vm)
     {
-        if (ModelState.IsValid)
+        if (!ModelState.IsValid)
             return View(vm);
 
         EditarAlunoDto dto = mapper.Map<EditarAlunoDto>(vm);
