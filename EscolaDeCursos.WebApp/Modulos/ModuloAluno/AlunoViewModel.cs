@@ -1,14 +1,15 @@
 using System.ComponentModel.DataAnnotations;
-using System.Configuration;
 
-public record ListarTutorViewModel(
+namespace EscolaDeCursos.WebApp.Modulos.ModuloCategoria.ModuloAluno;
+
+public record ListarAlunoViewModel(
     Guid Id,
     string Nome,
     string Telefone,
     string Cpf
 );
 
-public record CadastrarTutorViewMosel(
+public record CadastrarAlunoViewModel(
 
     [Required(ErrorMessage = "O campo \"Nome\" deve ser preenchido!")]
     [StringLength(100, MinimumLength = 2, ErrorMessage = "O campo \"Nome\" deve conter entre 2 e 100 caracteres")]
@@ -23,7 +24,7 @@ public record CadastrarTutorViewMosel(
     string Cpf
 );
 
-public record EditarTutorViewMosel(
+public record EditarAlunoViewModel(
     Guid Id,
 
     [Required(ErrorMessage = "O campo \"Nome\" deve ser preenchido!")]
@@ -39,9 +40,10 @@ public record EditarTutorViewMosel(
     string Cpf
 );
 
-public record ExcluirTutorViewModel(
+public record ExcluirAlunoViewModel(
     Guid Id,
     string Nome,
     string Telefone,
     string Cpf
 );
+
