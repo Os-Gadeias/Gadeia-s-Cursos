@@ -51,3 +51,8 @@ public record ListarAulasViewModel(
     string Nome,
     int Duracao
 );
+public record CadastrarAulaViewModel(
+    string Id,
+    string Nome,
+    int Duracao
+);

@@ -86,22 +86,10 @@
                 <a asp-action="Listar" class="btn border-secondary-subtle fw-semibold px-4 py-2 text-dark d-flex align-items-center gap-2" style="background-color: #f1f3f5;">
                     <i class="bi bi-arrow-left"></i> Voltar
                 </a>
-                <a asp-controller="Aula" asp-action="Cadastrar" asp-route-turmaId="@Model.Id" class="btn fw-semibold px-4 py-2 text-white d-flex align-items-center gap-2 shadow-sm" style="background-color: #5a38f5;">
+                <a asp-action="CadastrarAula" asp-route-id="@Model.Id" class="btn fw-semibold px-4 py-2 text-white d-flex align-items-center gap-2 shadow-sm" style="background-color: #5a38f5;">
                     <i class="bi bi-plus-lg"></i> Cadastrar Aula
                 </a>
             </div>
-
         </div>
     </div>
 </div>
-
-@* @section Scripts {
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl);
-            });
-        });
-    </script>
-} *@
