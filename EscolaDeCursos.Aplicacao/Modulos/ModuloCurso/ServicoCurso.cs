@@ -3,6 +3,7 @@ using EscolaDeCursos.Aplicacao.Modulos.ModuloCategoria;
 using EscolaDeCursos.Dominio.Modulos.ModuloCategoria;
 using EscolaDeCursos.Dominio.Modulos.ModuloCurso;
 using FluentResults;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EscolaDeCursos.Aplicacao.Modulos.ModuloCurso;
 
@@ -45,6 +46,15 @@ public class ServicoCurso : ServicoBase<Curso>
             c.Dificuldade,
             c.Categoria.Titulo
         )).ToList();
+    }
+    public DetalhesCursoDto SelecionarPorId(string id)
+    {
+        Curso? curso = repositorioCurso.SelecionarPorId(new Guid(id));
+
+        if (curso == null)
+            return new DetalhesCursoDto("", "", 0, NivelDeDificildade.Inicial, "");
+
+        return new DetalhesCursoDto(curso.Id.ToString(), curso.Nome, curso.CargaHoraria, curso.Dificuldade, curso.Categoria.Titulo);
     }
     public bool ExisteCursoComMesmoNome(string nome, Guid? idIgnorado = null)
     {

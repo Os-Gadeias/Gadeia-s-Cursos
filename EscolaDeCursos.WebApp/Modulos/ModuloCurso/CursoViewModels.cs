@@ -20,3 +20,10 @@ public record CadastrarCursoViewModel(
     [Required(ErrorMessage = "O campo \"Categoria\" é obrigatório!")]
     string CategoriaId
 );
+public record ExcluirCursoViewModel(
+    string Id,
+    string Nome,
+    int CargaHoraria,
+    NivelDeDificildade Dificuldade,
+    string CategoriaNome
+);

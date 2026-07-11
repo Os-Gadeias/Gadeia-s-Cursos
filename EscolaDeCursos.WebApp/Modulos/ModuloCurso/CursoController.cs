@@ -70,7 +70,14 @@ public class CursoController : Controller
             return View(vm);
 
         }
-
         return RedirectToAction(nameof(Listar));
+    }
+    public ActionResult Excluir(string id)
+    {
+        DetalhesCursoDto dto = servicoCurso.SelecionarPorId(id);
+
+        ExcluirCursoViewModel vm = mapper.Map<ExcluirCursoViewModel>(dto);
+
+        return View(vm);
     }
 }

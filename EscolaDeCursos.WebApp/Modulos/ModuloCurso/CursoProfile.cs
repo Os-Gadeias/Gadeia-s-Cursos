@@ -8,6 +8,7 @@ public class CursoProfile : Profile
     public CursoProfile()
     {
         CreateMap<DetalhesCursoDto, ListarCursoViewModel>();
+        CreateMap<DetalhesCursoDto, ExcluirCursoViewModel>();
         CreateMap<CadastrarCursoViewModel, CadastrarCursoDto>();
     }
 }
