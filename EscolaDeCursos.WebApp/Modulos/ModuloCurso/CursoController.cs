@@ -68,7 +68,6 @@ public class CursoController : Controller
                 e.Id.ToString()
                 )).ToList();
             return View(vm);
-
         }
         return RedirectToAction(nameof(Listar));
     }
@@ -89,6 +88,51 @@ public class CursoController : Controller
 
         if (resultado.IsFailed)
             TempData.AddErrorMessage(resultado);
+
+        return RedirectToAction(nameof(Listar));
+    }
+    public ActionResult Editar(string id)
+    {
+        DetalhesCursoECategoriaDto dto = servicoCurso.SelecionarCursoECategoria(id);
+
+        EditarCursoViewModel vm = mapper.Map<EditarCursoViewModel>(dto);
+
+        ViewBag.Categorias = servicoCategoria.SelecionarTodos()
+                .Select(e => new SelectListItem(
+                e.Titulo,
+                e.Id.ToString()
+                )).ToList();
+
+        return View(vm);
+    }
+    [HttpPost]
+    public ActionResult Editar(EditarCursoViewModel vm)
+    {
+        if (!ModelState.IsValid)
+        {
+            ViewBag.Categorias = servicoCategoria.SelecionarTodos()
+                .Select(e => new SelectListItem(
+                e.Titulo,
+                e.Id.ToString()
+                )).ToList();
+
+            return View(vm);
+        }
+
+        EditarCursoDto dto = mapper.Map<EditarCursoDto>(vm);
+
+        Result resultado = servicoCurso.Editar(dto);
+
+        if (resultado.IsFailed)
+        {
+            ModelState.AddModelError(resultado);
+            ViewBag.Categorias = servicoCategoria.SelecionarTodos()
+                .Select(e => new SelectListItem(
+                e.Titulo,
+                e.Id.ToString()
+                )).ToList();
+            return View(vm);
+        }
 
         return RedirectToAction(nameof(Listar));
     }

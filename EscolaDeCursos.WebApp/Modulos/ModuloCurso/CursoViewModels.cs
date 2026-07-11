@@ -27,3 +27,14 @@ public record ExcluirCursoViewModel(
     NivelDeDificildade Dificuldade,
     string CategoriaNome
 );
+public record EditarCursoViewModel(
+    string Id,
+    [Required(ErrorMessage = "O campo \"Nome\" é obrigatório!")]
+    string Nome,
+    [Required(ErrorMessage = "O campo \"Carga Horaria\" é obrigatório!")]
+    int CargaHoraria,
+    [Required(ErrorMessage = "O campo \"Nível de Dificuldade\" é obrigatório!")]
+    NivelDeDificildade Dificuldade,
+    [Required(ErrorMessage = "O campo \"Categoria\" é obrigatório!")]
+    string CategoriaId
+);

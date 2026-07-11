@@ -22,6 +22,9 @@ public class ServicoCurso : ServicoBase<Curso>
     {
         Categoria? categoria = repositorioCategoria.SelecionarPorId(new Guid(dto.CategoriaId));
 
+        if (categoria == null)
+            return Result.Fail("Categoria não encotrada!");
+
         Curso novoCurso = new(dto.Nome, dto.CargaHoraria, dto.Dificuldade, categoria!);
 
         Result resultadoValidacao = ValidarEntidade(novoCurso);
@@ -63,14 +66,46 @@ public class ServicoCurso : ServicoBase<Curso>
     {
         Curso? curso = repositorioCurso.SelecionarPorId(new Guid(id));
 
+
         if (curso == null)
             return new DetalhesCursoDto("", "", 0, NivelDeDificildade.Inicial, "");
 
         return new DetalhesCursoDto(curso.Id.ToString(), curso.Nome, curso.CargaHoraria, curso.Dificuldade, curso.Categoria.Titulo);
     }
+    public DetalhesCursoECategoriaDto SelecionarCursoECategoria(string id)
+    {
+        Curso? curso = repositorioCurso.SelecionarPorId(new Guid(id));
+
+        if (curso == null)
+            return new DetalhesCursoECategoriaDto("", "", 0, NivelDeDificildade.Inicial, "");
+
+        return new DetalhesCursoECategoriaDto(curso.Id.ToString(), curso.Nome, curso.CargaHoraria, curso.Dificuldade, curso.Categoria.Id.ToString());
+    }
     public bool ExisteCursoComMesmoNome(string nome, Guid? idIgnorado = null)
     {
         return repositorioCurso.SelecionarTodos().Any(e => e.Id != idIgnorado &&
             string.Equals(e.Nome, nome, StringComparison.OrdinalIgnoreCase));
+    }
+
+    public Result Editar(EditarCursoDto dto)
+    {
+        Categoria? categoria = repositorioCategoria.SelecionarPorId(new Guid(dto.CategoriaId));
+
+        if (categoria == null)
+            return Falha(nameof(dto.CategoriaId), "Categoria não encontrada!");
+
+        Curso novoCurso = new(dto.Nome, dto.CargaHoraria, dto.Dificuldade, categoria!);
+
+        Result resultadoValidacao = ValidarEntidade(novoCurso);
+
+        if (resultadoValidacao.IsFailed)
+            return resultadoValidacao;
+
+        if (ExisteCursoComMesmoNome(dto.Nome, new Guid(dto.Id)))
+            return Falha(nameof(dto.Nome), "Já existe uma Curso com esse Nome!");
+
+        repositorioCurso.Editar(new Guid(dto.Id), novoCurso);
+
+        return Result.Ok();
     }
 }

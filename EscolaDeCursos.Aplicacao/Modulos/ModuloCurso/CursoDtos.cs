@@ -22,3 +22,17 @@ public record ExcluirCursoDto(
     NivelDeDificildade Dificuldade,
     string CategoriaNome
 );
+public record EditarCursoDto(
+    string Id,
+    string Nome,
+    int CargaHoraria,
+    NivelDeDificildade Dificuldade,
+    string CategoriaId
+);
+public record DetalhesCursoECategoriaDto(
+    string Id,
+    string Nome,
+    int CargaHoraria,
+    NivelDeDificildade Dificuldade,
+    string CategoriaId
+);
