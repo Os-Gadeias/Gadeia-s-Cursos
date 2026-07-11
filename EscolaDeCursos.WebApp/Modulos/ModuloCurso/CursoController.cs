@@ -80,4 +80,16 @@ public class CursoController : Controller
 
         return View(vm);
     }
+    [HttpPost]
+    public ActionResult Excluir(ExcluirCursoViewModel vm)
+    {
+        ExcluirCursoDto dto = mapper.Map<ExcluirCursoDto>(vm);
+
+        Result resultado = servicoCurso.Excluir(dto);
+
+        if (resultado.IsFailed)
+            TempData.AddErrorMessage(resultado);
+
+        return RedirectToAction(nameof(Listar));
+    }
 }

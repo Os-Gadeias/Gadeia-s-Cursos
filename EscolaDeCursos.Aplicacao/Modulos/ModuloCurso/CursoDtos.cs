@@ -15,3 +15,10 @@ public record CadastrarCursoDto(
     NivelDeDificildade Dificuldade,
     string CategoriaId
 );
+public record ExcluirCursoDto(
+    string Id,
+    string Nome,
+    int CargaHoraria,
+    NivelDeDificildade Dificuldade,
+    string CategoriaNome
+);
