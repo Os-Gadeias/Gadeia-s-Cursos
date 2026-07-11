@@ -17,3 +17,9 @@ public record DetalhesAulaDto(
     int Duracao,
     string IdCurso
 );
+public record EditarAulaDto(
+    string Id,
+    string Nome,
+    int Duracao,
+    string IdCurso
+);

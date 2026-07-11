@@ -76,4 +76,35 @@ public class AulaController : Controller
 
         return RedirectToAction(nameof(CursoController.Visualizar), "Curso", new { id = vm.IdCurso });
     }
+    public ActionResult EditarAula(string id)
+    {
+        Result<DetalhesAulaDto> dto = servicoAula.SelecionarPorId(id);
+
+        if (dto.IsFailed)
+        {
+            TempData.AddErrorMessage(dto);
+            return RedirectToAction(nameof(CursoController.Visualizar), "Curso", new { id });
+        }
+
+        EditarAulaViewModel vm = mapper.Map<EditarAulaViewModel>(dto.Value);
+
+        return View(vm);
+    }
+    [HttpPost]
+    public ActionResult EditarAula(EditarAulaViewModel vm)
+    {
+        EditarAulaDto dto = mapper.Map<EditarAulaDto>(vm);
+
+        Result resultado = servicoAula.EditarAula(dto);
+
+        if (resultado.IsFailed)
+        {
+            TempData.AddErrorMessage(resultado);
+        }
+        else
+            TempData.AddSucessMessage("Aula Editada com sucesso!");
+
+        return RedirectToAction(nameof(CursoController.Visualizar), "Curso", new { id = vm.IdCurso });
+
+    }
 }

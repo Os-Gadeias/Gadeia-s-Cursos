@@ -15,3 +15,11 @@ public record ExcluirAulaViewModel(
     int Duracao,
     string IdCurso
 );
+public record EditarAulaViewModel(
+    string Id,
+    [Required(ErrorMessage ="O campo \"Nome\" é obrigatório!")]
+    string Nome,
+    [Range(20, int.MaxValue, ErrorMessage = "A duração deve ser no mínimo que 20 horas!")]
+    int Duracao,
+    string IdCurso
+);

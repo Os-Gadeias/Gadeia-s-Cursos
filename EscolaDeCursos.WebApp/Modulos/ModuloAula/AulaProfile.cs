@@ -14,6 +14,8 @@ public class AulaProfile : Profile
         CreateMap<ListarAulasDto, ListarAulasViewModel>();
         CreateMap<ExcluirAulaViewModel, ExcluirAulaDto>();
         CreateMap<DetalhesAulaDto, ExcluirAulaViewModel>();
+        CreateMap<DetalhesAulaDto, EditarAulaViewModel>();
         CreateMap<ExcluirAulaViewModel, ExcluirAulaDto>();
+        CreateMap<EditarAulaViewModel, EditarAulaDto>();
     }
 }

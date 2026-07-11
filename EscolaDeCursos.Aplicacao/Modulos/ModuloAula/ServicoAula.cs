@@ -50,4 +50,18 @@ public class ServicoAula : ServicoBase<Aula>
 
         return Result.Ok();
     }
+
+    public Result EditarAula(EditarAulaDto dto)
+    {
+        Curso? curso = repositorioCurso.SelecionarPorId(new Guid(dto.IdCurso));
+
+        if (curso == null)
+            return Result.Fail("Curso não encontrado!");
+
+        Aula aula = new(dto.Nome, dto.Duracao, curso);
+
+        repositorioAula.Editar(new Guid(dto.Id), aula);
+
+        return Result.Ok();
+    }
 }
