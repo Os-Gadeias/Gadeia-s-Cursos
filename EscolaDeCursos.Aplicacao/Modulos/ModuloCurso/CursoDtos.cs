@@ -9,3 +9,9 @@ public record DetalhesCursoDto(
     NivelDeDificildade Dificuldade,
     string CategoriaNome
 );
+public record CadastrarCursoDto(
+    string Nome,
+    int CargaHoraria,
+    NivelDeDificildade Dificuldade,
+    string CategoriaId
+);

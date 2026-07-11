@@ -2,7 +2,7 @@ namespace EscolaDeCursos.Dominio.Modulos.ModuloCurso;
 
 public enum NivelDeDificildade
 {
-    Baixo,
+    Inicial,
     Intermediario,
-    Alto
+    Avancado
 }
