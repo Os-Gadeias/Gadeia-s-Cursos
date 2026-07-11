@@ -6,9 +6,24 @@
 
 @model VisualizarTurmaEAulasViewModel
 
-<div class="container py-5 d-flex justify-content-center">
+@if (TempData["MensagemErro"] is string mensagemErro)
+    {
+        <div class="alert alert-danger border-0 border-start border-danger border-4 shadow-sm rounded-3 " role="alert">
+            <i class="bi bi-exclamation-octagon-fill me-2"></i> @mensagemErro
+        </div>
+    }
+    @if (TempData["MensagemSucesso"] is string MensagemSucesso)
+    {
+        <div class="alert alert-primary border-0 border-start border-primary border-4 shadow-sm rounded-3 " role="alert">
+            <i class="bi bi-exclamation-octagon-fill me-2"></i> @MensagemSucesso
+        </div>
+    }
+
+<div class="container py-3 d-flex justify-content-center">
     <div class="card border-0 shadow-sm rounded-4 w-100" style="max-width: 850px;">
         <div class="card-body p-4 p-md-5">
+
+            
 
             <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-4 mb-4">
                 
@@ -68,7 +83,7 @@
                                         <i class="bi bi-pencil"></i>
                                     </a>
                                     
-                                    <a asp-controller="Aula" asp-action="Excluir" asp-route-id="@aula.Id" 
+                                    <a asp-controller="Aula" asp-action="ExcluirMatricula" asp-route-id="@aula.Id" 
                                        class="btn btn-outline-danger border-danger-subtle px-3 py-1" 
                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
                                         <i class="bi bi-trash"></i>

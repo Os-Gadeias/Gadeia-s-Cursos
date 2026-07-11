@@ -30,4 +30,24 @@ public class ServicoAula : ServicoBase<Aula>
 
         return Result.Ok();
     }
+    public Result<DetalhesAulaDto> SelecionarPorId(string id)
+    {
+        Aula? aula = repositorioAula.SelecionarPorId(new Guid(id));
+
+        if (aula == null)
+            return Result.Fail("Aula não encontrada!");
+
+        return new DetalhesAulaDto(aula.Id.ToString(), aula.Nome, aula.Duracao, aula.Curso.Id.ToString());
+    }
+    public Result ExcluirMatricula(ExcluirAulaDto dto)
+    {
+        Aula? aula = repositorioAula.SelecionarPorId(new Guid(dto.Id));
+
+        if (aula == null)
+            return Result.Fail("Aula não encontrada!");
+
+        repositorioAula.Excluir(new Guid(dto.Id));
+
+        return Result.Ok();
+    }
 }

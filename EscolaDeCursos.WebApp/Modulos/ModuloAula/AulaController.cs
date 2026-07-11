@@ -45,4 +45,28 @@ public class AulaController : Controller
 
         return RedirectToAction(nameof(CursoController.Visualizar), "Curso", new { id = vm.Id });
     }
+    public ActionResult ExcluirMatricula(string id)
+    {
+        Result<DetalhesAulaDto> dto = servicoAula.SelecionarPorId(id);
+
+        ExcluirAulaViewModel vm = mapper.Map<ExcluirAulaViewModel>(dto.Value);
+
+        return View(vm);
+    }
+    [HttpPost]
+    public ActionResult ExcluirMatricula(ExcluirAulaViewModel vm)
+    {
+        ExcluirAulaDto dto = mapper.Map<ExcluirAulaDto>(vm);
+
+        Result resultado = servicoAula.ExcluirMatricula(dto);
+
+        if (resultado.IsFailed)
+        {
+            TempData.AddErrorMessage(resultado);
+        }
+        else
+            TempData.AddSucessMessage("Aula excluida com sucesso!");
+
+        return RedirectToAction(nameof(CursoController.Visualizar), "Curso", new { id = vm.IdCurso });
+    }
 }

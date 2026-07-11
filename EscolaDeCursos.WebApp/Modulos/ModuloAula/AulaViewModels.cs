@@ -9,3 +9,9 @@ public record CadastrarAulaViewModel(
     [Range(20, int.MaxValue, ErrorMessage = "A duração deve ser no mínimo que 20 horas!")]
     int Duracao
 );
+public record ExcluirAulaViewModel(
+    string Id,
+    string Nome,
+    int Duracao,
+    string IdCurso
+);

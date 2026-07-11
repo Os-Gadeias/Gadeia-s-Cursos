@@ -12,5 +12,8 @@ public class AulaProfile : Profile
     {
         CreateMap<CadastrarAulaViewModel, CadastrarAulaDto>();
         CreateMap<ListarAulasDto, ListarAulasViewModel>();
+        CreateMap<ExcluirAulaViewModel, ExcluirAulaDto>();
+        CreateMap<DetalhesAulaDto, ExcluirAulaViewModel>();
+        CreateMap<ExcluirAulaViewModel, ExcluirAulaDto>();
     }
 }
