@@ -5,7 +5,7 @@ using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EscolaDeCursos.WebApp.Modulos.ModuloCategoria.ModuloAluno;
-
+//six seven
 public class AlunoController : Controller
 {
     private readonly ServicoAluno servicoAluno;
