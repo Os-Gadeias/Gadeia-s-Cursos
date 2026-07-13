@@ -22,4 +22,11 @@ public class TurmaController : Controller
 
         return View(vms);
     }
+    public ActionResult Cadastrar()
+    {
+        ViewBag.Cursos = servicoTurma.CarregarCursos();
+        ViewBag.Tutores = servicoTurma.CarregarTutores();
+
+        return View();
+    }
 }

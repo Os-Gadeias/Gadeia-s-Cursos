@@ -9,7 +9,7 @@ public class Turma : EntidadeBase<Turma>
 {
     public string Titulo { get; set; } = string.Empty;
     public int CapacidadeMaxima { get; set; }
-    public DateTime DataInicio { get; set; } = DateTime.Now;
+    public DateTime DataInicio { get; set; } 
     public DateTime DataTermino { get; set; }
     public Tutor Tutor { get; set; }
     public Curso Curso { get; set; }

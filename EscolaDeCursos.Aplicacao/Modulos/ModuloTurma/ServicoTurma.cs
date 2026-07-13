@@ -36,7 +36,7 @@ public class ServicoTurma : ServicoBase<Turma>
     {
         return repositorioCurso.SelecionarTodos().Select(c => new SelectListItem(c.Nome, c.Nome)).ToList();
     }
-    public List<SelectListItem> CarregarTutor()
+    public List<SelectListItem> CarregarTutores()
     {
         return repositorioTutor.SelecionarTodos().Select(c => new SelectListItem(c.Nome, c.Nome)).ToList();
     }

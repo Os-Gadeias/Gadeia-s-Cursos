@@ -1,6 +1,9 @@
 @{
     Layout = "_Layout";
     ViewBag.Nome = "Cadastro de Turma";
+
+    List<SelectListItem> Cursos = ViewBag.Cursos;
+    List<SelectListItem> Tutores = ViewBag.Tutores;
 }
 
 @model CadastrarTurmaViewModel;
@@ -17,23 +20,22 @@
                 Turma.</p>
             </div>
         </div>
-
         <hr class="text-secondary-subtle mb-4">
-
-        <div class="mb-4">
-            <label asp-for="Titulo" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Titulo da
-                Turma</label>
-                <div class="input-group">
-                    <input asp-for="Titulo" type="text" class="form-control border-start-0 ps-1 shadow-none py-2"
-                           placeholder="Digite o Titulo do Turma">
+        <div class="row mb-2">
+            <div class="col-md-6 mb-3">
+                <label asp-for="Titulo" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Titulo da
+                    Turma</label>
+                    <div class="input-group">
+                        <input asp-for="Titulo" type="text" class="form-control border-start-0 ps-1 shadow-none py-2"
+                               placeholder="Digite o Titulo do Turma">
+                    </div>
+                    <span asp-validation-for="Titulo" class="text-danger small fw-semibold"></span>
                 </div>
-                <span asp-validation-for="Titulo" class="text-danger small fw-semibold"></span>
-            </div>
 
-            <div class="row mb-2">
+
                 <div class="col-md-6 mb-3">
                     <label asp-for="CapacidadeMaxima" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Capacidade
-                        Máxima
+                        Máxima da Turma
                     </label>
                     <div class="input-group">
                         <input asp-for="CapacidadeMaxima" type="number" min="0"
@@ -41,9 +43,22 @@
                     </div>
                     <span asp-validation-for="CapacidadeMaxima" class="text-danger small fw-semibold mt-1 d-block"></span>
                 </div>
+            </div>
+
+        
+            <div class="row mb-2">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="DataInicio" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Data Inicio
+                    </label>
+                    <div class="input-group">
+                        <input asp-for="DataInicio" type="date" min="0"
+                               class="form-control border-start-0 ps-1 shadow-none py-2">
+                    </div>
+                    <span asp-validation-for="DataInicio" class="text-danger small fw-semibold mt-1 d-block"></span>
+                </div>
 
                 <div class="col-md-6 mb-3">
-                    <label asp-for="DataTermino" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Data términco
+                    <label asp-for="DataTermino" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Data término
                     </label>
                     <div class="input-group">
                         <input asp-for="DataTermino" type="date" min="0"
@@ -51,45 +66,45 @@
                     </div>
                     <span asp-validation-for="DataTermino" class="text-danger small fw-semibold mt-1 d-block"></span>
                 </div>
-
-                @* <div class="mb-4">
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-6 mb-3">
                     <label asp-for="IdTutor" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Tutor</label>
                     <div class="input-group">
-                        <select asp-for="IdTutor" asp-items="Categorias" type="text"
+                        <select asp-for="IdTutor" asp-items="Tutores" type="text"
                                 class="form-control border-start-0 ps-1 shadow-none py-2">
-                            <option class="form-control border-start-0 ps-1 shadow-none py-2" value="">Selecione uma
-                                Categoria...
+                            <option class="form-control border-start-0 ps-1 shadow-none py-2" value="">Selecione um Tutor...
                             </option>
                         </select>
                     </div>
                     <span asp-validation-for="IdTutor" class="text-danger small fw-semibold"></span>
                 </div>
-
-                <div class="mb-4">
-                    <label asp-for="IdCurso" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Tutor</label>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="IdCurso" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Curso</label>
                     <div class="input-group">
-                        <select asp-for="IdCurso" asp-items="Categorias" type="text"
+                        <select asp-for="IdCurso" asp-items="Cursos" type="text"
                                 class="form-control border-start-0 ps-1 shadow-none py-2">
-                            <option class="form-control border-start-0 ps-1 shadow-none py-2" value="">Selecione uma
-                                Categoria...
+                            <option class="form-control border-start-0 ps-1 shadow-none py-2" value="">Selecione um Curso
                             </option>
                         </select>
                     </div>
                     <span asp-validation-for="IdCurso" class="text-danger small fw-semibold"></span>
-                </div> *@
-
-                <hr class="text-secondary-subtle mt-2 mb-4">
-
-                <div class="d-flex justify-content-end gap-3">
-                    <a class="btn bg-white border px-4 fw-semibold text-dark py-2"
-                       style="font-size: 0.9rem; border-color: #dee2e6;" asp-action="Listar">
-                        Cancelar
-                    </a>
-                    <button class="btn px-4 fw-semibold text-white d-flex align-items-center gap-2 py-2"
-                            style="background-color: #5a38f5; font-size: 0.9rem;" type="submit">
-                        <i class="bi bi-plus-lg"></i> Cadastrar Turma
-                    </button>
                 </div>
             </div>
         </div>
-    </form>
+
+        <hr class="text-secondary-subtle mt-2 mb-4">
+
+        <div class="d-flex justify-content-end gap-3">
+            <a class="btn bg-white border px-4 fw-semibold text-dark py-2" style="font-size: 0.9rem; border-color: #dee2e6;"
+               asp-action="Listar">
+                Cancelar
+            </a>
+            <button class="btn px-4 fw-semibold text-white d-flex align-items-center gap-2 py-2"
+                    style="background-color: #5a38f5; font-size: 0.9rem;" type="submit">
+                <i class="bi bi-plus-lg"></i> Cadastrar Turma
+            </button>
+        </div>
+    </div>
+</div>
+</form>
