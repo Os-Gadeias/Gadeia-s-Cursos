@@ -7,6 +7,7 @@ using EscolaDeCursos.WebApp.Modulos.ModuloTurma;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace EscolaDeCursos.WebApp.Modulos.ModuloMatricula;
 
@@ -56,5 +57,16 @@ public class MatriculaController : Controller
 
         return RedirectToAction(nameof(Visualizar), new { vm.Id });
     }
-    
+    [HttpPost]
+    public ActionResult ExcluirMatricula(string id, string idMatricula)
+    {
+        Result resultado = servicoMatricula.ExcluirMatricula(idMatricula);
+
+        if (resultado.IsFailed)
+            TempData.AddErrorMessage(resultado);
+        else
+            TempData.AddSucessMessage("Matricula Excluida com sucesso!");
+
+        return RedirectToAction(nameof(Visualizar), new { id });
+    }
 }

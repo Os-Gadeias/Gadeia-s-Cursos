@@ -19,3 +19,9 @@ public record CadastrarMatriculaViewModel(
     string Id,
     string IdAluno
 );
+public record ExcluirMatriculaViewModel(
+    string Id,
+    string IdMatricula,
+    string NomeAluno,
+    string DataMatricua
+);

@@ -47,8 +47,6 @@ public class ServicoMatricula : ServicoBase<Matricula>
         bool alunoEstaMatriculado = repositorioTurma.SelecionarTodos()
             .Any(t => t.Matriculas.Any(m => m.Aluno.Id == new Guid(dto.IdAluno)));
 
-
-
         if (alunoEstaMatriculado)
             return Result.Fail("Aluno já cadastrado na turma!");
 
@@ -64,6 +62,17 @@ public class ServicoMatricula : ServicoBase<Matricula>
         Matricula matricula = new(aluno, turma);
 
         repositorioMatricula.Cadastrar(matricula);
+
+        return Result.Ok();
+    }
+    public Result ExcluirMatricula(string id)
+    {
+        Matricula? matricula = repositorioMatricula.SelecionarPorId(new Guid(id));
+
+        if (matricula == null)
+            return Result.Fail("Matricula Não Encontrada!");
+
+        repositorioMatricula.Excluir(new Guid(id));
 
         return Result.Ok();
     }

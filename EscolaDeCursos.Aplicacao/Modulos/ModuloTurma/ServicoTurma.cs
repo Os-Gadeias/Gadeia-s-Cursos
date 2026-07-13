@@ -119,4 +119,5 @@ public class ServicoTurma : ServicoBase<Turma>
          t.DataTermino,
           t.Tutor.Id, t.Curso.Id);
     }
+    
 }

@@ -19,3 +19,9 @@ public record CadastrarMatriculaDto(
     string Id,
     string IdAluno
 );
+public record ExcluirMatriculaDto(
+    string IdTurma,
+    string IdMatricula,
+    string NomeAluno,
+    string DataMatricua
+);
