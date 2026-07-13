@@ -8,7 +8,7 @@ public class AlunoConfigurations : IEntityTypeConfiguration<Aluno>
 {
     public void Configure(EntityTypeBuilder<Aluno> builder)
     {
-        builder.ToTable("TBAluno");
+        builder.ToTable("TB_Aluno");
 
         builder.HasKey(t => t.Id)
             .HasName("PK_TBAluno");

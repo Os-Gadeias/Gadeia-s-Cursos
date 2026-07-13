@@ -1,6 +1,6 @@
 using EscolaDeCursos.Dominio.Compartilhado;
-using EscolaDeCursos.Dominio.Modulos.ModuloAluno;
 using EscolaDeCursos.Dominio.Modulos.ModuloCurso;
+using EscolaDeCursos.Dominio.Modulos.ModuloMatricula;
 using EscolaDeCursos.Dominio.Modulos.ModuloTutor;
 
 namespace EscolaDeCursos.Dominio.Modulos.ModuloTurma;
@@ -9,11 +9,11 @@ public class Turma : EntidadeBase<Turma>
 {
     public string Titulo { get; set; } = string.Empty;
     public int CapacidadeMaxima { get; set; }
-    public DateTime DataInicio { get; set; } = DateTime.Now;
+    public DateTime DataInicio { get; set; }
     public DateTime DataTermino { get; set; }
     public Tutor Tutor { get; set; }
     public Curso Curso { get; set; }
-    public List<Aluno> Alunos = [];
+    public List<Matricula> Matriculas = [];
 
     public Turma()
     {
@@ -45,7 +45,7 @@ public class Turma : EntidadeBase<Turma>
         if (Titulo.Length < 2 || Titulo.Length > 100)
             erros.Add("O \"Titulo\" deve conter entre 2 à 100 caracteres");
 
-        if (Alunos.Count > CapacidadeMaxima)
+        if (Matriculas.Count > CapacidadeMaxima)
             erros.Add($"Limite da turma: {CapacidadeMaxima} atingido!");
 
         if (DataTermino < DataInicio)
