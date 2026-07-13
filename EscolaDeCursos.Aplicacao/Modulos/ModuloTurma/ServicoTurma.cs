@@ -5,6 +5,7 @@ using EscolaDeCursos.Dominio.Modulos.ModuloTurma;
 using EscolaDeCursos.Dominio.Modulos.ModuloTutor;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 public class ServicoTurma : ServicoBase<Turma>
 {
@@ -30,6 +31,14 @@ public class ServicoTurma : ServicoBase<Turma>
             t.Tutor.Nome,
             t.Curso.Nome
         )).ToList();
+    }
+    public List<SelectListItem> CarregarCursos()
+    {
+        return repositorioCurso.SelecionarTodos().Select(c => new SelectListItem(c.Nome, c.Nome)).ToList();
+    }
+    public List<SelectListItem> CarregarTutor()
+    {
+        return repositorioTutor.SelecionarTodos().Select(c => new SelectListItem(c.Nome, c.Nome)).ToList();
     }
 
     public Result Cadastrar(CadastrarTurmaDto dto)

@@ -11,7 +11,7 @@ public class TurmaConfigurations : IEntityTypeConfiguration<Turma>
         builder.ToTable("TBTurma");
 
         builder.HasKey(t => t.Id)
-        .HasName("PK_TBCurso");
+        .HasName("PK_TBTurma");
 
         builder.Property(c => c.Id)
         .ValueGeneratedNever();

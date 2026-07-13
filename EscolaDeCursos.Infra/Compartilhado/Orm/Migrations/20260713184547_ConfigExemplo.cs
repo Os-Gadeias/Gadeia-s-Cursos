@@ -12,20 +12,6 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "TBAluno",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Nome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Telefone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Cpf = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TBAluno", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "TBCategoria",
                 columns: table => new
                 {
@@ -92,10 +78,62 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TBTurma",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Titulo = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CapacidadeMaxima = table.Column<int>(type: "int", nullable: false),
+                    DataInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DataTermino = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TutorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CursoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TBTurma", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TBCurso_TBTurma",
+                        column: x => x.CursoId,
+                        principalTable: "TBCurso",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_TBTutor_TBTurma",
+                        column: x => x.TutorId,
+                        principalTable: "TBTutor",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TBAluno",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Telefone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Cpf = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
+                    AlunoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TBAluno", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TBAluno_TBTurma",
+                        column: x => x.AlunoId,
+                        principalTable: "TBTurma",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_TB_Aula_CursoId",
                 table: "TB_Aula",
                 column: "CursoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TBAluno_AlunoId",
+                table: "TBAluno",
+                column: "AlunoId");
 
             migrationBuilder.CreateIndex(
                 name: "UQ_TBAluno_Cpf",
@@ -121,6 +159,16 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                 column: "CategoriaId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TBTurma_CursoId",
+                table: "TBTurma",
+                column: "CursoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TBTurma_TutorId",
+                table: "TBTurma",
+                column: "TutorId");
+
+            migrationBuilder.CreateIndex(
                 name: "UQ_TBTutor_Cpf",
                 table: "TBTutor",
                 column: "Cpf",
@@ -143,10 +191,13 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                 name: "TBAluno");
 
             migrationBuilder.DropTable(
-                name: "TBTutor");
+                name: "TBTurma");
 
             migrationBuilder.DropTable(
                 name: "TBCurso");
+
+            migrationBuilder.DropTable(
+                name: "TBTutor");
 
             migrationBuilder.DropTable(
                 name: "TBCategoria");

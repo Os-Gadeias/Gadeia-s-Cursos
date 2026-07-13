@@ -6,6 +6,6 @@ public class TurmaProfile : Profile
 {
     public TurmaProfile()
     {
-        
+        CreateMap<ListarTurmaDto, ListarTurmaViewModel>();
     }
 }
