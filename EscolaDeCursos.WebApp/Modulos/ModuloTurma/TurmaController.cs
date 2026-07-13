@@ -2,6 +2,7 @@ using AutoMapper;
 using EscolaDeCursos.WebApp.Compartilhado.Extensions;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 
 namespace EscolaDeCursos.WebApp.Modulos.ModuloTurma;
 
@@ -73,6 +74,35 @@ public class TurmaController : Controller
         ExcluirTurmaDto dto = mapper.Map<ExcluirTurmaDto>(vm);
 
         Result resultado = servicoTurma.Excluir(dto);
+
+        if (resultado.IsFailed)
+            TempData.AddErrorMessage(resultado);
+
+        return RedirectToAction(nameof(Listar));
+    }
+    public ActionResult Editar(string id)
+    {
+        Result<EditarTurmaDto> resultado = servicoTurma.SelecionarPorIdEditavel(id);
+
+        if (resultado.IsFailed)
+        {
+            TempData.AddErrorMessage(resultado);
+            return RedirectToAction(nameof(Listar));
+        }
+
+        EditarTurmaViewModel vm = mapper.Map<EditarTurmaViewModel>(resultado.Value);
+
+
+        ViewBag.Cursos = servicoTurma.CarregarCursos();
+        ViewBag.Tutores = servicoTurma.CarregarTutores();
+        return View(vm);
+    }
+    [HttpPost]
+    public ActionResult Editar(EditarTurmaViewModel vm)
+    {
+        EditarTurmaDto dto = mapper.Map<EditarTurmaDto>(vm);
+
+        Result resultado = servicoTurma.Editar(dto);
 
         if (resultado.IsFailed)
             TempData.AddErrorMessage(resultado);

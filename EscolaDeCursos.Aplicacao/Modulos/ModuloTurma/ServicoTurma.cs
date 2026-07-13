@@ -108,5 +108,15 @@ public class ServicoTurma : ServicoBase<Turma>
 
         return Result.Ok();
     }
+    public Result<EditarTurmaDto> SelecionarPorIdEditavel(string id)
+    {
+        Turma? t = repositorioTurma.SelecionarPorId(new Guid(id));
 
+        if (t == null)
+            return Result.Fail("Turma não encontrada!");
+
+        return new EditarTurmaDto(t.Id, t.Titulo, t.CapacidadeMaxima, t.DataInicio,
+         t.DataTermino,
+          t.Tutor.Id, t.Curso.Id);
+    }
 }
