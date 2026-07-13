@@ -16,6 +16,8 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using EscolaDeCursos.Dominio.Modulos.ModuloTurma;
 using EscolaDeCursos.Infra.Modulos.ModuloTurma;
+using EscolaDeCursos.Dominio.Modulos.ModuloMatricula;
+using EscolaDeCursos.Infra.Modulos.ModuloMatricula;
 
 namespace EscolaDeCursos.Infra;
 
@@ -57,5 +59,6 @@ public static class InjecaoDependencia
         services.AddScoped<IRepositorioAula, RepositorioAulaEmOrm>();
         services.AddScoped<IRepositorioAluno, RepositorioAlunoEmOrm>();
         services.AddScoped<IRepositorioTurma, RepositorioTurmaEmOrm>();
+        services.AddScoped<IRepositorioMatricula, RepostitorioMatriculaEmOrm>();
     }
 }

@@ -40,10 +40,10 @@ public class TurmaConfigurations : IEntityTypeConfiguration<Turma>
         .HasConstraintName("FK_TBTutor_TBTurma")
         .OnDelete(DeleteBehavior.NoAction);
 
-        builder.HasMany(t => t.Alunos)
+        builder.HasMany(t => t.Matriculas)
         .WithOne()
-        .HasForeignKey("AlunoId")
-        .HasConstraintName("FK_TBAluno_TBTurma")
+        .HasForeignKey("MatriculaId")
+        .HasConstraintName("FK_TBMatricula_TBTurma")
         .OnDelete(DeleteBehavior.NoAction);
     }
 }

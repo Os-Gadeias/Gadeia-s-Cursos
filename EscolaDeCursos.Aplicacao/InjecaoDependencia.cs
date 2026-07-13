@@ -5,6 +5,7 @@ using EscolaDeCursos.Aplicacao.Modulos.ModuloCurso;
 using EscolaDeCursos.Aplicacao.Modulos.ModuloTutor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using EscolaDeCursos.Aplicacao.Modulos.ModuloMatricula;
 
 namespace EscolaDeCursos.Aplicacao;
 
@@ -21,5 +22,6 @@ public static class InjecaoDependencia
         services.AddScoped<ServicoAula>();
         services.AddScoped<ServicoAluno>();
         services.AddScoped<ServicoTurma>();
+        services.AddScoped<ServicoMatricula>();
     }
 }

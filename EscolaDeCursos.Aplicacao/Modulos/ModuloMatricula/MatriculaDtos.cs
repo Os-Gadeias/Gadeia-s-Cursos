@@ -1,6 +1,6 @@
-namespace EscolaDeCursos.WebApp.Modulos.ModuloMatricula;
+namespace EscolaDeCursos.Aplicacao.Modulos.ModuloMatricula;
 
-public record VisualizarTurmaEMatriculaViewModel(
+public record VisualizarTurmaEMatriculaDto(
     Guid Id,
     string Titulo,
     int CapacidadeMaxima,
@@ -8,9 +8,9 @@ public record VisualizarTurmaEMatriculaViewModel(
     string DataTermino,
     string NomeTutor,
     string NomeCurso,
-    List<ListarMatriculaViewModel>? Matriculas
+    List<ListarMatriculaDto>? Matriculas
 );
-public record ListarMatriculaViewModel(
+public record ListarMatriculaDto(
     string Id,
     string NomeAluno,
     bool EstaAtiva
