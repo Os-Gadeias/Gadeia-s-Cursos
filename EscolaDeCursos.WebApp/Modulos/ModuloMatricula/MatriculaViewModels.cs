@@ -15,3 +15,7 @@ public record ListarMatriculaViewModel(
     string NomeAluno,
     bool EstaAtiva
 );
+public record CadastrarMatriculaViewModel(
+    string Id,
+    string IdAluno
+);

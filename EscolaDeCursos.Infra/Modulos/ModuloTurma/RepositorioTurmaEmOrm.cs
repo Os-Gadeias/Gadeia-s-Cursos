@@ -13,7 +13,7 @@ public class RepositorioTurmaEmOrm(EscolaDeCursosDbContext dbContext)
     }
     public override Turma? SelecionarPorId(Guid idSelecionado)
     {
-        return registros.Include(t => t.Curso).Include(t => t.Tutor)
+        return registros.Include(t => t.Curso).Include(t => t.Tutor).Include(t => t.Matriculas).ThenInclude(m => m.Aluno)
         .SingleOrDefault(c => c.Id == idSelecionado);
     }
 }

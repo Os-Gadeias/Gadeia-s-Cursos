@@ -8,5 +8,7 @@ public class MatriculaProfile : Profile
     public MatriculaProfile()
     {
         CreateMap<VisualizarTurmaEMatriculaDto, VisualizarTurmaEMatriculaViewModel>();
+        CreateMap<CadastrarMatriculaViewModel, CadastrarMatriculaDto>();
+        CreateMap<ListarMatriculaDto, ListarMatriculaViewModel>();
     }
 }

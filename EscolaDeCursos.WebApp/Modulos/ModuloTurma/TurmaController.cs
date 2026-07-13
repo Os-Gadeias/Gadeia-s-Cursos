@@ -100,6 +100,9 @@ public class TurmaController : Controller
     [HttpPost]
     public ActionResult Editar(EditarTurmaViewModel vm)
     {
+        if (!ModelState.IsValid)
+            return View(vm);
+
         EditarTurmaDto dto = mapper.Map<EditarTurmaDto>(vm);
 
         Result resultado = servicoTurma.Editar(dto);

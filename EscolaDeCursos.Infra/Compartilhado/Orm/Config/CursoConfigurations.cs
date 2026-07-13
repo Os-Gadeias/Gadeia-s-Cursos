@@ -8,7 +8,7 @@ public class CursoConfigurations : IEntityTypeConfiguration<Curso>
 {
     public void Configure(EntityTypeBuilder<Curso> builder)
     {
-        builder.ToTable("TBCurso");
+        builder.ToTable("TB_Curso");
 
         builder.HasKey(c => c.Id)
         .HasName("PK_TBCurso");

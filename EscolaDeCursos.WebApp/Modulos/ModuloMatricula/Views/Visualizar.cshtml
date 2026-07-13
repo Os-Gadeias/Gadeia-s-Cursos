@@ -39,7 +39,7 @@
                             Alunos: @(Model.Matriculas?.Count != null ? Model.Matriculas.Count : "0") / @Model.CapacidadeMaxima
                         </span>
                         <span class="badge rounded-pill px-3 py-2 fw-medium text-dark border border-secondary-subtle" style="background-color: #f1f3f5; font-size: 0.85rem;">
-                            Tutor: @Model.NomeTutor Curso: @Model.NomeCurso
+                            @Model.NomeTutor | @Model.NomeCurso
                         </span>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
 
             <div class="d-flex align-items-center text-muted mb-4" style="font-size: 0.95rem;">
                 <i class="bi bi-clock fs-5 me-2 text-secondary"></i>
-                <span>Carga Horária: @Model.DataTermino</span>
+                <span>Termino da Turma: @Model.DataTermino</span>
             </div>
 
             <hr class="text-secondary-subtle my-4">
@@ -73,17 +73,11 @@
                         {
                             <div class="d-flex justify-content-between align-items-center border border-secondary-subtle rounded-3 p-3 bg-white hover-shadow-sm transition-all">
                                 <span class="fw-semibold text-dark" style="font-size: 0.95rem;">
-                                    Id: @aula.Id.ToString().Substring(0, 8) Aluno: @aula.NomeAluno 
+                                    Matricula: @aula.Id.ToString().Substring(0, 8) | Aluno: @aula.NomeAluno | Estado: @(aula.EstaAtiva ? "Ativa" : "Desativada")
                                 </span>
                                 
                                 <div class="d-flex gap-2">
-                                    <a asp-controller="Aula" asp-action="EditarAula" asp-route-id="@aula.Id" 
-                                       class="btn btn-light border-secondary-subtle px-3 py-1 text-secondary" 
-                                       data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    
-                                    <a asp-controller="Aula" asp-action="ExcluirAula" asp-route-id="@aula.Id" 
+                                    <a asp-action="ExcluirMatricula" asp-route-id="@aula.Id" 
                                        class="btn btn-outline-danger border-danger-subtle px-3 py-1" 
                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
                                         <i class="bi bi-trash"></i>
@@ -98,10 +92,10 @@
             <hr class="text-secondary-subtle my-4">
 
             <div class="d-flex justify-content-end gap-3 mt-4">
-                <a asp-action="Listar" class="btn border-secondary-subtle fw-semibold px-4 py-2 text-dark d-flex align-items-center gap-2" style="background-color: #f1f3f5;">
+                <a asp-controller="Turma" asp-action="Listar" class="btn border-secondary-subtle fw-semibold px-4 py-2 text-dark d-flex align-items-center gap-2" style="background-color: #f1f3f5;">
                     <i class="bi bi-arrow-left"></i> Voltar
                 </a>
-                <a asp-controller="Aula" asp-action="CadastrarAula" asp-route-id="@Model.Id" class="btn fw-semibold px-4 py-2 text-white d-flex align-items-center gap-2 shadow-sm" style="background-color: #5a38f5;">
+                <a  asp-action="CadastrarMatricula" asp-route-id="@Model.Id" class="btn fw-semibold px-4 py-2 text-white d-flex align-items-center gap-2 shadow-sm" style="background-color: #5a38f5;">
                     <i class="bi bi-plus-lg"></i> Cadastrar Aluno
                 </a>
             </div>

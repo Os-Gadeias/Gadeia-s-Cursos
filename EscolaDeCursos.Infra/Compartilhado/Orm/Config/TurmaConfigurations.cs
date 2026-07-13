@@ -8,7 +8,7 @@ public class TurmaConfigurations : IEntityTypeConfiguration<Turma>
 {
     public void Configure(EntityTypeBuilder<Turma> builder)
     {
-        builder.ToTable("TBTurma");
+        builder.ToTable("TB_Turma");
 
         builder.HasKey(t => t.Id)
         .HasName("PK_TBTurma");
@@ -41,9 +41,9 @@ public class TurmaConfigurations : IEntityTypeConfiguration<Turma>
         .OnDelete(DeleteBehavior.NoAction);
 
         builder.HasMany(t => t.Matriculas)
-        .WithOne()
-        .HasForeignKey("MatriculaId")
-        .HasConstraintName("FK_TBMatricula_TBTurma")
-        .OnDelete(DeleteBehavior.NoAction);
+       .WithOne(m => m.Turma)
+       .HasForeignKey("TurmaId")
+       .HasConstraintName("FK_TBMatricula_TBTurma")
+       .OnDelete(DeleteBehavior.NoAction);
     }
 }

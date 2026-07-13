@@ -6,6 +6,7 @@ using EscolaDeCursos.WebApp.Compartilhado.Extensions;
 using EscolaDeCursos.WebApp.Modulos.ModuloTurma;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EscolaDeCursos.WebApp.Modulos.ModuloMatricula;
 
@@ -35,4 +36,25 @@ public class MatriculaController : Controller
 
         return View(vm);
     }
+    public ActionResult CadastrarMatricula(string id)
+    {
+        CadastrarMatriculaViewModel vm = new(id, "");
+
+        ViewBag.Alunos = servicoMatricula.CarregarAlunos();
+
+        return View(vm);
+    }
+    [HttpPost]
+    public ActionResult CadastrarMatricula(CadastrarMatriculaViewModel vm)
+    {
+        CadastrarMatriculaDto dto = mapper.Map<CadastrarMatriculaDto>(vm);
+
+        Result resultado = servicoMatricula.Matricular(dto);
+
+        if (resultado.IsFailed)
+            TempData.AddErrorMessage(resultado);
+
+        return RedirectToAction(nameof(Visualizar), new { vm.Id });
+    }
+    
 }

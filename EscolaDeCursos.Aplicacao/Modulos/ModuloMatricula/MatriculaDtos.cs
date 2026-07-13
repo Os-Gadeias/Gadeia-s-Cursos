@@ -15,3 +15,7 @@ public record ListarMatriculaDto(
     string NomeAluno,
     bool EstaAtiva
 );
+public record CadastrarMatriculaDto(
+    string Id,
+    string IdAluno
+);

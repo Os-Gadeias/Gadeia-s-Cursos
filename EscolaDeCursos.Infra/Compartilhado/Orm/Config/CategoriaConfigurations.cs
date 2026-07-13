@@ -10,7 +10,7 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Config
     {
         public void Configure(EntityTypeBuilder<Categoria> builder)
         {
-            builder.ToTable("TBCategoria");
+            builder.ToTable("TB_Categoria");
 
             builder.HasKey(c => c.Id)
             .HasName("PK_TBCategoria");

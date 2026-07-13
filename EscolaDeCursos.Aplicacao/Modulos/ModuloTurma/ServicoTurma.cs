@@ -80,7 +80,7 @@ public class ServicoTurma : ServicoBase<Turma>
     {
         Curso? cursoSelecionado = repositorioCurso.SelecionarPorId(dto.IdCurso);
         Tutor? tutorSelecionado = repositorioTutor.SelecionarPorId(dto.IdTutor);
-        bool tituloJaExiste = repositorioTurma.Filtrar(t => t.Titulo == dto.Titulo).Any();
+        bool tituloJaExiste = repositorioTurma.Filtrar(t => t.Titulo == dto.Titulo && t.Id != dto.Id).Any();
 
         if (tituloJaExiste)
             return Result.Fail("O \"Titulo\" cadastrado ja existe!");

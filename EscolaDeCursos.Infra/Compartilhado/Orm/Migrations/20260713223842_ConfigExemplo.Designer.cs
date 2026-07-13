@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
 {
     [DbContext(typeof(EscolaDeCursosDbContext))]
-    [Migration("20260713184547_ConfigExemplo")]
+    [Migration("20260713223842_ConfigExemplo")]
     partial class ConfigExemplo
     {
         /// <inheritdoc />
@@ -28,9 +28,6 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
             modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloAluno.Aluno", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("AlunoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Cpf")
@@ -51,8 +48,6 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                     b.HasKey("Id")
                         .HasName("PK_TBAluno");
 
-                    b.HasIndex("AlunoId");
-
                     b.HasIndex("Cpf")
                         .IsUnique()
                         .HasDatabaseName("UQ_TBAluno_Cpf");
@@ -61,7 +56,7 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                         .IsUnique()
                         .HasDatabaseName("UQ_TBAluno_Telefone");
 
-                    b.ToTable("TBAluno", (string)null);
+                    b.ToTable("TB_Aluno", (string)null);
                 });
 
             modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloAula.Aula", b =>
@@ -115,7 +110,7 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                         .IsUnique()
                         .HasDatabaseName("UQ_TBCategoria_Titulo");
 
-                    b.ToTable("TBCategoria", (string)null);
+                    b.ToTable("TB_Categoria", (string)null);
                 });
 
             modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloCurso.Curso", b =>
@@ -142,7 +137,31 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
 
                     b.HasIndex("CategoriaId");
 
-                    b.ToTable("TBCurso", (string)null);
+                    b.ToTable("TB_Curso", (string)null);
+                });
+
+            modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloMatricula.Matricula", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AlunoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DataMatricula")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("TurmaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id")
+                        .HasName("PK_Matricula");
+
+                    b.HasIndex("AlunoId");
+
+                    b.HasIndex("TurmaId");
+
+                    b.ToTable("TB_Matricula", (string)null);
                 });
 
             modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloTurma.Turma", b =>
@@ -177,7 +196,7 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
 
                     b.HasIndex("TutorId");
 
-                    b.ToTable("TBTurma", (string)null);
+                    b.ToTable("TB_Turma", (string)null);
                 });
 
             modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloTutor.Tutor", b =>
@@ -211,16 +230,7 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                         .IsUnique()
                         .HasDatabaseName("UQ_TBTutor_Telefone");
 
-                    b.ToTable("TBTutor", (string)null);
-                });
-
-            modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloAluno.Aluno", b =>
-                {
-                    b.HasOne("EscolaDeCursos.Dominio.Modulos.ModuloTurma.Turma", null)
-                        .WithMany("Alunos")
-                        .HasForeignKey("AlunoId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .HasConstraintName("FK_TBAluno_TBTurma");
+                    b.ToTable("TB_Tutor", (string)null);
                 });
 
             modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloAula.Aula", b =>
@@ -245,6 +255,27 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                         .HasConstraintName("FK_TBCurso_TBCategoria");
 
                     b.Navigation("Categoria");
+                });
+
+            modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloMatricula.Matricula", b =>
+                {
+                    b.HasOne("EscolaDeCursos.Dominio.Modulos.ModuloAluno.Aluno", "Aluno")
+                        .WithMany()
+                        .HasForeignKey("AlunoId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_TBAluno_TBMatricula");
+
+                    b.HasOne("EscolaDeCursos.Dominio.Modulos.ModuloTurma.Turma", "Turma")
+                        .WithMany("Matriculas")
+                        .HasForeignKey("TurmaId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_TBMatricula_TBTurma");
+
+                    b.Navigation("Aluno");
+
+                    b.Navigation("Turma");
                 });
 
             modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloTurma.Turma", b =>
@@ -275,7 +306,7 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
 
             modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloTurma.Turma", b =>
                 {
-                    b.Navigation("Alunos");
+                    b.Navigation("Matriculas");
                 });
 #pragma warning restore 612, 618
         }
