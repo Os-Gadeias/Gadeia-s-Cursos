@@ -66,6 +66,17 @@ public class TurmaController : Controller
         ExcluirTurmaViewModel vm = mapper.Map<ExcluirTurmaViewModel>(resultado.Value);
 
         return View(vm);
+    }
+    [HttpPost]
+    public ActionResult Excluir(ExcluirTurmaViewModel vm)
+    {
+        ExcluirTurmaDto dto = mapper.Map<ExcluirTurmaDto>(vm);
 
+        Result resultado = servicoTurma.Excluir(dto);
+
+        if (resultado.IsFailed)
+            TempData.AddErrorMessage(resultado);
+
+        return RedirectToAction(nameof(Listar));
     }
 }

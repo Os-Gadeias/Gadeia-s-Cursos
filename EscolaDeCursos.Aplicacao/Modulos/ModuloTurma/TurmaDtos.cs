@@ -32,8 +32,8 @@ public record ExcluirTurmaDto(
     Guid Id,
     string Titulo,
     int CapacidadeMaxima,
-    DateTime DataInicio,
-    DateTime DataTermino,
-    Guid IdTutor,
-    Guid IdCurso
+    string DataInicio,
+    string DataTermino,
+    string NomeTutor,
+    string NomeCurso
 );

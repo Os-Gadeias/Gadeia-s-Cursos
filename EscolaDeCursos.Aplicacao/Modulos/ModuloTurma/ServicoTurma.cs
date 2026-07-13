@@ -4,6 +4,7 @@ using EscolaDeCursos.Dominio.Modulos.ModuloCurso;
 using EscolaDeCursos.Dominio.Modulos.ModuloTurma;
 using EscolaDeCursos.Dominio.Modulos.ModuloTutor;
 using FluentResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -96,7 +97,6 @@ public class ServicoTurma : ServicoBase<Turma>
 
         return Result.Ok();
     }
-
     public Result Excluir(ExcluirTurmaDto dto)
     {
         Turma? turmaSelecionada = repositorioTurma.SelecionarPorId(dto.Id);
