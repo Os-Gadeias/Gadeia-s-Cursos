@@ -21,6 +21,12 @@
             <i class="bi bi-exclamation-octagon-fill me-2"></i> @mensagemErro
         </div>
     }
+    @if (TempData["MensagemSucesso"] is string MensagemSucesso)
+    {
+        <div class="alert alert-primary border-0 border-start border-primary border-4 shadow-sm rounded-3 " role="alert">
+            <i class="bi bi-exclamation-octagon-fill me-2"></i> @MensagemSucesso
+        </div>
+    }
 
     @if (Model.Count == 0)
     {
