@@ -26,19 +26,30 @@ public class ServicoTurma : ServicoBase<Turma>
             t.Id,
             t.Titulo,
             t.CapacidadeMaxima,
-            t.DataInicio,
-            t.DataTermino,
+            t.DataInicio.ToShortDateString(),
+            t.DataTermino.ToShortDateString(),
             t.Tutor.Nome,
             t.Curso.Nome
         )).ToList();
     }
+    public Result<ListarTurmaDto> SelecionarPorId(string id)
+    {
+        Turma? t = repositorioTurma.SelecionarPorId(new Guid(id));
+
+        if (t == null)
+            return Result.Fail("Turma não encontrada!");
+
+        return new ListarTurmaDto(t.Id, t.Titulo, t.CapacidadeMaxima, t.DataInicio.ToShortDateString(),
+         t.DataTermino.ToShortDateString(),
+          t.Tutor.Nome, t.Curso.Nome);
+    }
     public List<SelectListItem> CarregarCursos()
     {
-        return repositorioCurso.SelecionarTodos().Select(c => new SelectListItem(c.Nome, c.Nome)).ToList();
+        return repositorioCurso.SelecionarTodos().Select(c => new SelectListItem(c.Nome, c.Id.ToString())).ToList();
     }
     public List<SelectListItem> CarregarTutores()
     {
-        return repositorioTutor.SelecionarTodos().Select(c => new SelectListItem(c.Nome, c.Nome)).ToList();
+        return repositorioTutor.SelecionarTodos().Select(c => new SelectListItem(c.Nome, c.Id.ToString())).ToList();
     }
 
     public Result Cadastrar(CadastrarTurmaDto dto)
@@ -97,4 +108,5 @@ public class ServicoTurma : ServicoBase<Turma>
 
         return Result.Ok();
     }
+
 }

@@ -3,8 +3,8 @@ public record ListarTurmaDto(
     Guid Id,
     string Titulo,
     int CapacidadeMaxima,
-    DateTime DataInicio,
-    DateTime DataTermino,
+    string DataInicio,
+    string DataTermino,
     string NomeTutor,
     string NomeCurso
 );

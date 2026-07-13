@@ -44,40 +44,38 @@
                     @Model.Id
                 </div>
             </div>
+            <div class="row mb-3 border-bottom pb-3">
+                <div class="col-sm-4 text-muted" style="font-size: 0.85rem;">Capacidade Máxima</div>
+                <div class="col-sm-8 fw-semibold text-dark" style="font-size: 0.9rem;" style="font-size: 0.9rem;">
+                    @Model.CapacidadeMaxima
+                </div>
+            </div>
 
             <div class="row mb-3 border-bottom pb-3 border-bottom">
-                <div class="col-6 d-flex align-items-center">
-                    <div class="text-muted w-50" style="font-size: 0.85rem;">Capacidade Máxima</div>
-                    <div class="fw-semibold text-dark w-75 d-flex align-items-center gap-2" style="font-size: 0.9rem;">
-                        @Model.CapacidadeMaxima
-                    </div>
-                </div>
-
                 <div class="col-6 d-flex align-items-center ">
                     <div class="text-muted w-50" style="font-size: 0.85rem;">Data Inicio</div>
                     <div class="fw-semibold text-dark w-75 d-flex align-items-center gap-2" style="font-size: 0.9rem;">
                         @Model.DataInicio
                     </div>
                 </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-sm-4 text-muted" style="font-size: 0.85rem;">Data Término</div>
-                <div class="col-sm-8 fw-semibold text-dark text-break" style="font-size: 0.9rem;">
-                    @Model.DataTermino
+                <div class="col-6 d-flex align-items-center ">
+                    <div class="col-sm-4 text-muted" style="font-size: 0.85rem;">Data Término</div>
+                    <div class="col-sm-8 fw-semibold text-dark text-break" style="font-size: 0.9rem;">
+                        @Model.DataTermino
+                    </div>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col-sm-4 text-muted" style="font-size: 0.85rem;">Tutor</div>
                 <div class="col-sm-8 fw-semibold text-dark text-break" style="font-size: 0.9rem;">
-                    @Model.IdTutor
+                    @Model.NomeTutor
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-sm-4 text-muted" style="font-size: 0.85rem;">Curso</div>
                 <div class="col-sm-8 fw-semibold text-dark text-break" style="font-size: 0.9rem;">
-                    @Model.IdCurso
+                    @Model.NomeCurso
                 </div>
             </div>
         </div>
