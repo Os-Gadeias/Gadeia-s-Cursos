@@ -16,7 +16,7 @@ public record EditarTurmaDto(
     DateTime DataInicio,
     DateTime DataTermino,
     Guid IdTutor,
-    Guid IdCureso
+    Guid IdCurso
 );
 
 public record CadastrarTurmaDto(
@@ -25,7 +25,7 @@ public record CadastrarTurmaDto(
     DateTime DataInicio,
     DateTime DataTermino,
     Guid IdTutor,
-    Guid IdCureso
+    Guid IdCurso
 );
 
 public record ExcluirTurmaDto(
@@ -35,5 +35,5 @@ public record ExcluirTurmaDto(
     DateTime DataInicio,
     DateTime DataTermino,
     Guid IdTutor,
-    Guid IdCureso
+    Guid IdCurso
 );
