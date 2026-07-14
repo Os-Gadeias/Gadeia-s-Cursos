@@ -42,18 +42,31 @@ jobs:
       id-token: write #This is required for requesting the JWT
       contents: read #This is required for actions/checkout
 
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: .net-app
-      
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_000C66FA7AC7414D90ECE384DAF95E72 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_567674CAE62D4CF3BDD903B0FDB7D748 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_AABD408971654DF784EF0830D4B15F02 }}
+
+      - name: Configure Azure Web App settings
+        shell: pwsh
+        run: |
+          az webapp config appsettings set
+            --resource-group "EscolaDeCursosPingDev"
+            --name "EscolaDeCursos-PingDev"
+            --settings
+              "ASPNETCORE_ENVIRONMENT=Production"
+              "ConnectionStrings__SqlServerEF=${{ secrets.AZURE_SQL_CONNECTION_STRINGS }}"
+              "InfraNewRelicLicenseKey=${{ secrets.NEWRELIC_LICENSE_KEY }}" `
+              "WebApp_AutoMapper__LicenseKey=${{ secrets.AUTOMAPPER_LICENSE_KEY }}" 
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -62,4 +75,3 @@ jobs:
           app-name: 'EscolaDeCursos'
           slot-name: 'Production'
           package: .
-          
