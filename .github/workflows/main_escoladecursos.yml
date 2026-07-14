@@ -60,13 +60,13 @@ jobs:
         shell: pwsh
         run: |
           az webapp config appsettings set
-            --resource-group "EscolaDeCursosPingDev"
-            --name "EscolaDeCursos-PingDev"
+            --resource-group "EscolaDeCursos"
+            --name "EscolaDeCursos"
             --settings
               "ASPNETCORE_ENVIRONMENT=Production"
               "ConnectionStrings__SqlServerEF=${{ secrets.AZURE_SQL_CONNECTION_STRINGS }}"
               "InfraNewRelicLicenseKey=${{ secrets.NEWRELIC_LICENSE_KEY }}" `
-              "WebApp_AutoMapper__LicenseKey=${{ secrets.AUTOMAPPER_LICENSE_KEY }}" 
+              "WebApp_AutoMapper__LicenseKey=${{ secrets.AUTOMAPPER_LICENSE_KEY }}"
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
