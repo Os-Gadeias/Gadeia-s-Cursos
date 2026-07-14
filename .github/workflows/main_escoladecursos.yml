@@ -65,8 +65,8 @@ jobs:
             --settings `
               "ASPNETCORE_ENVIRONMENT=Production" `
               "ConnectionStrings__SqlServerEF=${{ secrets.AZURE_SQL_CONNECTION_STRINGS }}" `
-              "InfraNewRelicLicenseKey=${{ secrets.NEWRELIC_LICENSE_KEY }}" `
-              "WebApp_AutoMapper__LicenseKey=${{ secrets.AUTOMAPPER_LICENSE_KEY }}" `
+              "Infra__NewRelic__LicenseKey=${{ secrets.NEWRELIC_LICENSE_KEY }}" `
+              "WebApp__AutoMapper__LicenseKey=${{ secrets.AUTOMAPPER_LICENSE_KEY }}" `
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
