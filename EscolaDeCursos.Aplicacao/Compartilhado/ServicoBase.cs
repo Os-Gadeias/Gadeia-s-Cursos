@@ -12,7 +12,24 @@ public abstract class ServicoBase<T> where T : EntidadeBase<T>
         if (erros.Count == 0)
             return Result.Ok();
 
-        return Falha(string.Empty, erros.First());
+        var resultado = new Result();
+
+        foreach (string erro in erros)
+        {
+            string campo = string.Empty;
+            string mensagem = erro;
+
+            if (erro.Contains('|'))
+            {
+                var partes = erro.Split('|', 2);
+                campo = partes[0];
+                mensagem = partes[1];
+            }
+
+            resultado.WithError(new Error(mensagem).WithMetadata("Campo", campo));
+        }
+
+        return resultado; // Agora todos os erros vão para o ModelState!
     }
 
     protected static Result Falha(string campo, string mensagem)
