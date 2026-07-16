@@ -30,22 +30,22 @@ public class Aluno : EntidadeBase<Aluno>
         List<string> erros = new List<string>();
 
         if (string.IsNullOrWhiteSpace(Nome))
-            erros.Add("O campo \"Nome\" deve ser preenchido!");
+            erros.Add("Nome|O campo \"Nome\" deve ser preenchido!");
 
         if (Nome.Length < 2 || Nome.Length > 100)
-            erros.Add("O campo \"Nome\" deve conter entre 2 e 100 caracteres!");
+            erros.Add("Nome|O campo \"Nome\" deve conter entre 2 e 100 caracteres!");
 
         if (string.IsNullOrWhiteSpace(Telefone))
-            erros.Add("O campo \"Telefone\" deve ser preenchido!");
+            erros.Add("Telefone|O campo \"Telefone\" deve ser preenchido!");
 
         if (!Regex.IsMatch(Telefone, @"^\(\d{2}\) \d{4,5}-\d{4}$"))
-            erros.Add("O campo \"Telefone\" deve estar no formato (DDD) 90000-0000.");
+            erros.Add("Telefone|O campo \"Telefone\" deve estar no formato (DDD) 90000-0000.");
 
         if (string.IsNullOrWhiteSpace(Cpf))
-            erros.Add("O campo \"CPF\" deve ser preenchido!");
+            erros.Add("Cpf|O campo \"CPF\" deve ser preenchido!");
 
         if (Cpf.Length != 11)
-            erros.Add("O campo \"CPF\" deve conter 11 caracteres!");
+            erros.Add("Cpf|O campo \"CPF\" deve conter 11 caracteres!");
 
         return erros;
     }

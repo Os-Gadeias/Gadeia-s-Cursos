@@ -37,12 +37,14 @@
                         <input asp-for="Telefone" type="text" class="form-control border-start-0 w-100 shadow-none py-1"
                                placeholder="(49) 9999-9999">
                     </div>
+                    <span asp-validation-for="Telefone" class="text-danger small fw-semibold mt-1 d-block"></span>
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label asp-for="Cpf" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">CPF</label>
                     <div class="input-group">
-                        <input asp-for="Cpf" type="text" class="form-control border-start-0 ps-1 shadow-none py-2" placeholder="10010010001">
+                        <input asp-for="Cpf" type="text" class="form-control border-start-0 ps-1 shadow-none py-2"
+                               placeholder="10010010001">
                     </div>
                     <span asp-validation-for="Cpf" class="text-danger small fw-semibold mt-1 d-block"></span>
                 </div>

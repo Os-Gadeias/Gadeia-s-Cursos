@@ -48,6 +48,8 @@ public class TurmaController : Controller
 
         if (resultado.IsFailed)
         {
+            ViewBag.Cursos = servicoTurma.CarregarCursos();
+            ViewBag.Tutores = servicoTurma.CarregarTutores();
             ModelState.AddModelError(resultado);
             return View();
         }
@@ -101,15 +103,23 @@ public class TurmaController : Controller
     public ActionResult Editar(EditarTurmaViewModel vm)
     {
         if (!ModelState.IsValid)
+        {
+            ViewBag.Cursos = servicoTurma.CarregarCursos();
+            ViewBag.Tutores = servicoTurma.CarregarTutores();
             return View(vm);
+        }
 
         EditarTurmaDto dto = mapper.Map<EditarTurmaDto>(vm);
 
         Result resultado = servicoTurma.Editar(dto);
 
         if (resultado.IsFailed)
-            TempData.AddErrorMessage(resultado);
-
+        {
+            ViewBag.Cursos = servicoTurma.CarregarCursos();
+            ViewBag.Tutores = servicoTurma.CarregarTutores();
+            ModelState.AddModelError(resultado);
+            return View();
+        }
         return RedirectToAction(nameof(Listar));
     }
 }

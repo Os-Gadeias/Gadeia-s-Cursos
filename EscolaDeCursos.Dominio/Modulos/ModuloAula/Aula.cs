@@ -28,7 +28,7 @@ public class Aula : EntidadeBase<Aula>
         List<string> erros = [];
 
         if (Nome.Length < 2 || Nome.Length > 100)
-            erros.Add("O campo \"Título\" deve conter entre 2 à 100 caracteres!");
+            erros.Add("Titulo|O campo \"Título\" deve conter entre 2 à 100 caracteres!");
 
         return erros;
     }

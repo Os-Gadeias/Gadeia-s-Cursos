@@ -68,8 +68,11 @@ public class ServicoTurma : ServicoBase<Turma>
         if (cursoSelecionado == null)
             return Result.Fail("O \"Curso\" selecionado não existe!");
 
-
         Turma novaTurma = new(dto.Titulo, dto.CapacidadeMaxima, dto.DataInicio, dto.DataTermino, tutorSelecionado, cursoSelecionado);
+        Result resultadoValidacao = ValidarEntidade(novaTurma);
+
+        if (resultadoValidacao.IsFailed)
+            return resultadoValidacao;
 
         repositorioTurma.Cadastrar(novaTurma);
 
@@ -92,6 +95,12 @@ public class ServicoTurma : ServicoBase<Turma>
             return Result.Fail("O \"Curso\" selecionado não existe!");
 
         Turma turmaAtualizada = new(dto.Titulo, dto.CapacidadeMaxima, dto.DataInicio, dto.DataTermino, tutorSelecionado, cursoSelecionado);
+        Turma novaTurma = new(dto.Titulo, dto.CapacidadeMaxima, dto.DataInicio, dto.DataTermino, tutorSelecionado, cursoSelecionado);
+
+        Result resultadoValidacao = ValidarEntidade(novaTurma);
+
+        if (resultadoValidacao.IsFailed)
+            return resultadoValidacao;
 
         repositorioTurma.Editar(dto.Id, turmaAtualizada);
 
@@ -119,5 +128,5 @@ public class ServicoTurma : ServicoBase<Turma>
          t.DataTermino,
           t.Tutor.Id, t.Curso.Id);
     }
-    
+
 }

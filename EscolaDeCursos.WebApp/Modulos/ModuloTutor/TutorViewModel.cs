@@ -31,7 +31,6 @@ public record EditarTutorViewMosel(
     string Nome,
 
     [Required(ErrorMessage = "O campo \"Telefone\" deve ser preenchido!")]
-    [RegularExpression(@"^\(\d{2}\) \d{4,5}-\d{4}$", ErrorMessage = "O campo \"Telefone\" deve estar no formato (DDD) 90000-0000.")]
     string Telefone,
 
     [Required(ErrorMessage = "O campo \"CPF\" deve ser preenchido!")]

@@ -35,10 +35,10 @@ public class Curso : EntidadeBase<Curso>
         List<string> erros = [];
 
         if (Nome.Length < 2 || Nome.Length > 100)
-            erros.Add("O campo \"Título\" deve conter entre 2 à 100 caracteres!");
+            erros.Add("Titulo|O campo \"Título\" deve conter entre 2 à 100 caracteres!");
 
         if (CargaHoraria <= 0)
-            erros.Add("O campo \'Carga Horária\" deve conter um valor MAIOR que zero!");
+            erros.Add("CargaHoraria|O campo \'Carga Horária\" deve conter um valor MAIOR que zero!");
 
         return erros;
     }
