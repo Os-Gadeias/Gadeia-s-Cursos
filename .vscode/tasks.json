@@ -1,0 +1,24 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "sqlproj: Build EscolaDeCursos.database",
+			"type": "process",
+			"command": "dotnet",
+			"args": [
+				"build",
+				"d:/Gadeia-s-Cursos/EscolaDeCursos.database/EscolaDeCursos.database.sqlproj",
+				"/p:NetCoreBuild=true",
+				"/p:NETCoreTargetsPath=c:/Users/victo/.vscode/extensions/ms-mssql.sql-database-projects-vscode-1.6.1/BuildDirectory",
+				"/p:SystemDacpacsLocation=c:/Users/victo/.vscode/extensions/ms-mssql.sql-database-projects-vscode-1.6.1/BuildDirectory"
+			],
+			"problemMatcher": "$sqlproj-problem-matcher",
+			"isBackground": true,
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"detail": "Compila o EscolaDeCursos.database projeto SQL"
+		}
+	]
+}
