@@ -18,6 +18,7 @@ using EscolaDeCursos.Dominio.Modulos.ModuloTurma;
 using EscolaDeCursos.Infra.Modulos.ModuloTurma;
 using EscolaDeCursos.Dominio.Modulos.ModuloMatricula;
 using EscolaDeCursos.Infra.Modulos.ModuloMatricula;
+using Microsoft.AspNetCore.Identity;
 
 namespace EscolaDeCursos.Infra;
 
@@ -53,6 +54,29 @@ public static class InjecaoDependencia
                 opt.EnableRetryOnFailure(3);
             });
         });
+
+
+        //os usuarios seram salvados pelo tipo guid
+        //configura as regras dos usuarios
+        services.AddIdentityCore<IdentityUser<Guid>>(options =>
+        {
+            options.User.RequireUniqueEmail = true;
+            options.SignIn.RequireConfirmedEmail = false;
+            options.Password.RequiredLength = 8;
+            options.Password.RequireDigit = true;
+            options.Password.RequireNonAlphanumeric = true;
+            options.Password.RequireUppercase = false;
+            options.Password.RequireLowercase = false;
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            options.Lockout.MaxFailedAccessAttempts = 5;
+            options.Lockout.AllowedForNewUsers = true;
+        })
+        .AddRoles<IdentityRole<Guid>>()
+        .AddEntityFrameworkStores<EscolaDeCursosDbContext>()
+        .AddSignInManager()
+        .AddDefaultTokenProviders();
+        ;
+
         services.AddScoped<IRepositorioCategoria, RepositorioCategoriaEmOrm>();
         services.AddScoped<IRepositorioTutor, RepositorioTutorEmOrm>();
         services.AddScoped<IRepositorioCurso, RepositorioCursoOrm>();
