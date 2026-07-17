@@ -59,4 +59,14 @@ public class AutenticacaoController(
 
         return RedirectToAction("Index", "Home");
     }
+
+    public ActionResult Entrar(string? returnUrl = null)
+    {
+        if (signInManager.IsSignedIn(User))
+            return RedirectToAction("Index", "Home");
+
+        ViewBag.ReturnUrl = returnUrl;
+
+        return View();
+    }
 }
