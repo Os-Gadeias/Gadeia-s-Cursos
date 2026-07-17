@@ -1,5 +1,6 @@
 using EscolaDeCursos.Dominio.Modulos.ModuloInstituicao;
 using EscolaDeCursos.Infra.Compartilhado.Orm;
+using FluentResults;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -36,11 +37,11 @@ public class AutenticacaoController(
             Email = vm.Email,
         };
         //cria o usuario e protege a senha
-        IdentityResult result = await userManager.CreateAsync(user, vm.Senha);
+        IdentityResult resultado = await userManager.CreateAsync(user, vm.Senha);
 
-        if (!result.Succeeded)
+        if (!resultado.Succeeded)
         {
-            foreach (IdentityError erro in result.Errors)
+            foreach (IdentityError erro in resultado.Errors)
                 ModelState.AddModelError(string.Empty, erro.Description);
 
             return View(vm);
@@ -68,5 +69,45 @@ public class AutenticacaoController(
         ViewBag.ReturnUrl = returnUrl;
 
         return View();
+    }
+    [HttpPost]
+    public async Task<ActionResult> Entrar(EntrarViewModel vm)
+    {
+        if (signInManager.IsSignedIn(User))
+            return RedirectToAction("Index", "Home");
+
+        if (!ModelState.IsValid)
+            return View(vm);
+
+        Microsoft.AspNetCore.Identity.SignInResult resultado = await signInManager.PasswordSignInAsync(
+            vm.Email, vm.Senha, vm.LembrarMe, lockoutOnFailure: true
+        );
+
+        if (resultado.Succeeded)
+        {
+            if (Url.IsLocalUrl(vm.ReturnUrl))
+                return Redirect(vm.ReturnUrl);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        if (resultado.IsLockedOut)
+        {
+            ModelState.AddModelError(string.Empty, "Conta bloqueada, tente novamanete mais tarde!");
+        }
+        else
+        {
+            ModelState.AddModelError(string.Empty, "Email ou senha inválidos!");
+        }
+
+        return View(vm);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Sair()
+    {
+        await signInManager.SignOutAsync();
+
+        return RedirectToAction(nameof(Entrar));
     }
 }

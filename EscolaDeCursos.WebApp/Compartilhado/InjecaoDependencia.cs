@@ -31,7 +31,7 @@ public static class InjecaoDependencia
         }).AddCookie(IdentityConstants.ApplicationScheme, CookieOptions =>
         {
             //local para o usuario logar
-            CookieOptions.LoginPath = "/Autiticacao/Entrar";
+            CookieOptions.LoginPath = "/Autenticacao/Entrar";
             //local para o usuario ser redicionado caso entre em uma acao que precise de login
             CookieOptions.AccessDeniedPath = "/Autenticacao/Entrar";
         });

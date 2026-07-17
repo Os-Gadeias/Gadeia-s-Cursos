@@ -52,7 +52,9 @@
 
                 <div class="collapse navbar-collapse justify-content-end" id="menuPrincipal">
                     <ul class="navbar-nav gap-2 mt-3 mt-lg-0 text-center text-lg-start">
-                        <li class="nav-item">
+                       
+                        @if(User.Identity?.IsAuthenticated == true){
+                            <li class="nav-item">
                             <a class="nav-link px-3 rounded-pill" asp-controller="Aluno" asp-action="Listar">Alunos</a>
                         </li>
                         <li class="nav-item">
@@ -67,6 +69,22 @@
                         <li class="nav-item">
                             <a class="nav-link px-3 rounded-pill" asp-controller="Categoria" asp-action="Listar">Categorias</a>
                         </li>
+
+                        <li class="nav-item">
+                            <div class="dropdown ms-3">
+                        <button class="btn btn-outline-primary rounded-pill btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            @User.FindFirst(System.Security.Claims.ClaimTypes.Name)?.Value
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <form asp-controller="Autenticacao" asp-action="Sair" method="post" class="d-inline">
+                                    <button type="submit" class="dropdown-item text-danger">Sair</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                        </li>
+                        }
                     </ul>
                 </div>
             </div>
