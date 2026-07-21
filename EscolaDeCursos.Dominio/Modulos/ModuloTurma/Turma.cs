@@ -51,7 +51,7 @@ public class Turma : EntidadeBase<Turma>
         if (DataTermino < DataInicio)
             erros.Add("DataTermino|A data de término deve ser maior que a data atual!");
 
-        if(CapacidadeMaxima <= 0)
+        if (CapacidadeMaxima <= 0)
             erros.Add("CapacidadeMaxima|O campo \"Capacidade Maxima\" deve ser maior que ZERO!");
         return erros;
     }

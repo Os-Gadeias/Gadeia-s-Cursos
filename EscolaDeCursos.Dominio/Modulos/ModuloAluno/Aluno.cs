@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using EscolaDeCursos.Dominio.Compartilhado;
+using EscolaDeCursos.Dominio.Compartilhado.Identity;
 
 namespace EscolaDeCursos.Dominio.Modulos.ModuloAluno;
 
