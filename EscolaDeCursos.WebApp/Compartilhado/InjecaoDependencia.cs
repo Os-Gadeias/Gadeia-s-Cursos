@@ -1,3 +1,5 @@
+using EscolaDeCursos.Dominio.Compartilhado.Identity;
+using EscolaDeCursos.WebApp.Compartilhado.Identity;
 using EscolaDeCursos.WebApp.Compartilhado.Mapping;
 using Microsoft.AspNetCore.Identity;
 
@@ -43,6 +45,9 @@ public static class InjecaoDependencia
             .RequireAuthenticatedUser()
             .Build();
         });
+
+        services.AddHttpContextAccessor();
+        services.AddScoped<IUserProvider, UserProvider>();
 
         services.AddAutoMapper(mapperConfig =>
         {
