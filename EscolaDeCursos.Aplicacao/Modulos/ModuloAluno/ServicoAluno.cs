@@ -1,6 +1,7 @@
 using System.Data.Common;
 using EscolaDeCursos.Aplicacao.Compartilhado;
 using EscolaDeCursos.Dominio.Modulos.ModuloAluno;
+using EscolaDeCursos.Dominio.Modulos.ModuloMatricula;
 using FluentResults;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
@@ -9,10 +10,12 @@ namespace EscolaDeCursos.Aplicacao.Modulos.ModuloAluno;
 public class ServicoAluno : ServicoBase<Aluno>
 {
     private readonly IRepositorioAluno repositorioAluno;
+    private readonly IRepositorioMatricula repositorioMatricula;
 
-    public ServicoAluno(IRepositorioAluno repositorioAluno)
+    public ServicoAluno(IRepositorioAluno repositorioAluno, IRepositorioMatricula repositorioMatricula)
     {
         this.repositorioAluno = repositorioAluno;
+        this.repositorioMatricula = repositorioMatricula;
     }
 
     public List<ListarAlunoDto> SelecionarTodos()
@@ -59,14 +62,19 @@ public class ServicoAluno : ServicoBase<Aluno>
         return Result.Ok();
     }
 
-    public void Excluir(ExcluirAlunoDto dto)
+    public Result Excluir(ExcluirAlunoDto dto)
     {
         Aluno? alunoSelecionado = repositorioAluno.SelecionarPorId(dto.Id);
 
         if (alunoSelecionado == null)
-            throw new Exception("Tutor não encontrado!");
+            return Result.Fail("Tutor não encontrado!");
+
+        if (AlunoEstaMatriculadoEmCurso(alunoSelecionado.Id))
+            return Result.Fail("Não é possível excluir aluno matriculado em um curso!");
 
         repositorioAluno.Excluir(dto.Id);
+
+        return Result.Ok();
     }
 
     public ListarAlunoDto SelecionarPorId(Guid id)
@@ -79,9 +87,13 @@ public class ServicoAluno : ServicoBase<Aluno>
         return new ListarAlunoDto(aluno.Id, aluno.Nome, aluno.Telefone, aluno.Cpf);
     }
 
-    public bool ExisteAlunoComMesmoNome(string Nome, Guid? idIgnorado = null)
+    private bool ExisteAlunoComMesmoNome(string Nome, Guid? idIgnorado = null)
     {
         return repositorioAluno.SelecionarTodos().Any(e => e.Id != idIgnorado &&
             string.Equals(e.Nome, Nome, StringComparison.OrdinalIgnoreCase));
+    }
+    private bool AlunoEstaMatriculadoEmCurso(Guid id)
+    {
+        return repositorioMatricula.SelecionarTodos().Any(m => m.Aluno.Id == id);
     }
 }

@@ -91,7 +91,10 @@ public class AlunoController : Controller
     {
         ExcluirAlunoDto dto = mapper.Map<ExcluirAlunoDto>(vm);
 
-        servicoAluno.Excluir(dto);
+        Result resultado = servicoAluno.Excluir(dto);
+
+        if(resultado.IsFailed)
+            TempData.AddErrorMessage(resultado);
 
         return RedirectToAction(nameof(Listar));
     }
