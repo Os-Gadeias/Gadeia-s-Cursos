@@ -40,6 +40,12 @@ public class ServicoAluno : ServicoBase<Aluno>
         if (ExisteAlunoComMesmoNome(dto.Nome))
             return Falha(nameof(dto.Nome), "Já axiste um Aluno com esse nome");
 
+        if (ExisteAlunoComMesmoTelefone(dto.Telefone))
+            return Falha(nameof(dto.Telefone), "Já axiste um Aluno com esse Telefone!");
+
+        if (ExisteAlunoComMesmoCpf(dto.Cpf))
+            return Falha(nameof(dto.Cpf), "Já axiste um Aluno com esse CPF!");
+
         repositorioAluno.Cadastrar(novoAluno);
 
         return Result.Ok();
@@ -56,6 +62,12 @@ public class ServicoAluno : ServicoBase<Aluno>
 
         if (ExisteAlunoComMesmoNome(dto.Nome, dto.Id))
             return Falha(nameof(dto.Nome), "Já existe um Aluno com esse nome");
+
+        if (ExisteAlunoComMesmoTelefone(dto.Telefone, dto.Id))
+            return Falha(nameof(dto.Telefone), "Já axiste um Aluno com esse Telefone!");
+
+        if (ExisteAlunoComMesmoCpf(dto.Cpf, dto.Id))
+            return Falha(nameof(dto.Cpf), "Já axiste um Aluno com esse CPF!");
 
         repositorioAluno.Editar(dto.Id, AlunoEditado);
 
@@ -95,5 +107,13 @@ public class ServicoAluno : ServicoBase<Aluno>
     private bool AlunoEstaMatriculadoEmCurso(Guid id)
     {
         return repositorioMatricula.SelecionarTodos().Any(m => m.Aluno.Id == id);
+    }
+    private bool ExisteAlunoComMesmoTelefone(string telefone, Guid? idIgnorado = null)
+    {
+        return repositorioAluno.SelecionarTodos().Any(a => a.Telefone == telefone && a.Id != idIgnorado);
+    }
+    private bool ExisteAlunoComMesmoCpf(string Cpf, Guid? idIgnorado = null)
+    {
+        return repositorioAluno.SelecionarTodos().Any(a => a.Cpf == Cpf && a.Id != idIgnorado);
     }
 }
