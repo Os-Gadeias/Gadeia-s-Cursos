@@ -2,8 +2,10 @@ using EscolaDeCursos.Aplicacao.Compartilhado;
 using EscolaDeCursos.Aplicacao.Modulos.ModuloCategoria;
 using EscolaDeCursos.Dominio.Modulos.ModuloCategoria;
 using EscolaDeCursos.Dominio.Modulos.ModuloCurso;
+using EscolaDeCursos.Dominio.Modulos.ModuloTurma;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Diagnostics;
 
 namespace EscolaDeCursos.Aplicacao.Modulos.ModuloCurso;
 
@@ -11,11 +13,13 @@ public class ServicoCurso : ServicoBase<Curso>
 {
     private readonly IRepositorioCurso repositorioCurso;
     private readonly IRepositorioCategoria repositorioCategoria;
+    private readonly IRepositorioTurma repositorioTurma;
 
-    public ServicoCurso(IRepositorioCurso repositorioCurso, IRepositorioCategoria repositorioCategoria)
+    public ServicoCurso(IRepositorioCurso repositorioCurso, IRepositorioCategoria repositorioCategoria, IRepositorioTurma repositorioTurma)
     {
         this.repositorioCurso = repositorioCurso;
         this.repositorioCategoria = repositorioCategoria;
+        this.repositorioTurma = repositorioTurma;
     }
 
     public Result Cadastrar(CadastrarCursoDto dto)
@@ -47,6 +51,9 @@ public class ServicoCurso : ServicoBase<Curso>
         if (curso == null)
             return Result.Fail("Curso não encontrado!");
 
+        if (ExisteCursoAtreladoATurma(curso.Id))
+            return Result.Fail("Não é possível excluir um curso atrelado a Turma!");
+
         repositorioCurso.Excluir(new Guid(dto.Id));
 
         return Result.Ok();
@@ -66,7 +73,7 @@ public class ServicoCurso : ServicoBase<Curso>
     {
         Curso? c = repositorioCurso.SelecionarPorId(new Guid(id));
 
-        return new VisualizarTurmaEAulasDto(c.Id.ToString(), c.Nome, 
+        return new VisualizarTurmaEAulasDto(c.Id.ToString(), c.Nome,
         c.CargaHoraria, c.Dificuldade, c.Categoria.Titulo,
         c.Aulas.Select(a => new ListarAulasDto(a.Id.ToString(), a.Nome, a.Duracao)).ToList()
         );
@@ -74,7 +81,6 @@ public class ServicoCurso : ServicoBase<Curso>
     public DetalhesCursoDto SelecionarPorId(string id)
     {
         Curso? curso = repositorioCurso.SelecionarPorId(new Guid(id));
-
 
         if (curso == null)
             return new DetalhesCursoDto("", "", 0, NivelDeDificildade.Inicial, "");
@@ -116,5 +122,9 @@ public class ServicoCurso : ServicoBase<Curso>
         repositorioCurso.Editar(new Guid(dto.Id), novoCurso);
 
         return Result.Ok();
+    }
+    private bool ExisteCursoAtreladoATurma(Guid id)
+    {
+        return repositorioTurma.SelecionarTodos().Any(t => t.Curso.Id == id);
     }
 }
