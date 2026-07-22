@@ -62,7 +62,10 @@ public class TutorController : Controller
     {
         ExcluirTutorDto dto = mapper.Map<ExcluirTutorDto>(vm);
 
-        servicoTutor.Excluir(dto);
+        Result resultado = servicoTutor.Excluir(dto);
+
+        if (resultado.IsFailed)
+            TempData.AddErrorMessage(resultado);
 
         return RedirectToAction(nameof(Listar));
     }

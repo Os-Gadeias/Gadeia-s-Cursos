@@ -1,6 +1,7 @@
 using EscolaDeCursos.Aplicacao.Compartilhado;
 using EscolaDeCursos.Aplicacao.Modulos.ModuloCategoria;
 using EscolaDeCursos.Dominio.Compartilhado;
+using EscolaDeCursos.Dominio.Modulos.ModuloTurma;
 using EscolaDeCursos.Dominio.Modulos.ModuloTutor;
 using FluentResults;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
@@ -10,10 +11,12 @@ namespace EscolaDeCursos.Aplicacao.Modulos.ModuloTutor;
 public class ServicoTutor : ServicoBase<Tutor>
 {
     private readonly IRepositorioTutor repositorioTutor;
+    private readonly IRepositorioTurma repositorioTurma;
 
-    public ServicoTutor(IRepositorioTutor repositorioTutor)
+    public ServicoTutor(IRepositorioTutor repositorioTutor, IRepositorioTurma repositorioTurma)
     {
         this.repositorioTutor = repositorioTutor;
+        this.repositorioTurma = repositorioTurma;
     }
 
     public List<ListarTutorDto> SelecionarTodos()
@@ -60,14 +63,19 @@ public class ServicoTutor : ServicoBase<Tutor>
         return Result.Ok();
     }
 
-    public void Excluir(ExcluirTutorDto dto)
+    public Result Excluir(ExcluirTutorDto dto)
     {
         Tutor? t = repositorioTutor.SelecionarPorId(dto.Id);
 
         if (t == null)
-            throw new Exception("Tutor não encontrado!");
+            return Result.Fail("Tutor não encontrado!");
+
+        if (ExisteTutorAtreladoATurma(t.Id))
+            return Result.Fail("Não é possível excluir um tutor atrelado a uma turma!");
 
         repositorioTutor.Excluir(dto.Id);
+
+        return Result.Ok();
     }
 
     public ListarTutorDto SelecionarPorId(Guid id)
@@ -80,9 +88,14 @@ public class ServicoTutor : ServicoBase<Tutor>
         return new ListarTutorDto(t.Id, t.Nome, t.Telefone, t.Cpf);
     }
 
-    public bool ExisteTutorComMesmoNome(string Nome, Guid? idIgnorado = null)
+    private bool ExisteTutorComMesmoNome(string Nome, Guid? idIgnorado = null)
     {
         return repositorioTutor.SelecionarTodos().Any(e => e.Id != idIgnorado &&
             string.Equals(e.Nome, Nome, StringComparison.OrdinalIgnoreCase));
+    }
+
+    private bool ExisteTutorAtreladoATurma(Guid id)
+    {
+        return repositorioTurma.SelecionarTodos().Any(t => t.Tutor.Id == id);
     }
 }
