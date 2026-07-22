@@ -1,5 +1,6 @@
 using EscolaDeCursos.Aplicacao.Compartilhado;
 using EscolaDeCursos.Dominio.Modulos.ModuloCategoria;
+using EscolaDeCursos.Dominio.Modulos.ModuloCurso;
 using FluentResults;
 
 namespace EscolaDeCursos.Aplicacao.Modulos.ModuloCategoria;
@@ -7,10 +8,12 @@ namespace EscolaDeCursos.Aplicacao.Modulos.ModuloCategoria;
 public sealed class ServicoCategoria : ServicoBase<Categoria>
 {
     private readonly IRepositorioCategoria repositorioCategoria;
+    private readonly IRepositorioCurso repositorioCurso;
 
-    public ServicoCategoria(IRepositorioCategoria repositorioCategoria)
+    public ServicoCategoria(IRepositorioCategoria repositorioCategoria, IRepositorioCurso repositorioCurso)
     {
         this.repositorioCategoria = repositorioCategoria;
+        this.repositorioCurso = repositorioCurso;
     }
 
     public Result Cadastrar(CadastrarCategoriaDto dto)
@@ -47,14 +50,19 @@ public sealed class ServicoCategoria : ServicoBase<Categoria>
         return Result.Ok();
     }
 
-    public void Excluir(ExcluirCategoriaDto dto)
+    public Result Excluir(ExcluirCategoriaDto dto)
     {
         Categoria? c = repositorioCategoria.SelecionarPorId(new Guid(dto.Id));
 
         if (c == null)
-            throw new Exception("Categoria não encontrada!");
+            return Result.Fail("Categoria não encontrada!");
+
+        if (ExisteCategoriaAtreladaACurso(c.Id))
+            return Result.Fail("Não é possível excluir uma categoria com atrelada a um Curso!");
 
         repositorioCategoria.Excluir(new Guid(dto.Id));
+
+        return Result.Ok();
     }
 
     public DetalhesCategoriaDto SelecionarPorId(string id)
@@ -76,9 +84,15 @@ public sealed class ServicoCategoria : ServicoBase<Categoria>
             e.Icon
         )).ToList();
     }
-    public bool ExisteCategoriaComMesmoNome(string titulo, Guid? idIgnorado = null)
+    private bool ExisteCategoriaComMesmoNome(string titulo, Guid? idIgnorado = null)
     {
         return repositorioCategoria.SelecionarTodos().Any(e => e.Id != idIgnorado &&
             string.Equals(e.Titulo, titulo, StringComparison.OrdinalIgnoreCase));
     }
+
+    private bool ExisteCategoriaAtreladaACurso(Guid id)
+    {
+        return repositorioCurso.SelecionarTodos().Any(c => c.Categoria.Id == id);
+    }
+
 }

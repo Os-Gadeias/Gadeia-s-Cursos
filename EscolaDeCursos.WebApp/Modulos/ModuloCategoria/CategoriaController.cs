@@ -60,7 +60,10 @@ public class CategoriaController : Controller
     {
         ExcluirCategoriaDto dto = mapper.Map<ExcluirCategoriaDto>(vm);
 
-        servicoCategoria.Excluir(dto);
+        Result resultado = servicoCategoria.Excluir(dto);
+
+        if (resultado.IsFailed)
+            TempData.AddErrorMessage(resultado);
 
         return RedirectToAction(nameof(Listar));
     }
