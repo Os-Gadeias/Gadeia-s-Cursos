@@ -41,6 +41,12 @@ public class ServicoTutor : ServicoBase<Tutor>
         if (ExisteTutorComMesmoNome(dto.Nome))
             return Falha(nameof(dto.Nome), "Já existe um tutor com esse Nome");
 
+        if (ExisteTutorComMesmoTelefone(dto.Telefone))
+            return Falha(nameof(dto.Telefone), "Já axiste um Aluno com esse Telefone!");
+
+        if (ExisteTutorComMesmoCpf(dto.Cpf))
+            return Falha(nameof(dto.Cpf), "Já axiste um Aluno com esse CPF!");
+
         repositorioTutor.Cadastrar(novoTutor);
 
         return Result.Ok();
@@ -57,6 +63,12 @@ public class ServicoTutor : ServicoBase<Tutor>
 
         if (ExisteTutorComMesmoNome(dto.Nome, dto.Id))
             return Falha(nameof(dto.Nome), "Já existe um tutor com esse Nome");
+
+        if (ExisteTutorComMesmoTelefone(dto.Telefone, dto.Id))
+            return Falha(nameof(dto.Telefone), "Já axiste um Aluno com esse Telefone!");
+
+        if (ExisteTutorComMesmoCpf(dto.Cpf, dto.Id))
+            return Falha(nameof(dto.Cpf), "Já axiste um Aluno com esse CPF!");
 
         repositorioTutor.Editar(dto.Id, tutorEditado);
 
@@ -97,5 +109,14 @@ public class ServicoTutor : ServicoBase<Tutor>
     private bool ExisteTutorAtreladoATurma(Guid id)
     {
         return repositorioTurma.SelecionarTodos().Any(t => t.Tutor.Id == id);
+    }
+
+    private bool ExisteTutorComMesmoTelefone(string telefone, Guid? idIgnorado = null)
+    {
+        return repositorioTutor.SelecionarTodos().Any(t => t.Telefone == telefone && t.Id != idIgnorado);
+    }
+    private bool ExisteTutorComMesmoCpf(string Cpf, Guid? idIgnorado = null)
+    {
+        return repositorioTutor.SelecionarTodos().Any(t => t.Cpf == Cpf && t.Id != idIgnorado);
     }
 }
