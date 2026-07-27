@@ -18,6 +18,8 @@ using EscolaDeCursos.Dominio.Modulos.ModuloTurma;
 using EscolaDeCursos.Infra.Modulos.ModuloTurma;
 using EscolaDeCursos.Dominio.Modulos.ModuloMatricula;
 using EscolaDeCursos.Infra.Modulos.ModuloMatricula;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace EscolaDeCursos.Infra;
 
@@ -53,6 +55,26 @@ public static class InjecaoDependencia
                 opt.EnableRetryOnFailure(3);
             });
         });
+
+        // configuração do usuario do Identity
+        services.AddIdentityCore<IdentityUser<Guid>>(options =>
+        {
+            options.User.RequireUniqueEmail = true; // Email Exclusivo?
+            options.SignIn.RequireConfirmedEmail = false; // E nessesario confirmar o email?
+            options.Password.RequiredLength = 8; // quantidade de caracteres
+            options.Password.RequireDigit = true;   // ter um numero
+            options.Password.RequireNonAlphanumeric = true; // caracter alfa numerico
+            options.Password.RequireUppercase = false; // Letra maiuscula?
+            options.Password.RequireLowercase = false; // Letra minuscula?
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5); // trancar acesso por 5 mim
+            options.Lockout.MaxFailedAccessAttempts = 5; // maximo de tentativas de lockout 5
+            options.Lockout.AllowedForNewUsers = true; // lockout usuario
+        })
+        .AddRoles<IdentityRole<Guid>>()
+        .AddEntityFrameworkStores<EscolaDeCursosDbContext>()
+        .AddSignInManager()
+        .AddDefaultTokenProviders();
+
         services.AddScoped<IRepositorioCategoria, RepositorioCategoriaEmOrm>();
         services.AddScoped<IRepositorioTutor, RepositorioTutorEmOrm>();
         services.AddScoped<IRepositorioCurso, RepositorioCursoOrm>();
