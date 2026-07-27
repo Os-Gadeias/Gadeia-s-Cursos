@@ -70,8 +70,8 @@ public static class InjecaoDependencia
             options.Lockout.MaxFailedAccessAttempts = 5; // maximo de tentativas de lockout 5
             options.Lockout.AllowedForNewUsers = true; // lockout usuario
         })
-        .AddRoles<IdentityRole<Guid>>()
-        .AddEntityFrameworkStores<EscolaDeCursosDbContext>()
+        .AddRoles<IdentityRole<Guid>>() // Configuração de Cargos/Papéis no Identity
+        .AddEntityFrameworkStores<EscolaDeCursosDbContext>() // Integração com EntityFramework
         .AddSignInManager()
         .AddDefaultTokenProviders();
 
