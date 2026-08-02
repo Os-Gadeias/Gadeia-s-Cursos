@@ -4,6 +4,7 @@ using EscolaDeCursos.Infra.Compartilhado.Orm;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
 {
     [DbContext(typeof(EscolaDeCursosDbContext))]
-    partial class EscolaDeCursosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260717173255_Add_Idenity")]
+    partial class Add_Idenity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,9 +44,6 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id")
                         .HasName("PK_TBAluno");
@@ -75,9 +75,6 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id")
                         .HasName("PK_TBAula");
 
@@ -105,9 +102,6 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id")
                         .HasName("PK_TBCategoria");
@@ -138,9 +132,6 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id")
                         .HasName("PK_TBCurso");
 
@@ -149,7 +140,7 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                     b.ToTable("TB_Curso", (string)null);
                 });
 
-            modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloInstituicao.Instituicao", b =>
+            modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloInstituicao.Insituicao", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -177,9 +168,6 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("TurmaId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id")
@@ -217,9 +205,6 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                     b.Property<Guid>("TutorId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id")
                         .HasName("PK_TBTurma");
 
@@ -249,9 +234,6 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id")
                         .HasName("PK_TBTutor");
@@ -488,11 +470,11 @@ namespace EscolaDeCursos.Infra.Compartilhado.Orm.Migrations
                     b.Navigation("Categoria");
                 });
 
-            modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloInstituicao.Instituicao", b =>
+            modelBuilder.Entity("EscolaDeCursos.Dominio.Modulos.ModuloInstituicao.Insituicao", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser<System.Guid>", null)
                         .WithOne()
-                        .HasForeignKey("EscolaDeCursos.Dominio.Modulos.ModuloInstituicao.Instituicao", "UserId")
+                        .HasForeignKey("EscolaDeCursos.Dominio.Modulos.ModuloInstituicao.Insituicao", "UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("FK_TBInstituicao_AspNetUsers");
