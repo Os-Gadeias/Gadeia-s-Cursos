@@ -18,3 +18,11 @@ Gadeia's Courses is a web application for managing an educational institution. I
 	<img src="ReadVideos/Overview.gif" alt="Overview of the Gadeia's Courses application" width="350">
 </p>
 
+## Courses and Classes
+
+- **Courses:** Create and manage courses, including adding lessons to each course.
+- **Classes:** Organize class groups and enroll students in them.
+
+<p align="center">
+	<img src="ReadVideos/ClassesAndCourses.gif" alt="Courses and Classes modules" width="350">
+</p>
