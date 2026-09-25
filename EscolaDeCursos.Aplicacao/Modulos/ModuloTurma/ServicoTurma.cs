@@ -38,7 +38,7 @@ public class ServicoTurma : ServicoBase<Turma>
         Turma? t = repositorioTurma.SelecionarPorId(new Guid(id));
 
         if (t == null)
-            return Result.Fail("Turma não encontrada!");
+            return Result.Fail("Class not found.");
 
         return new ListarTurmaDto(t.Id, t.Titulo, t.CapacidadeMaxima, t.DataInicio.ToShortDateString(),
          t.DataTermino.ToShortDateString(),
@@ -60,13 +60,13 @@ public class ServicoTurma : ServicoBase<Turma>
         bool tituloJaExiste = repositorioTurma.Filtrar(t => t.Titulo == dto.Titulo).Any();
 
         if (tituloJaExiste)
-            return Result.Fail("O \"Titulo\" cadastrado ja existe!");
+            return Result.Fail("A class with this title already exists.");
 
         if (tutorSelecionado == null)
-            return Result.Fail("O \"Tutor\" selecionado não existe!");
+            return Result.Fail("The selected tutor does not exist.");
 
         if (cursoSelecionado == null)
-            return Result.Fail("O \"Curso\" selecionado não existe!");
+            return Result.Fail("The selected course does not exist.");
 
         Turma novaTurma = new(dto.Titulo, dto.CapacidadeMaxima, dto.DataInicio, dto.DataTermino, tutorSelecionado, cursoSelecionado);
         Result resultadoValidacao = ValidarEntidade(novaTurma);
@@ -86,13 +86,13 @@ public class ServicoTurma : ServicoBase<Turma>
         bool tituloJaExiste = repositorioTurma.Filtrar(t => t.Titulo == dto.Titulo && t.Id != dto.Id).Any();
 
         if (tituloJaExiste)
-            return Result.Fail("O \"Titulo\" cadastrado ja existe!");
+            return Result.Fail("A class with this title already exists.");
 
         if (tutorSelecionado == null)
-            return Result.Fail("O \"Tutor\" selecionado não existe!");
+            return Result.Fail("The selected tutor does not exist.");
 
         if (cursoSelecionado == null)
-            return Result.Fail("O \"Curso\" selecionado não existe!");
+            return Result.Fail("The selected course does not exist.");
 
         Turma turmaAtualizada = new(dto.Titulo, dto.CapacidadeMaxima, dto.DataInicio, dto.DataTermino, tutorSelecionado, cursoSelecionado);
         Turma novaTurma = new(dto.Titulo, dto.CapacidadeMaxima, dto.DataInicio, dto.DataTermino, tutorSelecionado, cursoSelecionado);
@@ -111,7 +111,7 @@ public class ServicoTurma : ServicoBase<Turma>
         Turma? turmaSelecionada = repositorioTurma.SelecionarPorId(dto.Id);
 
         if (turmaSelecionada == null)
-            return Result.Fail("Turma não encontrada!");
+            return Result.Fail("Class not found.");
 
         repositorioTurma.Excluir(dto.Id);
 
@@ -122,7 +122,7 @@ public class ServicoTurma : ServicoBase<Turma>
         Turma? t = repositorioTurma.SelecionarPorId(new Guid(id));
 
         if (t == null)
-            return Result.Fail("Turma não encontrada!");
+            return Result.Fail("Class not found.");
 
         return new EditarTurmaDto(t.Id, t.Titulo, t.CapacidadeMaxima, t.DataInicio,
          t.DataTermino,

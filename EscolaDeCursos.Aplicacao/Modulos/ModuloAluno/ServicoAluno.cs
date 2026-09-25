@@ -38,13 +38,13 @@ public class ServicoAluno : ServicoBase<Aluno>
             return resultadoValidacao;
 
         if (ExisteAlunoComMesmoNome(dto.Nome))
-            return Falha(nameof(dto.Nome), "Já axiste um Aluno com esse nome");
+            return Falha(nameof(dto.Nome), "A student with this name already exists.");
 
         if (ExisteAlunoComMesmoTelefone(dto.Telefone))
-            return Falha(nameof(dto.Telefone), "Já axiste um Aluno com esse Telefone!");
+            return Falha(nameof(dto.Telefone), "A student with this phone number already exists.");
 
         if (ExisteAlunoComMesmoCpf(dto.Cpf))
-            return Falha(nameof(dto.Cpf), "Já axiste um Aluno com esse CPF!");
+            return Falha(nameof(dto.Cpf), "A student with this CPF already exists.");
 
         repositorioAluno.Cadastrar(novoAluno);
 
@@ -61,13 +61,13 @@ public class ServicoAluno : ServicoBase<Aluno>
             return resultValidacao;
 
         if (ExisteAlunoComMesmoNome(dto.Nome, dto.Id))
-            return Falha(nameof(dto.Nome), "Já existe um Aluno com esse nome");
+            return Falha(nameof(dto.Nome), "A student with this name already exists.");
 
         if (ExisteAlunoComMesmoTelefone(dto.Telefone, dto.Id))
-            return Falha(nameof(dto.Telefone), "Já axiste um Aluno com esse Telefone!");
+            return Falha(nameof(dto.Telefone), "A student with this phone number already exists.");
 
         if (ExisteAlunoComMesmoCpf(dto.Cpf, dto.Id))
-            return Falha(nameof(dto.Cpf), "Já axiste um Aluno com esse CPF!");
+            return Falha(nameof(dto.Cpf), "A student with this CPF already exists.");
 
         repositorioAluno.Editar(dto.Id, AlunoEditado);
 
@@ -79,10 +79,10 @@ public class ServicoAluno : ServicoBase<Aluno>
         Aluno? alunoSelecionado = repositorioAluno.SelecionarPorId(dto.Id);
 
         if (alunoSelecionado == null)
-            return Result.Fail("Tutor não encontrado!");
+            return Result.Fail("Student not found.");
 
         if (AlunoEstaMatriculadoEmCurso(alunoSelecionado.Id))
-            return Result.Fail("Não é possível excluir aluno matriculado em um curso!");
+            return Result.Fail("Cannot delete a student who is enrolled in a course.");
 
         repositorioAluno.Excluir(dto.Id);
 
@@ -94,7 +94,7 @@ public class ServicoAluno : ServicoBase<Aluno>
         Aluno? aluno = repositorioAluno.SelecionarPorId(id);
 
         if (aluno == null)
-            throw new Exception("Aluno não encontrado!");
+            throw new Exception("Student not found.");
 
         return new ListarAlunoDto(aluno.Id, aluno.Nome, aluno.Telefone, aluno.Cpf);
     }

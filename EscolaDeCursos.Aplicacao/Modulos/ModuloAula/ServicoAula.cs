@@ -22,7 +22,7 @@ public class ServicoAula : ServicoBase<Aula>
         Curso? curso = repositorioCurso.SelecionarPorId(new Guid(dto.Id));
 
         if (curso == null)
-            return Result.Fail("Curso não encontrado!");
+            return Result.Fail("Course not found.");
 
         Aula aula = new(dto.Nome, dto.Duracao, curso);
 
@@ -35,7 +35,7 @@ public class ServicoAula : ServicoBase<Aula>
         Aula? aula = repositorioAula.SelecionarPorId(new Guid(id));
 
         if (aula == null)
-            return Result.Fail("Aula não encontrada!");
+            return Result.Fail("Lesson not found.");
 
         return new DetalhesAulaDto(aula.Id.ToString(), aula.Nome, aula.Duracao, aula.Curso.Id.ToString());
     }
@@ -44,7 +44,7 @@ public class ServicoAula : ServicoBase<Aula>
         Aula? aula = repositorioAula.SelecionarPorId(new Guid(dto.Id));
 
         if (aula == null)
-            return Result.Fail("Aula não encontrada!");
+            return Result.Fail("Lesson not found.");
 
         repositorioAula.Excluir(new Guid(dto.Id));
 
@@ -56,7 +56,7 @@ public class ServicoAula : ServicoBase<Aula>
         Curso? curso = repositorioCurso.SelecionarPorId(new Guid(dto.IdCurso));
 
         if (curso == null)
-            return Result.Fail("Curso não encontrado!");
+            return Result.Fail("Course not found.");
 
         Aula aula = new(dto.Nome, dto.Duracao, curso);
 

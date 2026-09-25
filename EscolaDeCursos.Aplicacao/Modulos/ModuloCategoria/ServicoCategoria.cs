@@ -26,7 +26,7 @@ public sealed class ServicoCategoria : ServicoBase<Categoria>
             return resultadoValidacao;
 
         if (ExisteCategoriaComMesmoNome(dto.Titulo))
-            return Falha(nameof(dto.Titulo), "Já existe uma categoria com esse Titulo!");
+            return Falha(nameof(dto.Titulo), "A category with this title already exists.");
 
         repositorioCategoria.Cadastrar(novaCategoria);
 
@@ -43,7 +43,7 @@ public sealed class ServicoCategoria : ServicoBase<Categoria>
             return resultadoValidacao;
 
         if (ExisteCategoriaComMesmoNome(dto.Titulo, new Guid(dto.Id)))
-            return Falha(nameof(dto.Titulo), "Já existe uma categoria com esse Titulo!");
+            return Falha(nameof(dto.Titulo), "A category with this title already exists.");
 
         repositorioCategoria.Editar(new Guid(dto.Id), catedogoriaEditada);
 
@@ -55,10 +55,10 @@ public sealed class ServicoCategoria : ServicoBase<Categoria>
         Categoria? c = repositorioCategoria.SelecionarPorId(new Guid(dto.Id));
 
         if (c == null)
-            return Result.Fail("Categoria não encontrada!");
+            return Result.Fail("Category not found.");
 
         if (ExisteCategoriaAtreladaACurso(c.Id))
-            return Result.Fail("Não é possível excluir uma categoria com atrelada a um Curso!");
+            return Result.Fail("Cannot delete a category linked to a course.");
 
         repositorioCategoria.Excluir(new Guid(dto.Id));
 
@@ -70,7 +70,7 @@ public sealed class ServicoCategoria : ServicoBase<Categoria>
         Categoria? c = repositorioCategoria.SelecionarPorId(new Guid(id));
 
         if (c == null)
-            throw new Exception("Categoria não encontrada!");
+            throw new Exception("Category not found.");
 
         return new DetalhesCategoriaDto(c.Id.ToString(), c.Titulo, c.Cor, c.Icon);
     }

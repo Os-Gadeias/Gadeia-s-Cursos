@@ -26,7 +26,7 @@ public class ServicoMatricula : ServicoBase<Matricula>
         Turma? m = repositorioTurma.SelecionarPorId(new Guid(id));
 
         if (m == null)
-            return Result.Fail("Turma e Matriculas não encontrada!");
+            return Result.Fail("Class not found.");
 
         return new VisualizarTurmaEMatriculaDto(m.Id, m.Titulo, m.CapacidadeMaxima, m.DataInicio.ToShortDateString(),
         m.DataTermino.ToShortDateString(), m.Tutor.Nome, m.Curso.Nome,
@@ -48,16 +48,16 @@ public class ServicoMatricula : ServicoBase<Matricula>
             .Any(t => t.Matriculas.Any(m => m.Aluno.Id == new Guid(dto.IdAluno)));
 
         if (alunoEstaMatriculado)
-            return Result.Fail("Aluno já cadastrado na turma!");
+            return Result.Fail("The student is already enrolled in this class.");
 
         if (turma == null)
-            return Result.Fail("Turma não encontrada!");
+            return Result.Fail("Class not found.");
 
         if (aluno == null)
-            return Result.Fail("Aluno não encontrado!");
+            return Result.Fail("Student not found.");
 
         if (turma.Matriculas.Count + 1 > turma.CapacidadeMaxima)
-            return Result.Fail("A turma chegou a sua Capacidade Máxima de Alunos!");
+            return Result.Fail("The class has reached its maximum student capacity.");
 
         Matricula matricula = new(aluno, turma);
 
@@ -70,7 +70,7 @@ public class ServicoMatricula : ServicoBase<Matricula>
         Matricula? matricula = repositorioMatricula.SelecionarPorId(new Guid(id));
 
         if (matricula == null)
-            return Result.Fail("Matricula Não Encontrada!");
+            return Result.Fail("Enrollment not found.");
 
         repositorioMatricula.Excluir(new Guid(id));
 

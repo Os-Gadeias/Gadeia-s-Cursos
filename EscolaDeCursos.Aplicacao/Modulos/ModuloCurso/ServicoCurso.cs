@@ -27,7 +27,7 @@ public class ServicoCurso : ServicoBase<Curso>
         Categoria? categoria = repositorioCategoria.SelecionarPorId(new Guid(dto.CategoriaId));
 
         if (categoria == null)
-            return Result.Fail("Categoria não encotrada!");
+            return Result.Fail("Category not found.");
 
         Curso novoCurso = new(dto.Nome, dto.CargaHoraria, dto.Dificuldade, categoria!);
 
@@ -37,7 +37,7 @@ public class ServicoCurso : ServicoBase<Curso>
             return resultadoValidacao;
 
         if (ExisteCursoComMesmoNome(dto.Nome))
-            return Falha(nameof(dto.Nome), "Já existe uma Curso com esse Nome!");
+            return Falha(nameof(dto.Nome), "A course with this name already exists.");
 
         repositorioCurso.Cadastrar(novoCurso);
 
@@ -49,10 +49,10 @@ public class ServicoCurso : ServicoBase<Curso>
         Curso? curso = repositorioCurso.SelecionarPorId(new Guid(dto.Id));
 
         if (curso == null)
-            return Result.Fail("Curso não encontrado!");
+            return Result.Fail("Course not found.");
 
         if (ExisteCursoAtreladoATurma(curso.Id))
-            return Result.Fail("Não é possível excluir um curso atrelado a Turma!");
+            return Result.Fail("Cannot delete a course assigned to a class.");
 
         repositorioCurso.Excluir(new Guid(dto.Id));
 
@@ -107,7 +107,7 @@ public class ServicoCurso : ServicoBase<Curso>
         Categoria? categoria = repositorioCategoria.SelecionarPorId(new Guid(dto.CategoriaId));
 
         if (categoria == null)
-            return Falha(nameof(dto.CategoriaId), "Categoria não encontrada!");
+            return Falha(nameof(dto.CategoriaId), "Category not found.");
 
         Curso novoCurso = new(dto.Nome, dto.CargaHoraria, dto.Dificuldade, categoria!);
 
@@ -117,7 +117,7 @@ public class ServicoCurso : ServicoBase<Curso>
             return resultadoValidacao;
 
         if (ExisteCursoComMesmoNome(dto.Nome, new Guid(dto.Id)))
-            return Falha(nameof(dto.Nome), "Já existe uma Curso com esse Nome!");
+            return Falha(nameof(dto.Nome), "A course with this name already exists.");
 
         repositorioCurso.Editar(new Guid(dto.Id), novoCurso);
 

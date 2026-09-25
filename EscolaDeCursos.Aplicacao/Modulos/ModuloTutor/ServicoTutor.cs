@@ -39,13 +39,13 @@ public class ServicoTutor : ServicoBase<Tutor>
             return resultadoValidacao;
 
         if (ExisteTutorComMesmoNome(dto.Nome))
-            return Falha(nameof(dto.Nome), "Já existe um tutor com esse Nome");
+            return Falha(nameof(dto.Nome), "A tutor with this name already exists.");
 
         if (ExisteTutorComMesmoTelefone(dto.Telefone))
-            return Falha(nameof(dto.Telefone), "Já axiste um Aluno com esse Telefone!");
+            return Falha(nameof(dto.Telefone), "A tutor with this phone number already exists.");
 
         if (ExisteTutorComMesmoCpf(dto.Cpf))
-            return Falha(nameof(dto.Cpf), "Já axiste um Aluno com esse CPF!");
+            return Falha(nameof(dto.Cpf), "A tutor with this CPF already exists.");
 
         repositorioTutor.Cadastrar(novoTutor);
 
@@ -62,13 +62,13 @@ public class ServicoTutor : ServicoBase<Tutor>
             return resultadoValidacao;
 
         if (ExisteTutorComMesmoNome(dto.Nome, dto.Id))
-            return Falha(nameof(dto.Nome), "Já existe um tutor com esse Nome");
+            return Falha(nameof(dto.Nome), "A tutor with this name already exists.");
 
         if (ExisteTutorComMesmoTelefone(dto.Telefone, dto.Id))
-            return Falha(nameof(dto.Telefone), "Já axiste um Aluno com esse Telefone!");
+            return Falha(nameof(dto.Telefone), "A tutor with this phone number already exists.");
 
         if (ExisteTutorComMesmoCpf(dto.Cpf, dto.Id))
-            return Falha(nameof(dto.Cpf), "Já axiste um Aluno com esse CPF!");
+            return Falha(nameof(dto.Cpf), "A tutor with this CPF already exists.");
 
         repositorioTutor.Editar(dto.Id, tutorEditado);
 
@@ -80,10 +80,10 @@ public class ServicoTutor : ServicoBase<Tutor>
         Tutor? t = repositorioTutor.SelecionarPorId(dto.Id);
 
         if (t == null)
-            return Result.Fail("Tutor não encontrado!");
+            return Result.Fail("Tutor not found.");
 
         if (ExisteTutorAtreladoATurma(t.Id))
-            return Result.Fail("Não é possível excluir um tutor atrelado a uma turma!");
+            return Result.Fail("Cannot delete a tutor assigned to a class.");
 
         repositorioTutor.Excluir(dto.Id);
 
@@ -95,7 +95,7 @@ public class ServicoTutor : ServicoBase<Tutor>
         Tutor? t = repositorioTutor.SelecionarPorId(id);
 
         if (t == null)
-            throw new Exception("Tutor não encontrado!");
+            throw new Exception("Tutor not found.");
 
         return new ListarTutorDto(t.Id, t.Nome, t.Telefone, t.Cpf);
     }
