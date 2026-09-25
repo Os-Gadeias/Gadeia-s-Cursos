@@ -66,7 +66,14 @@
                                     </span>
                                     <span class=" text-muted text-uppercase d-flex align-items-center gap-2"
                                           style="font-size: 1.25rem;">
-                                        @(c.Dificuldade.ToString() switch { "Inicial" => "Beginner", "Intermediario" => "Intermediate", "Avancado" => "Advanced", _ => c.Dificuldade.ToString() })
+                                        @(c.Dificuldade.ToString() switch
+                                        {
+                                            "Inicial" => "Beginner",
+                                            "Intermediario" =>
+                            "Intermediate",
+                                            "Avancado" => "Advanced",
+                                            _ => c.Dificuldade.ToString()
+                                        })
                                     </span>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">

@@ -11,36 +11,36 @@
 
     <div class="mb-3">
         <label asp-for="Nome" class="form-label fw-semibold  text-uppercase small">Institution Name</label>
-            <input asp-for="Nome" type="text" class="form-control" autofocus>
-            <span asp-validation-for="Nome" class="text-danger small fw-semibold"></span>
-        </div>
+        <input asp-for="Nome" type="text" class="form-control" autofocus>
+        <span asp-validation-for="Nome" class="text-danger small fw-semibold"></span>
+    </div>
 
-        <div class="mb-3">
-            <label asp-for="Email" class="form-label fw-semibold  text-uppercase small">E-mail</label>
-            <input asp-for="Email" type="email" class="form-control">
-            <span asp-validation-for="Email" class="text-danger small fw-semibold"></span>
-        </div>
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label fw-semibold  text-uppercase small">E-mail</label>
+        <input asp-for="Email" type="email" class="form-control">
+        <span asp-validation-for="Email" class="text-danger small fw-semibold"></span>
+    </div>
 
-        <div class="mb-3">
-            <label asp-for="Senha" class="form-label fw-semibold  text-uppercase small">Password</label>
-            <input asp-for="Senha" type="password" class="form-control">
-            <span asp-validation-for="Senha" class="text-danger small fw-semibold"></span>
-        </div>
+    <div class="mb-3">
+        <label asp-for="Senha" class="form-label fw-semibold  text-uppercase small">Password</label>
+        <input asp-for="Senha" type="password" class="form-control">
+        <span asp-validation-for="Senha" class="text-danger small fw-semibold"></span>
+    </div>
 
-        <div class="mb-3">
-            <label asp-for="ConfirmarSenha" class="form-label fw-semibold  text-uppercase small">Confirm Password</label>
-                <input asp-for="ConfirmarSenha" type="password" class="form-control">
-                <span asp-validation-for="ConfirmarSenha" class="text-danger small fw-semibold"></span>
-            </div>
+    <div class="mb-3">
+        <label asp-for="ConfirmarSenha" class="form-label fw-semibold  text-uppercase small">Confirm Password</label>
+        <input asp-for="ConfirmarSenha" type="password" class="form-control">
+        <span asp-validation-for="ConfirmarSenha" class="text-danger small fw-semibold"></span>
+    </div>
 
-            <div class="d-flex justify-content-between align-items-center mt-4">
-                <span class="text-muted small">
-                    Already have an account? <a asp-action="Entrar" class=" text-decoration-none fw-semibold"
-                                     style="color: #5a38f5;">Sign in</a>
-                </span>
-                <button class="btn px-4 fw-semibold text-white d-flex align-items-center gap-2 py-2"
-                        style="background-color: #5a38f5; font-size: 0.9rem;" type="submit">
-                    <i class="bi bi-plus-lg"></i> Create Account
-                </button>
-            </div>
-        </form>
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <span class="text-muted small">
+            Already have an account? <a asp-action="Entrar" class=" text-decoration-none fw-semibold"
+                                        style="color: #5a38f5;">Sign in</a>
+        </span>
+        <button class="btn px-4 fw-semibold text-white d-flex align-items-center gap-2 py-2"
+                style="background-color: #5a38f5; font-size: 0.9rem;" type="submit">
+            <i class="bi bi-plus-lg"></i> Create Account
+        </button>
+    </div>
+</form>

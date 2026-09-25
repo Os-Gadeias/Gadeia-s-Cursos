@@ -7,17 +7,17 @@
 @model VisualizarTurmaEAulasViewModel
 
 @if (TempData["MensagemErro"] is string mensagemErro)
-    {
-        <div class="alert alert-danger border-0 border-start border-danger border-4 shadow-sm rounded-3 " role="alert">
-            <i class="bi bi-exclamation-octagon-fill me-2"></i> @mensagemErro
-        </div>
-    }
-    @if (TempData["MensagemSucesso"] is string MensagemSucesso)
-    {
-        <div class="alert alert-primary border-0 border-start border-primary border-4 shadow-sm rounded-3 " role="alert">
-            <i class="bi bi-exclamation-octagon-fill me-2"></i> @MensagemSucesso
-        </div>
-    }
+{
+    <div class="alert alert-danger border-0 border-start border-danger border-4 shadow-sm rounded-3 " role="alert">
+        <i class="bi bi-exclamation-octagon-fill me-2"></i> @mensagemErro
+    </div>
+}
+@if (TempData["MensagemSucesso"] is string MensagemSucesso)
+{
+    <div class="alert alert-primary border-0 border-start border-primary border-4 shadow-sm rounded-3 " role="alert">
+        <i class="bi bi-exclamation-octagon-fill me-2"></i> @MensagemSucesso
+    </div>
+}
 
 <div class="container py-3 d-flex justify-content-center">
     <div class="card border-0 shadow-sm rounded-4 w-100" style="max-width: 850px;">
@@ -35,10 +35,19 @@
                 <div>
                     <h2 class="fw-bold text-dark mb-2" style="letter-spacing: -0.5px;">Course: @Model.Nome</h2>
                     <div class="d-flex flex-wrap gap-2">
-                        <span class="badge rounded-pill px-3 py-2 fw-medium text-white" style="background-color: #5a38f5; font-size: 0.85rem;">
-                            Difficulty Level: @(Model.Dificuldade.ToString() switch { "Inicial" => "Beginner", "Intermediario" => "Intermediate", "Avancado" => "Advanced", _ => Model.Dificuldade.ToString() })
+                        <span class="badge rounded-pill px-3 py-2 fw-medium text-white"
+                              style="background-color: #5a38f5; font-size: 0.85rem;">
+                            Difficulty Level: @(Model.Dificuldade.ToString() switch
+                            {
+                                "Inicial" => "Beginner",
+                                "Intermediario" => "Intermediate",
+                                "Avancado" => "Advanced",
+                                _ =>
+                                               Model.Dificuldade.ToString()
+                            })
                         </span>
-                        <span class="badge rounded-pill px-3 py-2 fw-medium text-dark border border-secondary-subtle" style="background-color: #f1f3f5; font-size: 0.85rem;">
+                        <span class="badge rounded-pill px-3 py-2 fw-medium text-dark border border-secondary-subtle"
+                              style="background-color: #f1f3f5; font-size: 0.85rem;">
                             Category: @Model.CategoriaNome
                         </span>
                     </div>
@@ -77,13 +86,13 @@
                                 </span>
                                 
                                 <div class="d-flex gap-2">
-                                    <a asp-controller="Aula" asp-action="EditarAula" asp-route-id="@aula.Id" 
-                                       class="btn btn-light border-secondary-subtle px-3 py-1 text-secondary" 
+                                    <a asp-controller="Aula" asp-action="EditarAula" asp-route-id="@aula.Id"
+                                       class="btn btn-light border-secondary-subtle px-3 py-1 text-secondary"
                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                                         <i class="bi bi-pencil"></i>
                                     </a>
                                     
-                                    <a asp-controller="Aula" asp-action="ExcluirAula" asp-route-id="@aula.Id" 
+                                    <a asp-controller="Aula" asp-action="ExcluirAula" asp-route-id="@aula.Id"
                                        class="btn btn-outline-danger border-danger-subtle px-3 py-1" 
                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
                                         <i class="bi bi-trash"></i>
@@ -98,10 +107,14 @@
             <hr class="text-secondary-subtle my-4">
 
             <div class="d-flex justify-content-end gap-3 mt-4">
-                <a asp-action="Listar" class="btn border-secondary-subtle fw-semibold px-4 py-2 text-dark d-flex align-items-center gap-2" style="background-color: #f1f3f5;">
+                <a asp-action="Listar"
+                   class="btn border-secondary-subtle fw-semibold px-4 py-2 text-dark d-flex align-items-center gap-2"
+                   style="background-color: #f1f3f5;">
                     <i class="bi bi-arrow-left"></i> Back
                 </a>
-                <a asp-controller="Aula" asp-action="CadastrarAula" asp-route-id="@Model.Id" class="btn fw-semibold px-4 py-2 text-white d-flex align-items-center gap-2 shadow-sm" style="background-color: #5a38f5;">
+                <a asp-controller="Aula" asp-action="CadastrarAula" asp-route-id="@Model.Id"
+                   class="btn fw-semibold px-4 py-2 text-white d-flex align-items-center gap-2 shadow-sm"
+                   style="background-color: #5a38f5;">
                     <i class="bi bi-plus-lg"></i> Add Lesson
                 </a>
             </div>

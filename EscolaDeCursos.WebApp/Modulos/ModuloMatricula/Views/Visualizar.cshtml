@@ -7,17 +7,17 @@
 @model VisualizarTurmaEMatriculaViewModel
 
 @if (TempData["MensagemErro"] is string mensagemErro)
-    {
-        <div class="alert alert-danger border-0 border-start border-danger border-4 shadow-sm rounded-3 " role="alert">
-            <i class="bi bi-exclamation-octagon-fill me-2"></i> @mensagemErro
-        </div>
-    }
-    @if (TempData["MensagemSucesso"] is string MensagemSucesso)
-    {
-        <div class="alert alert-primary border-0 border-start border-primary border-4 shadow-sm rounded-3 " role="alert">
-            <i class="bi bi-exclamation-octagon-fill me-2"></i> @MensagemSucesso
-        </div>
-    }
+{
+    <div class="alert alert-danger border-0 border-start border-danger border-4 shadow-sm rounded-3 " role="alert">
+        <i class="bi bi-exclamation-octagon-fill me-2"></i> @mensagemErro
+    </div>
+}
+@if (TempData["MensagemSucesso"] is string MensagemSucesso)
+{
+    <div class="alert alert-primary border-0 border-start border-primary border-4 shadow-sm rounded-3 " role="alert">
+        <i class="bi bi-exclamation-octagon-fill me-2"></i> @MensagemSucesso
+    </div>
+}
 
 <div class="container py-3 d-flex justify-content-center">
     <div class="card border-0 shadow-sm rounded-4 w-100" style="max-width: 850px;">
@@ -35,10 +35,13 @@
                 <div>
                     <h2 class="fw-bold text-dark mb-2" style="letter-spacing: -0.5px;">Class: @Model.Titulo</h2>
                     <div class="d-flex flex-wrap gap-2">
-                        <span class="badge rounded-pill px-3 py-2 fw-medium text-white" style="background-color: #5a38f5; font-size: 0.85rem;">
-                            Enrolled: @(Model.Matriculas?.Count != null ? Model.Matriculas.Count : "0") / @Model.CapacidadeMaxima
+                        <span class="badge rounded-pill px-3 py-2 fw-medium text-white"
+                              style="background-color: #5a38f5; font-size: 0.85rem;">
+                            Enrolled: @(Model.Matriculas?.Count != null ? Model.Matriculas.Count : "0") /
+                            @Model.CapacidadeMaxima
                         </span>
-                        <span class="badge rounded-pill px-3 py-2 fw-medium text-dark border border-secondary-subtle" style="background-color: #f1f3f5; font-size: 0.85rem;">
+                        <span class="badge rounded-pill px-3 py-2 fw-medium text-dark border border-secondary-subtle"
+                              style="background-color: #f1f3f5; font-size: 0.85rem;">
                             @Model.NomeTutor | @Model.NomeCurso
                         </span>
                     </div>
@@ -73,15 +76,17 @@
                         {
                             <div class="d-flex justify-content-between align-items-center border border-secondary-subtle rounded-3 p-3 bg-white hover-shadow-sm transition-all">
                                 <span class="fw-semibold text-dark" style="font-size: 0.95rem;">
-                                    Enrollment: @matricula.Id.ToString().Substring(0, 8) | Student: @matricula.NomeAluno | Status: @(matricula.EstaAtiva ? "Active" : "Inactive")
+                                    Enrollment: @matricula.Id.ToString().Substring(0, 8) | Student: @matricula.NomeAluno |
+                                    Status: @(matricula.EstaAtiva ? "Active" : "Inactive")
                                 </span>
                                 
                                 <div class="d-flex gap-2">
-                                    <form asp-action="ExcluirMatricula" asp-route-idMatricula="@matricula.Id" asp-route-id="@Model.Id" method="post" style="display:inline;">
-                                    <button type="submit" class="btn btn-link text-danger p-0">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </form>
+                                    <form asp-action="ExcluirMatricula" asp-route-idMatricula="@matricula.Id"
+                                          asp-route-id="@Model.Id" method="post" style="display:inline;">
+                                        <button type="submit" class="btn btn-link text-danger p-0">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         }
@@ -92,10 +97,14 @@
             <hr class="text-secondary-subtle my-4">
 
             <div class="d-flex justify-content-end gap-3 mt-4">
-                <a asp-controller="Turma" asp-action="Listar" class="btn border-secondary-subtle fw-semibold px-4 py-2 text-dark d-flex align-items-center gap-2" style="background-color: #f1f3f5;">
+                <a asp-controller="Turma" asp-action="Listar"
+                   class="btn border-secondary-subtle fw-semibold px-4 py-2 text-dark d-flex align-items-center gap-2"
+                   style="background-color: #f1f3f5;">
                     <i class="bi bi-arrow-left"></i> Back
                 </a>
-                <a  asp-action="CadastrarMatricula" asp-route-id="@Model.Id" class="btn fw-semibold px-4 py-2 text-white d-flex align-items-center gap-2 shadow-sm" style="background-color: #5a38f5;">
+                <a asp-action="CadastrarMatricula" asp-route-id="@Model.Id"
+                   class="btn fw-semibold px-4 py-2 text-white d-flex align-items-center gap-2 shadow-sm"
+                   style="background-color: #5a38f5;">
                     <i class="bi bi-plus-lg"></i> Enroll Student
                 </a>
             </div>
