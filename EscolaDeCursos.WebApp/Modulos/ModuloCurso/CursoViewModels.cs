@@ -11,13 +11,13 @@ public record ListarCursoViewModel(
     string CategoriaNome
 );
 public record CadastrarCursoViewModel(
-    [Required(ErrorMessage = "O campo \"Nome\" é obrigatório!")]
+    [Required(ErrorMessage = "The Name field is required.")]
     string Nome,
-    [Required(ErrorMessage = "O campo \"Carga Horaria\" é obrigatório!")]
+    [Required(ErrorMessage = "The Course Hours field is required.")]
     int CargaHoraria,
-    [Required(ErrorMessage = "O campo \"Nível de Dificuldade\" é obrigatório!")]
+    [Required(ErrorMessage = "The Difficulty Level field is required.")]
     NivelDeDificildade Dificuldade,
-    [Required(ErrorMessage = "O campo \"Categoria\" é obrigatório!")]
+    [Required(ErrorMessage = "The Category field is required.")]
     string CategoriaId
 );
 public record ExcluirCursoViewModel(
@@ -29,13 +29,13 @@ public record ExcluirCursoViewModel(
 );
 public record EditarCursoViewModel(
     string Id,
-    [Required(ErrorMessage = "O campo \"Nome\" é obrigatório!")]
+    [Required(ErrorMessage = "The Name field is required.")]
     string Nome,
-    [Required(ErrorMessage = "O campo \"Carga Horaria\" é obrigatório!")]
+    [Required(ErrorMessage = "The Course Hours field is required.")]
     int CargaHoraria,
-    [Required(ErrorMessage = "O campo \"Nível de Dificuldade\" é obrigatório!")]
+    [Required(ErrorMessage = "The Difficulty Level field is required.")]
     NivelDeDificildade Dificuldade,
-    [Required(ErrorMessage = "O campo \"Categoria\" é obrigatório!")]
+    [Required(ErrorMessage = "The Category field is required.")]
     string CategoriaId
 );
 public record VisualizarTurmaEAulasViewModel(

@@ -4,9 +4,9 @@ namespace EscolaDeCursos.WebApp.Modulos.ModuloAula.Views;
 
 public record CadastrarAulaViewModel(
     string Id,
-    [Required(ErrorMessage ="O campo \"Nome\" é obrigatório!")]
+    [Required(ErrorMessage = "The Name field is required.")]
     string Nome,
-    [Range(20, int.MaxValue, ErrorMessage = "A duração deve ser no mínimo que 20 horas!")]
+    [Range(20, int.MaxValue, ErrorMessage = "Duration must be at least 20 hours.")]
     int Duracao
 );
 public record ExcluirAulaViewModel(
@@ -17,9 +17,9 @@ public record ExcluirAulaViewModel(
 );
 public record EditarAulaViewModel(
     string Id,
-    [Required(ErrorMessage ="O campo \"Nome\" é obrigatório!")]
+    [Required(ErrorMessage = "The Name field is required.")]
     string Nome,
-    [Range(20, int.MaxValue, ErrorMessage = "A duração deve ser no mínimo que 20 horas!")]
+    [Range(20, int.MaxValue, ErrorMessage = "Duration must be at least 20 hours.")]
     int Duracao,
     string IdCurso
 );

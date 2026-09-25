@@ -14,32 +14,32 @@ public record ListarTurmaViewModel(
 );
 public record EditarTurmaViewModel(
     string Id,
-   [Required(ErrorMessage = "O campo \"Titulo\" é obrigatório!")]
+    [Required(ErrorMessage = "The Title field is required.")]
     string Titulo,
-    [Required(ErrorMessage = "O campo \"Capacidade Máxima\" é obrigatório!")]
+    [Required(ErrorMessage = "The Maximum Capacity field is required.")]
     int CapacidadeMaxima,
-    [Required(ErrorMessage = "O campo \"Data de Inicio\" é obrigatório!")]
+    [Required(ErrorMessage = "The Start Date field is required.")]
     DateTime DataInicio,
-    [Required(ErrorMessage = "O campo \"Data de Terminio\" é obrigatório!")]
+    [Required(ErrorMessage = "The End Date field is required.")]
     DateTime DataTermino,
-    [Required(ErrorMessage = "O campo \"Tutor\" é obrigatório!")]
+    [Required(ErrorMessage = "The Tutor field is required.")]
     Guid IdTutor,
-    [Required(ErrorMessage = "O campo \"Curso\" é obrigatório!")]
+    [Required(ErrorMessage = "The Course field is required.")]
     Guid IdCurso
 );
 
 public record CadastrarTurmaViewModel(
-    [Required(ErrorMessage = "O campo \"Titulo\" é obrigatório!")]
+    [Required(ErrorMessage = "The Title field is required.")]
     string Titulo,
-    [Required(ErrorMessage = "O campo \"Capacidade Máxima\" é obrigatório!")]
+    [Required(ErrorMessage = "The Maximum Capacity field is required.")]
     int CapacidadeMaxima,
-    [Required(ErrorMessage = "O campo \"Data de Inicio\" é obrigatório!")]
+    [Required(ErrorMessage = "The Start Date field is required.")]
     DateTime DataInicio,
-    [Required(ErrorMessage = "O campo \"Data de Terminio\" é obrigatório!")]
+    [Required(ErrorMessage = "The End Date field is required.")]
     DateTime DataTermino,
-    [Required(ErrorMessage = "O campo \"Tutor\" é obrigatório!")]
+    [Required(ErrorMessage = "The Tutor field is required.")]
     Guid IdTutor,
-    [Required(ErrorMessage = "O campo \"Curso\" é obrigatório!")]
+    [Required(ErrorMessage = "The Course field is required.")]
     Guid IdCurso
 );
 

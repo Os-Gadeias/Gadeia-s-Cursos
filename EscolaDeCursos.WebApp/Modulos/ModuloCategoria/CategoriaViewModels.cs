@@ -10,12 +10,12 @@ public record ListarCategoriaViewModel(
     string Icon
 );
 public record CadastrarCategoriaViewModel(
-    [Required(ErrorMessage = "O campo \"Titulo\" é Obrigatório!")]
+    [Required(ErrorMessage = "The Title field is required.")]
     string Titulo,
-    [Required(ErrorMessage = "O campo \"Cor\" é Obrigatório!")]
+    [Required(ErrorMessage = "The Color field is required.")]
     string Cor,
-    [Required(ErrorMessage = "O campo \"Emoji\" é Obrigatório!")]
-    [ApenasUmEmoji(ErrorMessage = "Você deve escolher apenas 1 emoji.")]
+    [Required(ErrorMessage = "The Emoji field is required.")]
+    [ApenasUmEmoji(ErrorMessage = "Please select exactly one emoji.")]
     string Icon
 );
 public record ExcluirCategoriaViewModel(
@@ -26,11 +26,11 @@ public record ExcluirCategoriaViewModel(
 );
 public record EditarCategoriaViewModel(
     string Id,
-    [Required(ErrorMessage = "O campo \"Titulo\" é Obrigatório!")]
+    [Required(ErrorMessage = "The Title field is required.")]
     string Titulo,
-    [Required(ErrorMessage = "O campo \"Cor\" é Obrigatório!")]
+    [Required(ErrorMessage = "The Color field is required.")]
     string Cor,
-    [Required(ErrorMessage = "O campo \"Emoji\" é Obrigatório!")]
-    [ApenasUmEmoji(ErrorMessage = "Você deve escolher apenas 1 emoji.")]
+    [Required(ErrorMessage = "The Emoji field is required.")]
+    [ApenasUmEmoji(ErrorMessage = "Please select exactly one emoji.")]
     string Icon
 );
