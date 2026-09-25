@@ -30,22 +30,22 @@ public class Tutor : EntidadeBase<Tutor>
         List<string> erros = new List<string>();
 
         if (string.IsNullOrWhiteSpace(Nome))
-            erros.Add("Nome|O campo \"Nome\" deve ser preenchido!");
+            erros.Add("Nome|The \"Name\" field is required!");
 
         if (Nome.Length < 2 || Nome.Length > 100)
-            erros.Add("Nome|O campo \"Nome\" deve conter entre 2 e 100 caracteres!");
+            erros.Add("Nome|The \"Name\" field must be between 2 and 100 characters!");
 
         if (string.IsNullOrWhiteSpace(Telefone))
-            erros.Add("Telefone|O campo \"Telefone\" deve ser preenchido!");
+            erros.Add("Telefone|The \"Phone\" field is required!");
 
         if (!Regex.IsMatch(Telefone, @"^\(\d{2}\) \d{4,5}-\d{4}$"))
-            erros.Add("Telefone|O campo \"Telefone\" deve estar no formato (DDD) 90000-0000.");
+            erros.Add("Telefone|The phone number must use the format (area code) 90000-0000.");
 
         if (string.IsNullOrWhiteSpace(Cpf))
-            erros.Add("Cpf|O campo \"CPF\" deve ser preenchido!");
+            erros.Add("Cpf|The \"CPF\" field is required!");
 
         if (Cpf.Length != 11)
-            erros.Add("Cpf|O campo \"CPF\" deve conter 11 caracteres!");
+            erros.Add("Cpf|The \"CPF\" field must contain 11 characters!");
 
         return erros;
     }

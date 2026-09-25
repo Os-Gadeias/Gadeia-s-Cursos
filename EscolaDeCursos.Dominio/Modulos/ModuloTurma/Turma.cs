@@ -43,16 +43,16 @@ public class Turma : EntidadeBase<Turma>
         List<string> erros = [];
 
         if (Titulo.Length < 2 || Titulo.Length > 100)
-            erros.Add("Titulo|O \"Titulo\" deve conter entre 2 à 100 caracteres");
+            erros.Add("Titulo|The \"Title\" must be between 2 and 100 characters.");
 
         if (Matriculas.Count > CapacidadeMaxima)
-            erros.Add($"CapacidadeMaxima|Limite da turma: {CapacidadeMaxima} atingido!");
+            erros.Add($"CapacidadeMaxima|Class capacity limit reached: {CapacidadeMaxima}.");
 
         if (DataTermino < DataInicio)
-            erros.Add("DataTermino|A data de término deve ser maior que a data atual!");
+            erros.Add("DataTermino|The end date must be later than the start date!");
 
         if (CapacidadeMaxima <= 0)
-            erros.Add("CapacidadeMaxima|O campo \"Capacidade Maxima\" deve ser maior que ZERO!");
+            erros.Add("CapacidadeMaxima|The \"Maximum Capacity\" field must be greater than zero!");
         return erros;
     }
 }
