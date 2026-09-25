@@ -1,6 +1,6 @@
 @{
     Layout = "_Layout";
-    ViewBag.Titulo = "Exclusão de Curso";
+    ViewBag.Titulo = "Delete Class";
 }
 
 @model ExcluirTurmaViewModel;
@@ -14,7 +14,7 @@
          style="background-color: #fce8e8; color: #d32f2f;">
         <div class="d-flex align-items-center gap-2 fw-semibold">
             <i class="bi bi-exclamation-triangle"></i>
-            <span>Confirmar Exclusão</span>
+            <span>Confirm Deletion</span>
         </div>
         <a asp-action="Listar" class="text-deTelefoneation-none" style="color: #d32f2f; font-size: 1.2rem;">
             <i class="bi bi-x-lg"></i>
@@ -23,16 +23,15 @@
 
     <div class="p-4">
 
-        <h5 class="fw-bold text-dark mb-2" style="font-size: 1.1rem;">Tem certeza que deseja excluir esta Turma?
+        <h5 class="fw-bold text-dark mb-2" style="font-size: 1.1rem;">Are you sure you want to delete this class?
         </h5>
         <p class="text-muted mb-4" style="font-size: 0.9rem; line-height: 1.5;">
-            Esta ação não pode ser desfeita. Todos os dados relacionados a este
-            Curso serão permanentemente removidos do sistema.
+            This action cannot be undone. All data related to this class will be permanently removed from the system.
         </p>
 
         <div class="bg-light p-4 rounded-3 mb-4">
             <div class="row mb-3 border-bottom pb-3">
-                <div class="col-sm-4 text-muted" style="font-size: 0.85rem;">Titulo</div>
+                <div class="col-sm-4 text-muted" style="font-size: 0.85rem;">Title</div>
                 <div class="col-sm-8 fw-semibold text-dark text-break" style="font-size: 0.9rem;">
                     @Model.Titulo
                 </div>
@@ -45,7 +44,7 @@
                 </div>
             </div>
             <div class="row mb-3 border-bottom pb-3">
-                <div class="col-sm-4 text-muted" style="font-size: 0.85rem;">Capacidade Máxima</div>
+                <div class="col-sm-4 text-muted" style="font-size: 0.85rem;">Maximum Capacity</div>
                 <div class="col-sm-8 fw-semibold text-dark" style="font-size: 0.9rem;" style="font-size: 0.9rem;">
                     @Model.CapacidadeMaxima
                 </div>
@@ -53,13 +52,13 @@
 
             <div class="row mb-3 border-bottom pb-3 border-bottom">
                 <div class="col-6 d-flex align-items-center ">
-                    <div class="text-muted w-50" style="font-size: 0.85rem;">Data Inicio</div>
+                    <div class="text-muted w-50" style="font-size: 0.85rem;">Start Date</div>
                     <div class="fw-semibold text-dark w-75 d-flex align-items-center gap-2" style="font-size: 0.9rem;">
                         @Model.DataInicio
                     </div>
                 </div>
                 <div class="col-6 d-flex align-items-center ">
-                    <div class="col-sm-4 text-muted" style="font-size: 0.85rem;">Data Término</div>
+                    <div class="col-sm-4 text-muted" style="font-size: 0.85rem;">End Date</div>
                     <div class="col-sm-8 fw-semibold text-dark text-break" style="font-size: 0.9rem;">
                         @Model.DataTermino
                     </div>
@@ -82,11 +81,11 @@
 
         <div class="d-flex justify-content-end gap-3 mt-2 pt-3 border-top">
             <a class="btn bg-white border px-4 fw-semibold text-dark" style="font-size: 0.9rem;" asp-action="Listar">
-                Cancelar
+                Cancel
             </a>
             <button class="btn px-4 fw-semibold text-white d-flex align-items-center gap-2"
                     style="background-color: #dc3545; font-size: 0.9rem;" type="submit">
-                <i class="bi bi-trash"></i> Excluir Curso
+                <i class="bi bi-trash"></i> Delete Class
             </button>
         </div>
     </div>

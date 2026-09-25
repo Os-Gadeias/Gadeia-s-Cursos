@@ -26,10 +26,10 @@
 <div class="container-fluid py-2 d-flex flex-column align-items-center min-vh-100" style="background-color: #f8f9fc;">
 
     <div class="text-center mb-5 mt-4" style="max-width: 600px;">
-        <span class="d-block mb-2 fw-semibold text-muted" style="font-size: 0.95rem;">Bem-vindo(a) de volta! 👋</span>
-        <h1 class="fw-bold text-dark mb-3" style="font-size: 2.5rem; letter-spacing: -1px;">Painel de Gestão</h1>
+        <span class="d-block mb-2 fw-semibold text-muted" style="font-size: 0.95rem;">Welcome back! 👋</span>
+        <h1 class="fw-bold text-dark mb-3" style="font-size: 2.5rem; letter-spacing: -1px;">Management Dashboard</h1>
         <p class="text-secondary" style="font-size: 1rem; line-height: 1.5;">
-            Gerencie alunos, tutores, cursos, turmas e categorias de forma rápida e intuitiva.
+            Manage students, tutors, courses, classes, and categories quickly and intuitively.
         </p>
     </div>
 
@@ -42,9 +42,8 @@
                          style="width: 55px; height: 55px; background-color: #f2efff; color: #5a38f5;">
                         <i class="bi bi-person-fill fs-3"></i>
                     </div>
-                    <h5 class="fw-bold text-dark mb-2">Alunos</h5>
-                    <p class="text-muted mb-4" style="font-size: 0.9rem;">Visualize e gerencie os alunos cadastrados no
-                        sistema.</p>
+                    <h5 class="fw-bold text-dark mb-2">Students</h5>
+                    <p class="text-muted mb-4" style="font-size: 0.9rem;">View and manage students registered in the system.</p>
 
                         <a asp-controller="Aluno" asp-action="Listar"
                            class="btn rounded-circle d-flex align-items-center justify-content-center mt-auto align-self-end btn-arrow-hover"
@@ -62,8 +61,8 @@
                              style="width: 55px; height: 55px; background-color: #e6f2ff; color: #007bff;">
                             <i class="bi bi-person-workspace fs-3"></i>
                         </div>
-                        <h5 class="fw-bold text-dark mb-2">Tutores</h5>
-                        <p class="text-muted mb-4" style="font-size: 0.9rem;">Visualize e gerencie o quadro de Tutores.
+                        <h5 class="fw-bold text-dark mb-2">Tutors</h5>
+                        <p class="text-muted mb-4" style="font-size: 0.9rem;">View and manage your tutors.
                         </p>
 
                         <a asp-controller="Tutor" asp-action="Listar"
@@ -82,8 +81,8 @@
                              style="width: 55px; height: 55px; background-color: #eafbf0; color: #28a745;">
                             <i class="bi bi-journal-bookmark-fill fs-3"></i>
                         </div>
-                        <h5 class="fw-bold text-dark mb-2">Cursos</h5>
-                        <p class="text-muted mb-4" style="font-size: 0.9rem;">Gerencie os cursos disponíveis na instituição.
+                        <h5 class="fw-bold text-dark mb-2">Courses</h5>
+                        <p class="text-muted mb-4" style="font-size: 0.9rem;">Manage the courses offered by your institution.
                         </p>
 
                         <a asp-controller="Curso" asp-action="Listar"
@@ -102,8 +101,8 @@
                              style="width: 55px; height: 55px; background-color: #fff6e5; color: #fd7e14;">
                             <span style="font-size: 1.5rem;">🏫</span>
                         </div>
-                        <h5 class="fw-bold text-dark mb-2">Turmas</h5>
-                        <p class="text-muted mb-4" style="font-size: 0.9rem;">Organize e gerencie as turmas e horários.</p>
+                        <h5 class="fw-bold text-dark mb-2">Classes</h5>
+                        <p class="text-muted mb-4" style="font-size: 0.9rem;">Organize and manage classes and schedules.</p>
 
                         <a asp-controller="Turma" asp-action="Listar"
                            class="btn rounded-circle d-flex align-items-center justify-content-center mt-auto align-self-end btn-arrow-hover"
@@ -120,8 +119,8 @@
                              style="width: 55px; height: 55px; background-color: #ffeef2; color: #e83e8c;">
                             <span style="font-size: 1.5rem;">🏷️</span>
                         </div>
-                        <h5 class="fw-bold text-dark mb-2">Categorias</h5>
-                        <p class="text-muted mb-4" style="font-size: 0.9rem;">Gerencie as categorias de cursos e conteúdos.
+                        <h5 class="fw-bold text-dark mb-2">Categories</h5>
+                        <p class="text-muted mb-4" style="font-size: 0.9rem;">Manage course and content categories.
                         </p>
 
                         <a asp-controller="Categoria" asp-action="Listar"

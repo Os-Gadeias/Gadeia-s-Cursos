@@ -1,6 +1,6 @@
 @{
     Layout = "_Layout";
-    ViewBag.Titulo = "Listagem de Turmas";
+    ViewBag.Titulo = "Classes";
 }
 
 @model List<ListarTurmaViewModel>;
@@ -8,10 +8,10 @@
 <div class="container mt-4">
 
     <div class="d-flex justify-content-between align-items-center mb-4 pb-2">
-        <h2 class="fw-bold text-muted mb-0">Turmas</h2>
+        <h2 class="fw-bold text-muted mb-0">Classes</h2>
         <a class="btn fw-semibold text-white d-flex align-items-center gap-2 shadow-sm"
            style="background-color: #5a38f5; padding: 10px 20px; border-radius: 8px;" asp-action="Cadastrar">
-            <i class="bi bi-plus-lg"></i> Novo Turma
+            <i class="bi bi-plus-lg"></i> New Class
         </a>
     </div>
 
@@ -32,8 +32,8 @@
     {
         <div class="alert bg-white border-0 shadow-sm rounded-4 p-5 text-center text-muted" role="alert">
             <i class="bi bi-inbox fs-1 d-block mb-3"></i>
-            <h5 class="fw-semibold">Nenhuma Turma encontrada</h5>
-            <p class="mb-0 small">Cadastre uma nova Turma para visualizá-la aqui.</p>
+            <h5 class="fw-semibold">No classes found</h5>
+            <p class="mb-0 small">Create a class to see it here.</p>
         </div>
     }
     else
@@ -45,7 +45,7 @@
                     <div class="card border-0 shadow-sm h-100 rounded-4 p-2">
                         <div class="card-body d-flex flex-column">
 
-                            <h5 class="card-title fw-bold text-dark mb-4" style="font-size: 1.5rem;">Turma: @c.Titulo</h5>
+                            <h5 class="card-title fw-bold text-dark mb-4" style="font-size: 1.5rem;">Class: @c.Titulo</h5>
 
                             <div class="mb-4">
                                 <div class="d-flex justify-content-between align-items-center mb-2 pb-1">
@@ -59,7 +59,7 @@
 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="text-muted d-flex align-items-center gap-2" style="font-size: 1.25rem;">
-                                        Capacidade Máxima
+                                        Maximum Capacity
                                     </span>
                                     <span class=" text-muted text-uppercase d-flex align-items-center gap-2"
                                           style="font-size: 1.25rem;">
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="text-muted d-flex align-items-center gap-2" style="font-size: 1.25rem;">
-                                        Data de Início
+                                        Start Date
                                     </span>
                                     <span class=" text-muted text-uppercase d-flex align-items-center gap-2"
                                           style="font-size: 1.25rem;">
@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="text-muted d-flex align-items-center gap-2" style="font-size: 1.25rem;">
-                                        Data de Término
+                                        End Date
                                     </span>
                                     <span class=" text-muted text-uppercase d-flex align-items-center gap-2"
                                           style="font-size: 1.25rem;">
@@ -105,15 +105,15 @@
                             </div>
                             <div class="mt-auto d-flex justify-content-end gap-3 pt-3 border-top">
                                 <a asp-controller="Matricula" asp-action="Visualizar" asp-route-id="@c.Id" class="text-decoration-none text-primary"
-                                   title="Visualizar" style="font-size: 1.1rem;">
+                                   title="View" style="font-size: 1.1rem;">
                                     <i class="bi bi-eye"></i>
                                 </a>
                                 <a asp-action="Editar" asp-route-id="@c.Id" class="text-decoration-none text-secondary"
-                                   title="Editar" style="font-size: 1.1rem;">
+                                   title="Edit" style="font-size: 1.1rem;">
                                     <i class="bi bi-pencil"></i>
                                 </a>
                                 <a asp-action="Excluir" asp-route-id="@c.Id" class="text-decoration-none text-danger"
-                                   title="Excluir" style="font-size: 1.1rem;">
+                                   title="Delete" style="font-size: 1.1rem;">
                                     <i class="bi bi-trash"></i>
                                 </a>
                             </div>

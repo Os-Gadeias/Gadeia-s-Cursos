@@ -1,6 +1,6 @@
 @{
     Layout = "_Layout";
-    ViewBag.Nome = "Cadastro de Aula";
+    ViewBag.Nome = "Edit Lesson";
 }
 
 @model EditarAulaViewModel;
@@ -16,8 +16,8 @@
             <i class="bi bi-tags"></i>
         </div>
         <div>
-            <h4 class="fw-bold mb-1 text-dark" style="font-size: 1.25rem;">Editar Aula</h4>
-            <p class="text-muted mb-0" style="font-size: 0.9rem;">Preencha os dados abaixo para editar a aula.
+            <h4 class="fw-bold mb-1 text-dark" style="font-size: 1.25rem;">Edit Lesson</h4>
+            <p class="text-muted mb-0" style="font-size: 0.9rem;">Update the lesson details below.
             </p>
         </div>
     </div>
@@ -25,16 +25,16 @@
     <hr class="text-secondary-subtle mb-4">
     <div class="row mb-2">
         <div class="col-md-6 mb-3">
-            <label asp-for="Nome" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Nome da Aula</label>
+            <label asp-for="Nome" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Lesson Name</label>
             <div class="input-group">
                 <input asp-for="Nome" type="text" class="form-control border-start-0 ps-1 shadow-none py-2"
-                       placeholder="Introdução a Programação">
+                       placeholder="Introduction to Programming">
             </div>
             <span asp-validation-for="Nome" class="text-danger small fw-semibold mt-1 d-block"></span>
         </div>
 
         <div class="col-md-6 mb-3">
-            <label asp-for="Duracao" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Duração
+            <label asp-for="Duracao" class="form-label fw-bold text-dark" style="font-size: 0.9rem;">Duration
             </label>
             <div class="input-group">
                 <input asp-for="Duracao" type="number" min="0"
@@ -47,11 +47,11 @@
     <hr class="text-secondary-subtle mt-2 mb-4">
     <div class="d-flex justify-content-end gap-3">
         <a class="btn bg-white border px-4 fw-semibold text-dark py-2" style="font-size: 0.9rem; border-color: #dee2e6;"
-           asp-controller="Curso" asp-route-id=@Model.Id asp-action="Visualizar"> Cancelar
+           asp-controller="Curso" asp-route-id=@Model.Id asp-action="Visualizar"> Cancel
         </a>
         <button class=" btn px-4 fw-semibold text-white d-flex align-items-center gap-2 py-2"
                 style="background-color: #5a38f5; font-size: 0.9rem;" type="submit">
-            <i class="bi bi-plus-lg"></i> Editar Aula
+            <i class="bi bi-plus-lg"></i> Save Changes
         </button>
     </div>
 </div>
