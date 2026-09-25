@@ -55,13 +55,13 @@
                 <div class="col-6 d-flex align-items-center ">
                     <div class="text-muted w-50" style="font-size: 0.85rem;">Difficulty</div>
                     <div class="fw-semibold text-dark w-75 d-flex align-items-center gap-2" style="font-size: 0.9rem;">
-                        @Model.Dificuldade
+                        @(Model.Dificuldade.ToString() switch { "Inicial" => "Beginner", "Intermediario" => "Intermediate", "Avancado" => "Advanced", _ => Model.Dificuldade.ToString() })
                     </div>
                 </div>
             </div>
 
             <div class="row mb-3">
-                <div class="col-sm-4 text-muted" style="font-size: 0.85rem;">Categoria</div>
+                <div class="col-sm-4 text-muted" style="font-size: 0.85rem;">Category</div>
                 <div class="col-sm-8 fw-semibold text-dark text-break" style="font-size: 0.9rem;">
                     @Model.CategoriaNome
                 </div>
