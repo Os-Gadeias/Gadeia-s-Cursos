@@ -15,6 +15,6 @@ Gadeia's Courses is a web application for managing an educational institution. I
 ## Application Overview
 
 <p align="center">
-	<img src="ReadVideos/Overview.gif" alt="Overview of the Gadeia's Courses application" width="800">
+	<img src="ReadVideos/Overview.gif" alt="Overview of the Gadeia's Courses application" width="600">
 </p>
 
